@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>원리금균등상환 계산기, 월 상환액 3초 만에 계산</title>
+<meta name="description" content="결론부터 3줄로요. 원리금균등상환은 매달 내는 돈(원금+이자)이 끝까지 똑같은 방식이에요. 1억 원을 연 4.5%, 30년으로 빌리면 월 상환액은 약 50만 6천 원 수준이고요. 아래 계산기에 대출금·금리·기간만 넣">
+<link rel="canonical" href="https://ttoknote.com/계산기/원리금균등상환/">
+<meta property="og:title" content="원리금균등상환 계산기, 월 상환액 3초 만에 계산">
+<meta property="og:url" content="https://ttoknote.com/계산기/원리금균등상환/">
+<meta property="og:type" content="article">
+<style>
+  :root{--pt:#2563eb;--pt2:#1e40af;--bg:#f7f8fa;--card:#fff;--tx:#1f2937;--mut:#6b7280;--line:#e5e7eb}
+  *{box-sizing:border-box}
+  body{margin:0;font-family:'Malgun Gothic','맑은 고딕',system-ui,sans-serif;background:var(--bg);color:var(--tx);line-height:1.8}
+  a{color:var(--pt);text-decoration:none}
+  .wrap{max-width:760px;margin:0 auto;padding:0 20px}
+  header{background:var(--card);border-bottom:1px solid var(--line)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:60px;max-width:960px;margin:0 auto;padding:0 20px}
+  .logo{font-size:22px;font-weight:800;color:var(--pt)}.logo span{color:var(--tx)}
+  .menu{display:flex;gap:20px;font-weight:600;font-size:15px}.menu a{color:var(--tx)}
+  .crumb{font-size:13px;color:var(--mut);margin:20px 0 6px}
+  h1{font-size:26px;margin:6px 0 4px;line-height:1.35}
+  .date{color:var(--mut);font-size:13px;margin-bottom:22px}
+  .post img{max-width:100%;height:auto;border-radius:10px}
+  .post h2{font-size:20px;margin:30px 0 10px}
+  .post h3{font-size:17px;margin:24px 0 8px}
+  .post table{width:100%;border-collapse:collapse;margin:14px 0;font-size:15px}
+  .post th,.post td{border:1px solid var(--line);padding:10px 12px}
+  .post th{background:#f0f5ff}
+  footer{margin-top:44px;background:#1f2937;color:#cbd5e1;padding:26px 0;font-size:13px}
+  footer a{color:#cbd5e1;text-decoration:underline}
+</style>
+</head>
+<body>
+<header>
+  <div class="nav">
+    <a class="logo" href="/">똑<span>노트</span></a>
+    <nav class="menu"><a href="/계산기/">계산기</a><a href="/혜택/">정부혜택</a><a href="/셀러/">셀러정보</a></nav>
+  </div>
+</header>
+<main class="wrap">
+  <div class="crumb"><a href="/">홈</a> › <a href="/계산기/">계산기</a> › 원리금균등상환 계산기, 월 상환액 3초 만에 계산</div>
+  <h1>원리금균등상환 계산기, 월 상환액 3초 만에 계산</h1>
+  <div class="date">2026-08-27 · 똑노트</div>
+  <div class="post">
+<!-- 메타설명: 원리금균등상환 계산기로 대출 월 납입금과 총이자를 바로 계산해보세요. 계산 공식, 실제 예시, 원금균등과의 차이, 중도상환 시 주의점까지 정리했어요. -->
+
+
+<p><strong>결론부터 3줄로요.</strong> 원리금균등상환은 매달 내는 돈(원금+이자)이 끝까지 똑같은 방식이에요. 1억 원을 연 4.5%, 30년으로 빌리면 월 상환액은 약 50만 6천 원 수준이고요. 아래 계산기에 대출금·금리·기간만 넣으면 월 납입금과 총이자가 바로 나와요.</p>
+
+<div id="calc_wonligyundeung" style="max-width:480px;margin:20px auto;padding:22px;border:1px solid #e5e7eb;border-radius:14px;background:#fafafa;">
+  <div style="font-size:18px;font-weight:700;margin-bottom:14px;">원리금균등상환 계산기</div>
+
+  <div style="margin-bottom:12px;">
+    <label for="wg_amount" style="display:block;font-size:14px;margin-bottom:5px;">대출원금 (만원)</label>
+    <input type="number" inputmode="numeric" id="wg_amount" placeholder="예: 10000" style="width:100%;padding:10px;border:1px solid #d1d5db;border-radius:8px;box-sizing:border-box;font-size:15px;">
+  </div>
+
+  <div style="margin-bottom:12px;">
+    <label for="wg_rate" style="display:block;font-size:14px;margin-bottom:5px;">연이자율 (%)</label>
+    <input type="number" inputmode="decimal" id="wg_rate" step="0.01" placeholder="예: 4.5" style="width:100%;padding:10px;border:1px solid #d1d5db;border-radius:8px;box-sizing:border-box;font-size:15px;">
+  </div>
+
+  <div style="margin-bottom:12px;">
+    <label for="wg_years" style="display:block;font-size:14px;margin-bottom:5px;">상환기간 (년)</label>
+    <input type="number" inputmode="numeric" id="wg_years" placeholder="예: 30" style="width:100%;padding:10px;border:1px solid #d1d5db;border-radius:8px;box-sizing:border-box;font-size:15px;">
+  </div>
+
+  <div style="margin-bottom:14px;">
+    <label for="wg_grace" style="display:block;font-size:14px;margin-bottom:5px;">거치기간 (년, 없으면 0)</label>
+    <input type="number" inputmode="numeric" id="wg_grace" placeholder="0" style="width:100%;padding:10px;border:1px solid #d1d5db;border-radius:8px;box-sizing:border-box;font-size:15px;">
+  </div>
+
+  <button id="wg_btn" style="width:100%;padding:13px;background:#2563eb;color:#ffffff;border:none;border-radius:8px;font-size:16px;font-weight:700;cursor:pointer;">월 상환액 계산하기</button>
+
+  <div id="wg_out" style="display:none;margin-top:16px;padding:16px;background:#ffffff;border:1px solid #e5e7eb;border-radius:10px;font-size:15px;line-height:1.9;"></div>
+
+  <div style="margin-top:12px;font-size:12px;color:#6b7280;line-height:1.7;">
+    월복리(연이율÷12) 기준 원리금균등상환 표준식으로 계산해요. 중도상환수수료, 인지세, 보증료, 변동금리 변동분은 반영하지 않은 참고용 추정이에요. 정확한 금액은 <a href="https://www.hometax.go.kr" target="_blank" rel="noopener">홈택스</a>가 아닌 실제 대출 취급 은행의 공식 계산기와 상환스케줄표에서 확인하세요.
+  </div>
+</div>
+
+<script>(function(){
+  var btn=document.getElementById('wg_btn');
+  var out=document.getElementById('wg_out');
+  function won(n){return Math.round(n).toLocaleString('ko-KR');}
+  btn.onclick=function(){
+    var man=parseFloat(document.getElementById('wg_amount').value);
+    var rate=parseFloat(document.getElementById('wg_rate').value);
+    var yrs=parseFloat(document.getElementById('wg_years').value);
+    var gr=parseFloat(document.getElementById('wg_grace').value);
+    if(isNaN(gr)||gr<0){gr=0;}
+    out.style.display='block';
+    if(isNaN(man)||man<=0||isNaN(rate)||rate<0||isNaN(yrs)||yrs<=0){
+      out.innerHTML='<span style="color:#dc2626;">대출원금, 연이자율, 상환기간을 모두 올바르게 입력해 주세요.</span>';
+      return;
+    }
+    if(gr>=yrs){
+      out.innerHTML='<span style="color:#dc2626;">거치기간은 상환기간보다 짧아야 해요.</span>';
+      return;
+    }
+    var P=man*10000;
+    var i=rate/100/12;
+    var nTotal=Math.round(yrs*12);
+    var nGrace=Math.round(gr*12);
+    var n=nTotal-nGrace;
+    var pay;
+    if(i===0){pay=P/n;}
+    else{var f=Math.pow(1+i,n);pay=P*i*f/(f-1);}
+    var graceMonthly=P*i;
+    var graceInterest=graceMonthly*nGrace;
+    var totalPay=pay*n+graceInterest;
+    var totalInterest=totalPay-P;
+    var firstInterest=P*i;
+    var firstPrincipal=pay-firstInterest;
+    var html='';
+    html+='<div style="font-size:20px;font-weight:700;color:#2563eb;">월 상환액 약 '+won(pay)+'원</div>';
+    if(nGrace>0){
+      html+='<div>거치기간 '+nGrace+'개월 동안은 이자만 월 <strong>'+won(graceMonthly)+'원</strong></div>';
+      html+='<div>이후 '+n+'개월 동안 월 <strong>'+won(pay)+'원</strong></div>';
+    }
+    html+='<div>총 상환액 <strong>'+won(totalPay)+'원</strong></div>';
+    html+='<div>총 이자 <strong>'+won(totalInterest)+'원</strong></div>';
+    html+='<div>첫 회차 구성 · 이자 '+won(firstInterest)+'원 / 원금 '+won(firstPrincipal)+'원</div>';
+    html+='<div style="margin-top:10px;font-size:12.5px;color:#6b7280;">적용한 계산식 : 월상환액 = 원금 × 월이율 × (1+월이율)^개월수 ÷ ((1+월이율)^개월수 − 1), 월이율 = 연이율 ÷ 12</div>';
+    out.innerHTML=html;
+  };
+})();</script>
+
+<p>대출 상담을 받다 보면 "원리금균등이요, 원금균등이요?"라는 질문을 꼭 받아요. 그런데 그 자리에서는 월에 얼마 나가는지 감이 안 오니까 그냥 은행에서 권하는 대로 도장을 찍게 되죠. 사실 이 선택 하나로 30년짜리 대출이면 이자 차이가 수천만 원까지 벌어질 수 있어요. 그래서 계약 전에 직접 숫자를 뽑아보는 게 제일 확실해요.</p>
+
+<img src="https://blogautomation.netlify.app/.netlify/functions/img?id=calc_1787853743853_0" alt="원리금균등상환 계산기로 월 상환액 계산하는 모습" style="max-width:100%;height:auto;border-radius:8px;" />
+
+<h2>원리금균등상환이 뭔가요</h2>
+
+<p>말 그대로 <strong>'원금 + 이자'의 합계를 매달 똑같이</strong> 맞춰서 갚는 방식이에요. 첫 달이나 마지막 달이나 통장에서 빠져나가는 금액이 동일하니까 가계부 짜기가 편하죠. 대신 내부 구성은 계속 바뀌어요. 초반에는 이자 비중이 크고 원금은 조금씩 줄어들다가, 후반으로 갈수록 원금 비중이 확 커져요.</p>
+
+<p>예를 들어 1억 원을 연 4.5%, 30년으로 빌린 첫 달을 보면 월 50만 6천 원 중 이자가 37만 5천 원, 원금은 13만 1천 원 정도예요. 3년쯤 갚아도 원금은 500만 원 남짓밖에 안 줄어 있어요. "열심히 갚았는데 왜 잔액이 그대로지?" 싶은 이유가 여기 있어요.</p>
+
+<h2>계산 공식과 실제 예시</h2>
+
+<p>표준 공식은 이거 하나예요. 은행도 이 식을 그대로 써요.</p>
+
+<blockquote>월 상환액 = 원금 × r × (1+r)ⁿ ÷ {(1+r)ⁿ − 1}<br>(r = 연이율 ÷ 12, n = 총 상환 개월 수)</blockquote>
+
+<p>1억 원, 연 4.5%, 30년(360개월)으로 직접 넣어볼게요. r은 0.045÷12 = 0.00375, (1.00375)³⁶⁰은 약 3.8477이에요. 계산하면 1억 × 0.00375 × 3.8477 ÷ 2.8477 ≈ <strong>월 506,685원</strong>이 나와요. 360개월을 곱하면 총 상환액 약 1억 8,240만 원, 즉 이자만 8,240만 원을 내는 셈이에요.</p>
+
+<h2>기간·금리에 따라 얼마나 달라질까요</h2>
+
+<p>1억 원 기준으로 조건을 바꿔가며 비교해봤어요. 같은 원금인데 기간이 늘어나면 월 부담은 줄지만 총이자는 눈에 띄게 불어나요.</p>
+
+<table>
+<tr><td><strong>조건</strong></td><td><strong>월 상환액</strong></td><td><strong>총이자</strong></td></tr>
+<tr><td>연 4.5% / 10년</td><td>약 1,036,384원</td><td>약 2,437만 원</td></tr>
+<tr><td>연 4.5% / 20년</td><td>약 632,649원</td><td>약 5,184만 원</td></tr>
+<tr><td>연 4.5% / 30년</td><td>약 506,685원</td><td>약 8,241만 원</td></tr>
+<tr><td>연 3.5% / 30년</td><td>약 449,045원</td><td>약 6,166만 원</td></tr>
+<tr><td>연 6.0% / 30년</td><td>약 599,551원</td><td>약 11,584만 원</td></tr>
+</table>
+
+<p>금리가 1%포인트만 움직여도 30년 기준 총이자가 2천만 원 넘게 차이 나요. 그래서 대출 갈아타기(대환)를 검토할 때 0.3~0.5%포인트 차이도 무시하면 안 돼요.</p>
+
+<h2>원금균등상환과 비교하면</h2>
+
+<p>원금균등은 원금을 개월 수로 똑같이 쪼개고 남은 잔액에 이자를 붙이는 방식이에요. 첫 달이 가장 비싸고 매달 조금씩 싸져요. 1억 원, 연 4.5%, 30년이면 첫 달은 약 65만 3천 원(원금 27만 8천 + 이자 37만 5천), 마지막 달은 약 27만 9천 원이에요. 총이자는 약 6,769만 원으로 원리금균등보다 1,470만 원가량 적어요.</p>
+
+<ul>
+<li><strong>원리금균등</strong> : 월 부담 일정, 초기 부담 낮음, 총이자 많음 → 신혼부부·사회초년생·소득이 일정한 직장인</li>
+<li><strong>원금균등</strong> : 초기 부담 큼, 갈수록 가벼워짐, 총이자 적음 → 현재 소득 여유 있고 은퇴 전 상환 계획이 있는 경우</li>
+<li><strong>만기일시</strong> : 매달 이자만, 만기에 원금 한 번에 → 단기 자금, 전세자금대출 등</li>
+</ul>
+
+<img src="https://blogautomation.netlify.app/.netlify/functions/img?id=calc_1787853749727_1" alt="대출 상환 방식 비교 검토하는 모습" style="max-width:100%;height:auto;border-radius:8px;" />
+
+<h2>자주 하는 실수 4가지</h2>
+
+<ol>
+<li><strong>거치기간을 공짜로 생각하기</strong> — 거치 3년은 원금이 1원도 안 줄고 이자만 내는 기간이에요. 위 계산기에 거치 3년을 넣어보면 총 상환액이 훌쩍 뛰는 게 보여요. 거치 후에는 상환 기간이 짧아져 월 납입금도 올라가요.</li>
+<li><strong>월 상환액만 보고 기간을 늘리기</strong> — 30년으로 늘리면 월 12만 원 아끼지만 총이자는 3천만 원 늘어요. 감당 가능하다면 기간은 짧게 잡는 게 유리해요.</li>
+<li><strong>중도상환수수료 확인 안 하기</strong> — 보통 3년 이내 상환 시 잔액의 일정 비율을 부과해요. 상품마다 다르니 약정서를 꼭 확인하세요.</li>
+<li><strong>변동금리를 고정으로 계산하기</strong> — 6개월·1년 주기로 금리가 바뀌면 월 납입금도 재산정돼요. 계산기 결과는 '현재 금리가 유지될 경우'의 값이에요.</li>
+</ol>
+
+<h2>이자를 줄이는 현실적인 방법</h2>
+
+<p>가장 효과가 큰 건 <strong>초기 원금 상환</strong>이에요. 원리금균등은 초반 이자 비중이 크기 때문에, 대출 초기에 넣는 여윳돈 1천만 원이 후반에 넣는 1천만 원보다 훨씬 큰 이자 절감 효과를 내요. 보너스나 상여금이 생기면 수수료 면제 시점을 확인하고 일부 상환을 고려해보세요.</p>
+
+<p>또 주택담보대출 이자는 조건을 충족하면 장기주택저당차입금 이자상환액 공제 대상이 될 수 있어요. 요건과 한도는 매년 달라질 수 있으니 <a href="https://www.hometax.go.kr" target="_blank" rel="noopener">홈택스</a> 연말정산 안내에서 본인 조건을 확인하는 게 정확해요. 정책금융 상품 자격 여부는 <a href="https://www.gov.kr" target="_blank" rel="noopener">정부24</a>에서도 관련 정보를 찾아볼 수 있어요.</p>
+
+<img src="https://blogautomation.netlify.app/.netlify/functions/img?id=calc_1787853755731_2" alt="대출 원금 조기상환으로 이자 절약하기" style="max-width:100%;height:auto;border-radius:8px;" />
+
+<h2>마무리</h2>
+
+<p>원리금균등상환 계산기는 '내가 감당 가능한 대출 규모'를 역산할 때 제일 쓸모 있어요. 보통 월 상환액이 월 소득의 30%를 넘어가면 생활이 빡빡해지니, 그 선을 먼저 정하고 거꾸로 원금을 조절해보세요. 저는 개인적으로 기간은 넉넉히 잡되 여윳돈이 생길 때마다 원금을 조금씩 밀어 넣는 방식을 선호해요. 유연성도 챙기고 이자도 줄일 수 있거든요. 🙂</p>
+
+<h2>자주 묻는 질문(FAQ)</h2>
+
+<h3>계산기 결과와 은행 금액이 조금 달라요</h3>
+<p>은행은 실제 일수(월별 28~31일)를 반영하거나 원 단위 절사 규칙을 적용해서 몇백 원~몇천 원 차이가 날 수 있어요. 여기에 인지세, 보증료, 근저당 설정비가 별도로 붙기도 해요. 계약 전 받는 상환스케줄표가 최종 기준이에요.</p>
+
+<h3>중간에 원금을 일부 갚으면 월 납입금이 줄어드나요</h3>
+<p>두 가지 중에 고를 수 있는 경우가 많아요. 기간은 그대로 두고 월 납입금을 낮추거나, 월 납입금은 유지하고 기간을 단축하는 방식이에요. 총이자 절감 효과는 기간 단축 쪽이 더 커요. 은행에 어느 방식인지 반드시 확인하세요.</p>
+
+<h3>거치기간을 두는 게 유리한 경우도 있나요</h3>
+<p>입주 전 이중 부담이 있거나 소득이 곧 늘어날 게 확실한 시기에는 도움이 돼요. 다만 거치 3년이면 그 기간 이자는 그대로 비용으로 나가고 원금은 줄지 않아요. 꼭 필요한 기간만 최소한으로 잡는 걸 권해요.</p>
+  </div>
+</main>
+<footer><div class="wrap">© 2026 똑노트(ttoknote.com) · <a href="/privacy/">개인정보처리방침</a><br>본 사이트의 정보·계산 결과는 참고용이며, 정확한 내용은 관련 기관에서 확인하세요.</div></footer>
+</body>
+</html>

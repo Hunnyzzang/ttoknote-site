@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>퇴직금계산기 사용법과 계산 공식 총정리</title>
+<meta name="description" content="결론부터 3줄 요약이에요. 퇴직금은 1일 평균임금 × 30일 × (재직일수 ÷ 365) 로 계산해요. 1주 15시간 이상, 1년 이상 계속 근무했다면 정규직·계약직·아르바이트 구분 없이 받을 수 있어요. 평균임금의 ">
+<link rel="canonical" href="https://ttoknote.com/계산기/퇴직금계산기/">
+<meta property="og:title" content="퇴직금계산기 사용법과 계산 공식 총정리">
+<meta property="og:url" content="https://ttoknote.com/계산기/퇴직금계산기/">
+<meta property="og:type" content="article">
+<style>
+  :root{--pt:#2563eb;--pt2:#1e40af;--bg:#f7f8fa;--card:#fff;--tx:#1f2937;--mut:#6b7280;--line:#e5e7eb}
+  *{box-sizing:border-box}
+  body{margin:0;font-family:'Malgun Gothic','맑은 고딕',system-ui,sans-serif;background:var(--bg);color:var(--tx);line-height:1.8}
+  a{color:var(--pt);text-decoration:none}
+  .wrap{max-width:760px;margin:0 auto;padding:0 20px}
+  header{background:var(--card);border-bottom:1px solid var(--line)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:60px;max-width:960px;margin:0 auto;padding:0 20px}
+  .logo{font-size:22px;font-weight:800;color:var(--pt)}.logo span{color:var(--tx)}
+  .menu{display:flex;gap:20px;font-weight:600;font-size:15px}.menu a{color:var(--tx)}
+  .crumb{font-size:13px;color:var(--mut);margin:20px 0 6px}
+  h1{font-size:26px;margin:6px 0 4px;line-height:1.35}
+  .date{color:var(--mut);font-size:13px;margin-bottom:22px}
+  .post img{max-width:100%;height:auto;border-radius:10px}
+  .post h2{font-size:20px;margin:30px 0 10px}
+  .post h3{font-size:17px;margin:24px 0 8px}
+  .post table{width:100%;border-collapse:collapse;margin:14px 0;font-size:15px}
+  .post th,.post td{border:1px solid var(--line);padding:10px 12px}
+  .post th{background:#f0f5ff}
+  footer{margin-top:44px;background:#1f2937;color:#cbd5e1;padding:26px 0;font-size:13px}
+  footer a{color:#cbd5e1;text-decoration:underline}
+</style>
+</head>
+<body>
+<header>
+  <div class="nav">
+    <a class="logo" href="/">똑<span>노트</span></a>
+    <nav class="menu"><a href="/계산기/">계산기</a><a href="/혜택/">정부혜택</a><a href="/셀러/">셀러정보</a></nav>
+  </div>
+</header>
+<main class="wrap">
+  <div class="crumb"><a href="/">홈</a> › <a href="/계산기/">계산기</a> › 퇴직금계산기 사용법과 계산 공식 총정리</div>
+  <h1>퇴직금계산기 사용법과 계산 공식 총정리</h1>
+  <div class="date">2026-08-20 · 똑노트</div>
+  <div class="post">
+<p><strong>결론부터 3줄 요약이에요.</strong> 퇴직금은 <strong>1일 평균임금 × 30일 × (재직일수 ÷ 365)</strong>로 계산해요. 1주 15시간 이상, 1년 이상 계속 근무했다면 정규직·계약직·아르바이트 구분 없이 받을 수 있어요. 평균임금의 기준은 퇴직 직전 3개월 급여 총액이고, 상여금과 연차수당도 일정 비율로 더해집니다.</p>
+
+<div id="calc_retirepay" style="max-width:480px;margin:20px auto;padding:22px;border:1px solid #e5e7eb;border-radius:14px;background:#fafafa;">
+  <div style="font-size:18px;font-weight:700;margin-bottom:14px;">퇴직금 간편 계산기</div>
+
+  <div style="margin-bottom:10px;">
+    <label for="rp_days" style="display:block;font-size:14px;margin-bottom:4px;">총 재직일수 (입사일~퇴사일, 일)</label>
+    <input type="number" inputmode="numeric" id="rp_days" placeholder="예: 1095" style="width:100%;padding:9px;border:1px solid #d1d5db;border-radius:8px;box-sizing:border-box;">
+  </div>
+
+  <div style="margin-bottom:10px;">
+    <label for="rp_pay3" style="display:block;font-size:14px;margin-bottom:4px;">퇴직 전 3개월 임금 총액 (원)</label>
+    <input type="number" inputmode="numeric" id="rp_pay3" placeholder="예: 9000000" style="width:100%;padding:9px;border:1px solid #d1d5db;border-radius:8px;box-sizing:border-box;">
+  </div>
+
+  <div style="margin-bottom:10px;">
+    <label for="rp_days3" style="display:block;font-size:14px;margin-bottom:4px;">그 3개월의 총 일수 (보통 89~92)</label>
+    <input type="number" inputmode="numeric" id="rp_days3" placeholder="예: 91" style="width:100%;padding:9px;border:1px solid #d1d5db;border-radius:8px;box-sizing:border-box;">
+  </div>
+
+  <div style="margin-bottom:10px;">
+    <label for="rp_bonus" style="display:block;font-size:14px;margin-bottom:4px;">최근 1년간 상여금 (원, 없으면 0)</label>
+    <input type="number" inputmode="numeric" id="rp_bonus" placeholder="예: 2000000" style="width:100%;padding:9px;border:1px solid #d1d5db;border-radius:8px;box-sizing:border-box;">
+  </div>
+
+  <div style="margin-bottom:14px;">
+    <label for="rp_annual" style="display:block;font-size:14px;margin-bottom:4px;">최근 1년간 연차수당 (원, 없으면 0)</label>
+    <input type="number" inputmode="numeric" id="rp_annual" placeholder="예: 600000" style="width:100%;padding:9px;border:1px solid #d1d5db;border-radius:8px;box-sizing:border-box;">
+  </div>
+
+  <button id="rp_btn" style="width:100%;padding:12px;background:#2563eb;color:#fff;border:0;border-radius:9px;font-size:16px;font-weight:700;cursor:pointer;">퇴직금 계산하기</button>
+
+  <div id="rp_out" style="display:none;margin-top:16px;padding:14px;background:#fff;border:1px solid #e5e7eb;border-radius:10px;font-size:15px;line-height:1.7;"></div>
+</div>
+<script>(function(){
+  var btn=document.getElementById('rp_btn');
+  btn.onclick=function(){
+    var out=document.getElementById('rp_out');
+    var d=parseFloat(document.getElementById('rp_days').value);
+    var p=parseFloat(document.getElementById('rp_pay3').value);
+    var d3=parseFloat(document.getElementById('rp_days3').value);
+    var b=parseFloat(document.getElementById('rp_bonus').value)||0;
+    var a=parseFloat(document.getElementById('rp_annual').value)||0;
+    out.style.display='block';
+    if(!d||d<=0||!p||p<=0||!d3||d3<=0){
+      out.innerHTML='<span style="color:#dc2626;">재직일수, 3개월 임금 총액, 3개월 일수를 모두 0보다 큰 값으로 입력해 주세요.</span>';
+      return;
+    }
+    if(d<365){
+      out.innerHTML='<span style="color:#dc2626;">계속근로기간이 1년(365일) 미만이면 법정 퇴직금 지급 대상이 아니에요. 재직일수를 다시 확인해 주세요.</span>';
+      return;
+    }
+    var add=(b*3/12)+(a*3/12);
+    var base=p+add;
+    var avg=base/d3;
+    var pay=avg*30*(d/365);
+    out.innerHTML='<div>1일 평균임금 : <strong>'+Math.round(avg).toLocaleString('ko-KR')+'원</strong></div>'+
+    '<div>가산된 상여·연차분 : '+Math.round(add).toLocaleString('ko-KR')+'원</div>'+
+    '<div style="margin-top:8px;font-size:18px;">예상 퇴직금 : <strong style="color:#2563eb;">'+Math.round(pay).toLocaleString('ko-KR')+'원</strong></div>'+
+    '<div style="margin-top:10px;font-size:13px;color:#555;">적용한 계산식 : (3개월 임금 + 상여금×3/12 + 연차수당×3/12) ÷ 3개월 일수 × 30일 × (재직일수 ÷ 365)</div>';
+  };
+})();</script>
+
+<p style="font-size:13px;color:#666;max-width:480px;margin:0 auto 26px;">※ 세전 금액 기준이며 퇴직소득세는 반영되지 않았어요. 평균임금이 통상임금보다 적을 경우 통상임금으로 계산해야 합니다. 참고용 추정이며 정확한 금액은 <a href="https://www.moel.go.kr" target="_blank" rel="noopener">고용노동부</a> 공식 퇴직금 계산기에서 확인하세요.</p>
+
+<h2>퇴직금, 누가 받을 수 있나요</h2>
+<p>퇴직급여 제도는 근로자퇴직급여 보장법에 근거해요. 조건은 딱 두 가지입니다. 1주 소정근로시간이 평균 15시간 이상이고, 계속근로기간이 1년 이상이면 됩니다. 사업장 규모나 4대보험 가입 여부, 계약서 유무와는 상관없어요.</p>
+<p>그래서 편의점 아르바이트를 주 20시간씩 13개월 했어도 퇴직금 대상이 돼요. 반대로 주 3일 하루 4시간(주 12시간)이면 3년을 일해도 대상이 아닙니다. 다만 어떤 주는 15시간을 넘고 어떤 주는 못 넘는 경우엔, 4주 평균으로 판단한다는 점을 기억해 두세요.</p>
+
+<div class="separator" style="clear: both;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgwzBl7T_pD64hfLYKfp3kffv7Kri9RaSmvEK0aBwVUi2bcQeUfAYsaKk8XpgzbFHJ3Ryf2OB7udMrGZwn8FTq19AZx2EI4JV_S8iSIk5w79qIhf6dG5s8Kd1Savkbsp-VufNzj4qcdkFRMlCfafRNKiTYByie2sghqFOWBv_8VCjz5UqrcpeDvVAOWVdg/s1024/photo-1%20%283%29.png" style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="600" data-original-height="1024" data-original-width="1024" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgwzBl7T_pD64hfLYKfp3kffv7Kri9RaSmvEK0aBwVUi2bcQeUfAYsaKk8XpgzbFHJ3Ryf2OB7udMrGZwn8FTq19AZx2EI4JV_S8iSIk5w79qIhf6dG5s8Kd1Savkbsp-VufNzj4qcdkFRMlCfafRNKiTYByie2sghqFOWBv_8VCjz5UqrcpeDvVAOWVdg/s600/photo-1%20%283%29.png"/></a></div>
+
+<h2>계산 공식: 평균임금이 핵심이에요</h2>
+<p>공식 자체는 단순해요.</p>
+<blockquote>퇴직금 = 1일 평균임금 × 30일 × (총 재직일수 ÷ 365)</blockquote>
+<p>여기서 헷갈리는 건 '1일 평균임금'입니다. 월급을 30으로 나눈 값이 아니에요. <strong>퇴직일 직전 3개월간 지급된 임금 총액을 그 3개월의 총 달력 일수로 나눈 값</strong>이에요. 3개월 일수는 89일에서 92일 사이로 달라지니, 실제 달력을 보고 세는 게 정확합니다.</p>
+<p>임금 총액에는 기본급, 각종 수당, 연장·야간·휴일근로수당, 식대처럼 정기적으로 지급되는 항목이 포함돼요. 여기에 <strong>최근 1년간 받은 상여금 × 3/12</strong>, <strong>전년도 미사용 연차수당 × 3/12</strong>를 더합니다. 실비 성격의 출장비나 경조사비는 임금이 아니라 빠져요.</p>
+
+<h2>실제 숫자로 한 번 계산해 볼게요</h2>
+<p>예시 상황입니다. 2023년 4월 1일 입사, 2026년 3월 31일 퇴사로 재직일수는 1,096일이에요. 마지막 3개월(1~3월) 급여가 각각 300만 원씩 총 900만 원, 그 기간 일수는 90일. 최근 1년 상여금 200만 원, 연차수당 60만 원을 받았다고 해볼게요.</p>
+<ol>
+<li>상여·연차 가산분 = (200만 × 3/12) + (60만 × 3/12) = 50만 + 15만 = <strong>65만 원</strong></li>
+<li>산정 기준 임금 = 900만 + 65만 = 965만 원</li>
+<li>1일 평균임금 = 965만 ÷ 90 = 약 <strong>107,222원</strong></li>
+<li>퇴직금 = 107,222 × 30 × (1,096 ÷ 365) = 약 <strong>9,660,000원</strong></li>
+</ol>
+<p>위 계산기에 같은 숫자를 넣으면 동일한 결과가 나와요. 상여금과 연차수당을 빼먹고 계산하면 약 65만 원 정도 손해를 보게 되니 꼭 챙기세요.</p>
+
+<h2>자주 하는 실수 5가지</h2>
+<ul>
+<li><strong>월급 ÷ 30으로 계산</strong> — 3개월 총액 ÷ 달력 일수가 맞아요. 수당이 많은 달이 끼면 금액 차이가 커집니다.</li>
+<li><strong>퇴사 직전 무급휴직·병가 기간을 그대로 포함</strong> — 업무상 부상, 육아휴직, 사용자 귀책 휴업 기간 등은 평균임금 산정 기간에서 제외돼요. 그대로 넣으면 평균임금이 확 낮아집니다.</li>
+<li><strong>재직일수를 개월 수로만 계산</strong> — 하루 단위로 세야 해요. 마지막 날 하루 차이로 몇만 원이 왔다 갔다 합니다.</li>
+<li><strong>평균임금이 통상임금보다 낮은데 그대로 씀</strong> — 법상 둘 중 큰 금액을 씁니다. 퇴사 직전 3개월이 비수기라 수당이 적었다면 꼭 비교해 보세요.</li>
+<li><strong>DC형인데 위 공식을 적용</strong> — 확정기여형(DC)은 회사가 매년 연간 임금총액의 1/12 이상을 넣고 운용수익이 붙는 구조라, 최종 수령액이 이 계산식과 다를 수 있어요.</li>
+</ul>
+
+<div class="separator" style="clear: both;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiFUT_h4f8B4O62e-C2bRnBWXThgkRTopErQ3v_aSxPBrh2bAqN01bJPjQtL_UKj_U0P4lPyGW7qwJDmLY4ZgjCa9AHiFq4NxrlyV1232QvWc9BQa6eQo6Pj3YlKbF1PZ0YpUe41cFSjBzWne1jYztH0PXAu7In3wfrrSZfmxU5AOg9ACSKJkkdBMNT8mw/s1024/photo-2%20%283%29.png" style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="600" data-original-height="1024" data-original-width="1024" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiFUT_h4f8B4O62e-C2bRnBWXThgkRTopErQ3v_aSxPBrh2bAqN01bJPjQtL_UKj_U0P4lPyGW7qwJDmLY4ZgjCa9AHiFq4NxrlyV1232QvWc9BQa6eQo6Pj3YlKbF1PZ0YpUe41cFSjBzWne1jYztH0PXAu7In3wfrrSZfmxU5AOg9ACSKJkkdBMNT8mw/s600/photo-2%20%283%29.png"/></a></div>
+
+<h2>지급 기한과 세금은 이렇게 돼요</h2>
+<p>퇴직금은 퇴직일로부터 <strong>14일 이내</strong> 지급이 원칙이에요. 당사자 합의가 있으면 기한을 연장할 수 있지만, 합의 없이 미지급되면 지연이자와 함께 임금체불로 신고할 수 있습니다. 진정은 사업장 관할 지방고용노동관서나 <a href="https://www.moel.go.kr" target="_blank" rel="noopener">고용노동부</a> 민원 창구를 통해 접수해요.</p>
+<p>세금은 퇴직소득세로 별도 과세돼요. 근속연수공제와 환산급여공제를 거쳐 계산되기 때문에 근속기간이 길수록 실효세율이 낮아지는 구조입니다. 위 계산기 결과는 세전 기준이니, 실수령액은 조금 줄어든다고 보시면 돼요. 정확한 퇴직소득세는 <a href="https://www.hometax.go.kr" target="_blank" rel="noopener">홈택스</a>의 퇴직소득 세액계산 프로그램에서 확인할 수 있어요.</p>
+<p>또 하나, IRP 계좌로 이전받으면 퇴직소득세를 당장 떼지 않고 인출 시점까지 과세가 미뤄져요. 55세 이후 연금으로 나눠 받으면 세액이 30~40% 감면되니, 급전이 필요한 게 아니라면 IRP 이전을 검토해 볼 만합니다.</p>
+
+<h2>퇴직연금(DB·DC)이면 뭐가 달라지나요</h2>
+<table>
+<tr><td><strong>구분</strong></td><td><strong>확정급여형(DB)</strong></td><td><strong>확정기여형(DC)</strong></td></tr>
+<tr><td>계산 방식</td><td>퇴직 직전 평균임금 × 30일 × 근속연수</td><td>매년 연간임금총액 ÷ 12 적립 + 운용수익</td></tr>
+<tr><td>임금상승 반영</td><td>유리(마지막 급여 기준)</td><td>연도별 급여로 각각 적립</td></tr>
+<tr><td>운용 책임</td><td>회사</td><td>근로자 본인</td></tr>
+</table>
+<p>즉 위 계산기는 법정 퇴직금과 DB형에 잘 맞아요. DC형이라면 각 연도 임금총액을 12로 나눈 값을 모두 더한 뒤 수익률을 감안해야 하니, 가입한 금융기관 앱에서 적립금 현황을 보는 게 가장 빠릅니다.</p>
+
+<h2>마무리</h2>
+<p>퇴직금은 계산식보다 '무엇을 임금에 넣느냐'에서 금액이 갈려요. 급여명세서 3장, 연차수당 지급 내역, 상여금 내역만 미리 챙겨 두면 5분이면 끝납니다. 저도 퇴사 전에 직접 계산해 보고 회사 산정액과 12만 원 차이가 나서 문의했더니, 연차수당이 빠져 있던 적이 있었어요. 한 번은 꼭 직접 두들겨 보시길 권해요 🙂</p>
+
+<div class="separator" style="clear: both;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj3fc7cMNjJ81Jad0HPZTRNgecpk78WG51lrBzZ3s0ptMuZvOPtS6vjx0fSlyfa2fFIiwBJKGPy7OdQvSpU352Y5Zy4PvzRe8pWLbWY2KPCIBBbtzL-l7ok7o6UrR36wfYomoPazD8SpYlz82CV3o_ydGR-6GdiapeoBoVCRQD8kw8OIUBejPS6_nhizpY/s1024/blog-image.png" style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="600" data-original-height="1024" data-original-width="1024" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj3fc7cMNjJ81Jad0HPZTRNgecpk78WG51lrBzZ3s0ptMuZvOPtS6vjx0fSlyfa2fFIiwBJKGPy7OdQvSpU352Y5Zy4PvzRe8pWLbWY2KPCIBBbtzL-l7ok7o6UrR36wfYomoPazD8SpYlz82CV3o_ydGR-6GdiapeoBoVCRQD8kw8OIUBejPS6_nhizpY/s600/blog-image.png"/></a></div>
+
+<h2>자주 묻는 질문(FAQ)</h2>
+<h3>1년을 딱 하루 못 채우고 퇴사하면요?</h3>
+<p>계속근로기간 365일 미만이면 법정 퇴직금 대상이 아니에요. 364일과 366일의 차이가 수백만 원이 될 수 있으니, 자발적 퇴사라면 퇴사일을 하루이틀 조정하는 것도 방법입니다. 참고로 1년을 채우면 그 시점에 발생하는 연차 15일 수당도 함께 챙길 수 있어요.</p>
+<h3>아르바이트도 퇴직금을 받나요?</h3>
+<p>받아요. 고용 형태가 아니라 주 15시간 이상·1년 이상 근무라는 요건만 충족하면 됩니다. 4대보험 미가입이나 근로계약서 미작성도 지급 의무를 없애지 못해요. 출퇴근 기록, 급여 이체 내역, 근무표 사진 등을 근거 자료로 모아두면 좋아요.</p>
+<h3>중간정산을 받았으면 계산은 어떻게 하나요?</h3>
+<p>중간정산 이후 날짜부터 다시 재직일수를 세면 됩니다. 계산기의 '총 재직일수' 칸에 중간정산 다음 날부터 퇴사일까지의 일수를 넣으세요. 참고로 퇴직금 중간정산은 무주택자 주택 구입, 전세보증금, 6개월 이상 요양 등 법에서 정한 사유가 있어야만 가능해요.</p>
+  </div>
+</main>
+<footer><div class="wrap">© 2026 똑노트(ttoknote.com) · <a href="/privacy/">개인정보처리방침</a><br>본 사이트의 정보·계산 결과는 참고용이며, 정확한 내용은 관련 기관에서 확인하세요.</div></footer>
+</body>
+</html>

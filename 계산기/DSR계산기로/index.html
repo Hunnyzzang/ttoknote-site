@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DSR계산기로 내 대출한도 직접 계산하는 법</title>
+<meta name="description" content="은행 창구에서 '고객님은 DSR이 초과되셔서 이 금액은 어렵습니다' 이 말 들어본 분 꽤 있을 거예요. 집 보러 다니다가 예산 다 짜놨는데 마지막에 이 한 마디로 무너지는 경우가 진짜 많거든요. 그래서 미리 내 DS">
+<link rel="canonical" href="https://ttoknote.com/계산기/DSR계산기로/">
+<meta property="og:title" content="DSR계산기로 내 대출한도 직접 계산하는 법">
+<meta property="og:url" content="https://ttoknote.com/계산기/DSR계산기로/">
+<meta property="og:type" content="article">
+<style>
+  :root{--pt:#2563eb;--pt2:#1e40af;--bg:#f7f8fa;--card:#fff;--tx:#1f2937;--mut:#6b7280;--line:#e5e7eb}
+  *{box-sizing:border-box}
+  body{margin:0;font-family:'Malgun Gothic','맑은 고딕',system-ui,sans-serif;background:var(--bg);color:var(--tx);line-height:1.8}
+  a{color:var(--pt);text-decoration:none}
+  .wrap{max-width:760px;margin:0 auto;padding:0 20px}
+  header{background:var(--card);border-bottom:1px solid var(--line)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:60px;max-width:960px;margin:0 auto;padding:0 20px}
+  .logo{font-size:22px;font-weight:800;color:var(--pt)}.logo span{color:var(--tx)}
+  .menu{display:flex;gap:20px;font-weight:600;font-size:15px}.menu a{color:var(--tx)}
+  .crumb{font-size:13px;color:var(--mut);margin:20px 0 6px}
+  h1{font-size:26px;margin:6px 0 4px;line-height:1.35}
+  .date{color:var(--mut);font-size:13px;margin-bottom:22px}
+  .post img{max-width:100%;height:auto;border-radius:10px}
+  .post h2{font-size:20px;margin:30px 0 10px}
+  .post h3{font-size:17px;margin:24px 0 8px}
+  .post table{width:100%;border-collapse:collapse;margin:14px 0;font-size:15px}
+  .post th,.post td{border:1px solid var(--line);padding:10px 12px}
+  .post th{background:#f0f5ff}
+  footer{margin-top:44px;background:#1f2937;color:#cbd5e1;padding:26px 0;font-size:13px}
+  footer a{color:#cbd5e1;text-decoration:underline}
+</style>
+</head>
+<body>
+<header>
+  <div class="nav">
+    <a class="logo" href="/">똑<span>노트</span></a>
+    <nav class="menu"><a href="/계산기/">계산기</a><a href="/혜택/">정부혜택</a><a href="/셀러/">셀러정보</a></nav>
+  </div>
+</header>
+<main class="wrap">
+  <div class="crumb"><a href="/">홈</a> › <a href="/계산기/">계산기</a> › DSR계산기로 내 대출한도 직접 계산하는 법</div>
+  <h1>DSR계산기로 내 대출한도 직접 계산하는 법</h1>
+  <div class="date">2026-09-03 · 똑노트</div>
+  <div class="post">
+<!-- 메타설명: DSR계산기로 연소득과 주택담보대출·신용대출을 입력하면 연간 원리금과 DSR 비율이 바로 나옵니다. DSR 계산식, 40% 규제 기준, 신용대출 5년 분할 함정, 스트레스 DSR까지 정리했어요. -->
+
+
+<p>은행 창구에서 "고객님은 DSR이 초과되셔서 이 금액은 어렵습니다" 이 말 들어본 분 꽤 있을 거예요. 집 보러 다니다가 예산 다 짜놨는데 마지막에 이 한 마디로 무너지는 경우가 진짜 많거든요. 그래서 미리 내 DSR을 알아두는 게 중요한데, 아래 계산기에 숫자 몇 개만 넣으면 바로 나옵니다.</p>
+
+<div id="calc_dsr" style="max-width:480px;margin:20px auto;padding:22px;border:1px solid #e5e7eb;border-radius:14px;background:#fafafa;">
+  <div style="font-weight:700;font-size:17px;margin-bottom:14px;">DSR 간편 계산기 (연소득 대비 원리금)</div>
+
+  <div style="margin-bottom:10px;">
+    <label for="dsr_income" style="display:block;font-size:14px;margin-bottom:4px;">연소득 (만원, 세전)</label>
+    <input type="number" inputmode="numeric" id="dsr_income" placeholder="예: 5000" style="width:100%;padding:9px;border:1px solid #d1d5db;border-radius:8px;box-sizing:border-box;">
+  </div>
+
+  <div style="font-size:14px;font-weight:600;margin:14px 0 6px;">① 주택담보대출</div>
+  <div style="display:flex;gap:6px;margin-bottom:10px;">
+    <input type="number" inputmode="numeric" id="dsr_m1" placeholder="잔액(만원)" style="width:34%;padding:9px;border:1px solid #d1d5db;border-radius:8px;box-sizing:border-box;">
+    <input type="number" inputmode="numeric" id="dsr_m2" placeholder="금리(%)" style="width:33%;padding:9px;border:1px solid #d1d5db;border-radius:8px;box-sizing:border-box;">
+    <input type="number" inputmode="numeric" id="dsr_m3" placeholder="기간(년)" style="width:33%;padding:9px;border:1px solid #d1d5db;border-radius:8px;box-sizing:border-box;">
+  </div>
+
+  <div style="font-size:14px;font-weight:600;margin:14px 0 6px;">② 신용대출·마이너스통장 (5년 분할 가정)</div>
+  <div style="display:flex;gap:6px;margin-bottom:10px;">
+    <input type="number" inputmode="numeric" id="dsr_c1" placeholder="잔액(만원)" style="width:50%;padding:9px;border:1px solid #d1d5db;border-radius:8px;box-sizing:border-box;">
+    <input type="number" inputmode="numeric" id="dsr_c2" placeholder="금리(%)" style="width:50%;padding:9px;border:1px solid #d1d5db;border-radius:8px;box-sizing:border-box;">
+  </div>
+
+  <div style="margin-bottom:14px;">
+    <label for="dsr_etc" style="display:block;font-size:14px;margin-bottom:4px;">③ 기타 대출의 연간 원리금 (만원, 없으면 0)</label>
+    <input type="number" inputmode="numeric" id="dsr_etc" placeholder="예: 300" style="width:100%;padding:9px;border:1px solid #d1d5db;border-radius:8px;box-sizing:border-box;">
+  </div>
+
+  <button id="dsr_btn" style="width:100%;padding:12px;background:#2563eb;color:#fff;border:none;border-radius:9px;font-size:16px;font-weight:700;cursor:pointer;">DSR 계산하기</button>
+
+  <div id="dsr_out" style="display:none;margin-top:16px;padding:14px;background:#fff;border:1px solid #e5e7eb;border-radius:10px;font-size:15px;line-height:1.75;"></div>
+
+  <div style="font-size:12px;color:#6b7280;margin-top:12px;line-height:1.6;">
+    원리금균등분할상환 기준으로 계산합니다. 신용대출은 규제상 만기를 5년으로 보고 분할 산정하는 방식을 반영했어요. 금융회사별 산정 방식·스트레스 금리에 따라 실제 수치는 달라질 수 있는 참고용 추정입니다. 소득 증빙 서류는 <a href="https://www.hometax.go.kr" target="_blank" rel="noopener">홈택스</a>에서 발급받은 소득금액증명으로 확인하세요.
+  </div>
+</div>
+
+<script>
+(function(){
+  function num(id){ var v=parseFloat(document.getElementById(id).value); return isNaN(v)?0:v; }
+  function pmt(P, rate, years){
+    var n = years*12;
+    if(P<=0 || n<=0) return 0;
+    var r = rate/100/12;
+    if(r<=0) return P/n;
+    return P*r/(1-Math.pow(1+r,-n));
+  }
+  function won(x){ return Math.round(x).toLocaleString('ko-KR'); }
+
+  document.getElementById('dsr_btn').onclick = function(){
+    var out = document.getElementById('dsr_out');
+    out.style.display='block';
+    var income = num('dsr_income')*10000;
+    if(income<=0){
+      out.innerHTML = '<span style="color:#dc2626;">연소득을 만원 단위로 입력해 주세요.</span>';
+      return;
+    }
+    var m = pmt(num('dsr_m1')*10000, num('dsr_m2'), num('dsr_m3'))*12;
+    var c = pmt(num('dsr_c1')*10000, num('dsr_c2'), 5)*12;
+    var e = num('dsr_etc')*10000;
+    var total = m + c + e;
+    if(total<=0){
+      out.innerHTML = '<span style="color:#dc2626;">대출 정보를 하나 이상 입력해 주세요.</span>';
+      return;
+    }
+    var dsr = total/income*100;
+    var color = dsr>50 ? '#dc2626' : (dsr>40 ? '#d97706' : '#059669');
+    var judge = dsr>50 ? '은행·2금융권 모두 한도 초과 가능성이 높아요'
+              : (dsr>40 ? '은행권(40%) 초과, 2금융권(50%) 이내예요'
+              : '은행권 40% 기준 이내예요');
+    var room40 = income*0.4 - total;
+    var roomTxt = room40>0
+      ? '40% 기준까지 <strong>연 ' + won(room40) + '원</strong>(월 ' + won(room40/12) + '원) 만큼 원리금 여유가 있어요.'
+      : '40% 기준을 <strong>연 ' + won(-room40) + '원</strong> 초과했어요.';
+
+    out.innerHTML =
+      '연간 원리금 합계 <strong>' + won(total) + '원</strong><br>' +
+      '&nbsp;· 주택담보대출 ' + won(m) + '원<br>' +
+      '&nbsp;· 신용대출(5년) ' + won(c) + '원<br>' +
+      '&nbsp;· 기타 ' + won(e) + '원<br>' +
+      '<div style="margin-top:8px;font-size:20px;font-weight:700;color:' + color + ';">DSR ' + dsr.toFixed(1) + '%</div>' +
+      '<div style="color:' + color + ';">' + judge + '</div>' +
+      '<div style="margin-top:6px;">' + roomTxt + '</div>' +
+      '<div style="margin-top:8px;font-size:12px;color:#6b7280;">적용한 계산식: DSR = 연간 원리금 상환액 합계 ÷ 연소득 × 100 (원리금균등 월상환액 = 원금 × 월이율 ÷ (1 − (1+월이율)^−개월수))</div>';
+  };
+})();
+</script>
+
+<h2>DSR이 뭔지, 한 줄로 정리하면</h2>
+<p>DSR은 총부채원리금상환비율이에요. 내가 1년 동안 갚아야 하는 <strong>모든 대출의 원금 + 이자</strong>를 연소득으로 나눈 값이죠. 여기서 핵심은 '모든'과 '원금'입니다.</p>
+<p>예전 DTI는 주택담보대출만 원금까지 보고 나머지는 이자만 봤어요. 그런데 DSR은 자동차 할부, 학자금, 카드론, 마이너스통장까지 원금 포함으로 다 끌어모읍니다. 그래서 체감상 훨씬 빡빡해요.</p>
+
+<table>
+<tr><td><strong>구분</strong></td><td><strong>무엇을 보나</strong></td><td><strong>느낌</strong></td></tr>
+<tr><td>LTV</td><td>집값 대비 대출금액 비율</td><td>담보(집) 기준</td></tr>
+<tr><td>DTI</td><td>주담대 원리금 + 기타대출 이자 ÷ 소득</td><td>중간</td></tr>
+<tr><td>DSR</td><td>모든 대출 원리금 ÷ 소득</td><td>가장 빡빡함</td></tr>
+</table>
+
+<p>규제 기준은 통상 은행권 40%, 제2금융권 50%예요. 총대출액이 일정 금액을 넘으면 차주 단위로 이 기준이 적용되고요. 세부 적용 대상은 정책에 따라 바뀌니, 실제 실행 직전에는 거래 은행에 한 번 더 확인하는 게 안전해요.</p>
+
+<img src="https://blogautomation.netlify.app/.netlify/functions/img?id=calc_1788285759054_0" alt="DSR 대출 상담을 기다리는 모습" style="max-width:100%;height:auto;border-radius:8px;" />
+
+<h2>실제 숫자로 한 번 계산해볼게요</h2>
+<p>연소득 5,000만 원 직장인이 있다고 해볼게요. 조건은 이렇습니다.</p>
+<ul>
+<li>주택담보대출 3억 원 / 금리 4% / 30년 원리금균등</li>
+<li>신용대출 5,000만 원 / 금리 5.5%</li>
+</ul>
+<p>주담대 월 상환액은 약 143만 원, 연간으로는 약 1,718만 원이에요. 문제는 신용대출입니다. 실제로는 만기 1년에 이자만 내고 연장하는 사람이 대부분인데, DSR 산정에서는 <strong>5년 분할상환으로 간주</strong>해서 계산해요. 그러면 월 95만 원 남짓, 연 1,146만 원이 잡힙니다.</p>
+<p>합치면 연간 원리금이 약 2,864만 원. 5,000만 원으로 나누면 DSR은 대략 57%예요. 40%는커녕 2금융권 50%도 넘죠.</p>
+<p>이 계산을 직접 해보기 전까지는 "이자만 30만 원 내는데 뭐가 문제야?" 싶거든요. 그런데 계산기에 넣어보면 신용대출 5,000만 원이 DSR을 23%p나 잡아먹는 게 보입니다. 이게 제일 충격적인 부분이에요.</p>
+
+<h2>사람들이 제일 많이 놓치는 것들</h2>
+<ol>
+<li><strong>마이너스통장은 한도 전액이 잡혀요.</strong> 5,000만 원 한도인데 한 푼도 안 썼어도, 산정 시에는 한도 기준으로 보는 경우가 많습니다. 안 쓰는 마통은 미리 정리하는 게 낫습니다.</li>
+<li><strong>자동차 할부도 대출이에요.</strong> 신차 뽑고 3개월 뒤에 집 계약하는 순서로 가면 한도가 확 줄어듭니다. 순서를 바꾸는 것만으로 수천만 원 차이가 나요.</li>
+<li><strong>연소득은 증빙 가능한 금액만.</strong> 성과급이 들쭉날쭉하면 은행마다 인정 범위가 다릅니다. 근로소득원천징수영수증이나 소득금액증명 기준으로 잡히니 세전 실제 신고 소득으로 계산하세요.</li>
+<li><strong>기간을 늘리면 DSR은 내려가요.</strong> 30년보다 40년 만기가 연간 원리금이 적으니 DSR이 낮게 나옵니다. 다만 총이자는 늘어나니 마냥 좋은 선택은 아니고요.</li>
+</ol>
+
+<img src="https://blogautomation.netlify.app/.netlify/functions/img?id=calc_1788285764648_1" alt="연소득과 대출 원리금을 계산하는 모습" style="max-width:100%;height:auto;border-radius:8px;" />
+
+<h2>스트레스 DSR, 이건 꼭 알고 가세요</h2>
+<p>변동금리로 빌리면 나중에 금리가 오를 수 있잖아요. 그 위험을 미리 반영하려고 심사할 때 실제 금리보다 <strong>가산금리를 얹어서</strong> DSR을 계산하는 제도가 스트레스 DSR이에요. 단계적으로 적용 범위와 가산 폭이 확대돼 왔고, 대출 종류(주담대·신용대출)와 금리 유형에 따라 적용 비율이 달라집니다.</p>
+<p>결론만 말하면, <strong>내가 계산한 DSR보다 은행에서 나온 숫자가 더 높게 나온다</strong>는 뜻이에요. 위 계산기 결과가 39%로 아슬아슬하게 걸치면 실제 심사에선 넘어갈 수 있습니다. 여유를 5%p 정도 두고 계획 잡으시길 권해요.</p>
+<p>가산금리 수치는 시기마다 바뀌기 때문에 여기 숫자로 못 박지 않을게요. 실행 시점 기준은 거래 은행이나 금융당국 공지로 확인하는 게 정확합니다. 대출 관련 정부 지원 제도는 <a href="https://www.gov.kr" target="_blank" rel="noopener">정부24</a>에서도 안내를 찾을 수 있어요.</p>
+
+<h2>한도가 모자랄 때 현실적인 순서</h2>
+<p>순서대로 해보면 대부분 몇 %p는 만들어집니다.</p>
+<ul>
+<li>안 쓰는 마이너스통장·카드론 한도 정리 (효과 제일 큼)</li>
+<li>신용대출 일부 상환 — 5년 분할로 잡히니 상환 효율이 좋아요</li>
+<li>주담대 만기를 최대한 길게 설정</li>
+<li>부부 합산 소득 인정이 되는 상품인지 확인</li>
+<li>DSR 산정에서 예외로 보는 정책 상품(전세자금대출 등) 활용 여부 상담</li>
+</ul>
+
+<img src="https://blogautomation.netlify.app/.netlify/functions/img?id=calc_1788285770227_2" alt="주택담보대출 한도를 알아보는 아파트 전경" style="max-width:100%;height:auto;border-radius:8px;" />
+
+<blockquote>계산기 숫자는 어디까지나 방향을 잡는 용도예요. 최종 한도는 은행이 소득·신용등급·담보·상품 조건을 다 넣고 뽑습니다.</blockquote>
+
+<p>개인적으로는 집 알아보기 <strong>3개월 전</strong>에 이 계산을 한 번 해보라고 말하고 싶어요. 그때 신용대출 정리하고 마통 닫아두면, 정작 필요할 때 한도가 살아 있거든요. 계약금 넣고 나서 "한도가 안 나온대요" 하면 그땐 정말 손쓸 방법이 없습니다. 미리 알아두는 게 최고의 절약이에요. 🙂</p>
+  </div>
+</main>
+<footer><div class="wrap">© 2026 똑노트(ttoknote.com) · <a href="/privacy/">개인정보처리방침</a><br>본 사이트의 정보·계산 결과는 참고용이며, 정확한 내용은 관련 기관에서 확인하세요.</div></footer>
+</body>
+</html>

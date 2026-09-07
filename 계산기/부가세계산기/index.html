@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>부가세계산기 사용법과 부가가치세 계산 공식 정리</title>
+<meta name="description" content="핵심 3줄 요약! ① 부가세는 공급가액의 10%라서 공급가액 × 1.1 = 총액 이에요. ② 반대로 총액에서 뽑아낼 땐 총액 ÷ 1.1 = 공급가액 , 총액 ÷ 11 = 부가세 가 정답이에요. ③ 총액에 0.1을 곱">
+<link rel="canonical" href="https://ttoknote.com/계산기/부가세계산기/">
+<meta property="og:title" content="부가세계산기 사용법과 부가가치세 계산 공식 정리">
+<meta property="og:url" content="https://ttoknote.com/계산기/부가세계산기/">
+<meta property="og:type" content="article">
+<style>
+  :root{--pt:#2563eb;--pt2:#1e40af;--bg:#f7f8fa;--card:#fff;--tx:#1f2937;--mut:#6b7280;--line:#e5e7eb}
+  *{box-sizing:border-box}
+  body{margin:0;font-family:'Malgun Gothic','맑은 고딕',system-ui,sans-serif;background:var(--bg);color:var(--tx);line-height:1.8}
+  a{color:var(--pt);text-decoration:none}
+  .wrap{max-width:760px;margin:0 auto;padding:0 20px}
+  header{background:var(--card);border-bottom:1px solid var(--line)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:60px;max-width:960px;margin:0 auto;padding:0 20px}
+  .logo{font-size:22px;font-weight:800;color:var(--pt)}.logo span{color:var(--tx)}
+  .menu{display:flex;gap:20px;font-weight:600;font-size:15px}.menu a{color:var(--tx)}
+  .crumb{font-size:13px;color:var(--mut);margin:20px 0 6px}
+  h1{font-size:26px;margin:6px 0 4px;line-height:1.35}
+  .date{color:var(--mut);font-size:13px;margin-bottom:22px}
+  .post img{max-width:100%;height:auto;border-radius:10px}
+  .post h2{font-size:20px;margin:30px 0 10px}
+  .post h3{font-size:17px;margin:24px 0 8px}
+  .post table{width:100%;border-collapse:collapse;margin:14px 0;font-size:15px}
+  .post th,.post td{border:1px solid var(--line);padding:10px 12px}
+  .post th{background:#f0f5ff}
+  footer{margin-top:44px;background:#1f2937;color:#cbd5e1;padding:26px 0;font-size:13px}
+  footer a{color:#cbd5e1;text-decoration:underline}
+</style>
+</head>
+<body>
+<header>
+  <div class="nav">
+    <a class="logo" href="/">똑<span>노트</span></a>
+    <nav class="menu"><a href="/계산기/">계산기</a><a href="/혜택/">정부혜택</a><a href="/셀러/">셀러정보</a></nav>
+  </div>
+</header>
+<main class="wrap">
+  <div class="crumb"><a href="/">홈</a> › <a href="/계산기/">계산기</a> › 부가세계산기 사용법과 부가가치세 계산 공식 정리</div>
+  <h1>부가세계산기 사용법과 부가가치세 계산 공식 정리</h1>
+  <div class="date">2026-08-23 · 똑노트</div>
+  <div class="post">
+<p><strong>핵심 3줄 요약!</strong> ① 부가세는 공급가액의 10%라서 <strong>공급가액 × 1.1 = 총액</strong>이에요. ② 반대로 총액에서 뽑아낼 땐 <strong>총액 ÷ 1.1 = 공급가액</strong>, <strong>총액 ÷ 11 = 부가세</strong>가 정답이에요. ③ 총액에 0.1을 곱하면 실제보다 많이 나오니 그게 가장 흔한 실수예요.</p>
+
+<div id="calc_vat2026" style="max-width:480px;margin:20px auto;padding:22px;border:1px solid #e5e7eb;border-radius:14px;background:#fafafa;">
+  <div style="font-size:18px;font-weight:700;margin-bottom:14px;">부가세 계산기 (세율 10%)</div>
+
+  <div style="margin-bottom:10px;">
+    <div style="font-size:14px;margin-bottom:6px;">계산 방식</div>
+    <button id="vat_mode_add" style="padding:9px 12px;border:1px solid #2563eb;border-radius:8px;background:#2563eb;color:#fff;cursor:pointer;font-size:14px;">공급가액 → 총액</button>
+    <button id="vat_mode_sub" style="padding:9px 12px;border:1px solid #cbd5e1;border-radius:8px;background:#fff;color:#334155;cursor:pointer;font-size:14px;">총액 → 부가세 역산</button>
+  </div>
+
+  <div style="margin-bottom:12px;">
+    <div style="font-size:14px;margin-bottom:6px;" id="vat_label">공급가액(부가세 제외 금액, 원)</div>
+    <input type="number" inputmode="numeric" id="vat_amount" placeholder="예: 1000000" style="width:100%;padding:11px;border:1px solid #d1d5db;border-radius:8px;font-size:16px;box-sizing:border-box;">
+  </div>
+
+  <div style="margin-bottom:14px;">
+    <div style="font-size:14px;margin-bottom:6px;">수량 (선택, 비우면 1)</div>
+    <input type="number" inputmode="numeric" id="vat_qty" placeholder="1" style="width:100%;padding:11px;border:1px solid #d1d5db;border-radius:8px;font-size:16px;box-sizing:border-box;">
+  </div>
+
+  <button id="vat_btn" style="width:100%;padding:13px;border:0;border-radius:9px;background:#2563eb;color:#fff;font-size:16px;font-weight:700;cursor:pointer;">계산하기</button>
+
+  <div id="vat_out" style="display:none;margin-top:16px;padding:14px;border:1px solid #e5e7eb;border-radius:10px;background:#fff;font-size:15px;line-height:1.9;"></div>
+
+  <div style="margin-top:12px;font-size:12px;color:#6b7280;line-height:1.7;">
+    일반과세 기준 세율 10%로 계산해요. 면세 품목·영세율 거래는 부가세가 0원이에요. 참고용 추정이며 정확한 신고 금액은 <a href="https://www.hometax.go.kr" target="_blank" rel="noopener">홈택스</a>에서 확인하세요.
+  </div>
+</div>
+<script>(function(){
+  var mode = "add";
+  var bAdd = document.getElementById("vat_mode_add");
+  var bSub = document.getElementById("vat_mode_sub");
+  var label = document.getElementById("vat_label");
+  var out = document.getElementById("vat_out");
+  function paint(){
+    if(mode==="add"){
+      bAdd.style.background="#2563eb"; bAdd.style.color="#fff"; bAdd.style.borderColor="#2563eb";
+      bSub.style.background="#fff"; bSub.style.color="#334155"; bSub.style.borderColor="#cbd5e1";
+      label.innerHTML="공급가액(부가세 제외 금액, 원)";
+    }else{
+      bSub.style.background="#2563eb"; bSub.style.color="#fff"; bSub.style.borderColor="#2563eb";
+      bAdd.style.background="#fff"; bAdd.style.color="#334155"; bAdd.style.borderColor="#cbd5e1";
+      label.innerHTML="총액(부가세 포함 금액, 원)";
+    }
+    out.style.display="none";
+  }
+  bAdd.onclick=function(){mode="add";paint();};
+  bSub.onclick=function(){mode="sub";paint();};
+  paint();
+  function won(n){return Math.round(n).toLocaleString('ko-KR')+"원";}
+  document.getElementById("vat_btn").onclick=function(){
+    var a=parseFloat(document.getElementById("vat_amount").value);
+    var q=parseFloat(document.getElementById("vat_qty").value);
+    if(isNaN(q)||q<=0){q=1;}
+    out.style.display="block";
+    if(isNaN(a)||a<=0){
+      out.innerHTML='<span style="color:#dc2626;">금액을 0보다 큰 숫자로 입력해 주세요.</span>';
+      return;
+    }
+    var supply, vat, total, formula;
+    if(mode==="add"){
+      supply=a*q; vat=Math.round(supply*0.1); total=supply+vat;
+      formula="공급가액 "+won(supply)+" × 10% = 부가세 "+won(vat);
+    }else{
+      total=a*q; supply=Math.round(total/1.1); vat=total-supply;
+      formula="총액 "+won(total)+" ÷ 11 = 부가세 "+won(vat);
+    }
+    out.innerHTML=
+      "공급가액 : <strong>"+won(supply)+"</strong><br>"+
+      "부가가치세(10%) : <strong style='color:#2563eb;'>"+won(vat)+"</strong><br>"+
+      "합계 금액 : <strong>"+won(total)+"</strong>"+
+      "<div style='margin-top:8px;font-size:13px;color:#6b7280;'>적용한 계산식 : "+formula+"</div>";
+  };
+})();</script>
+
+<p>거래처에서 "부가세 별도예요"라는 말을 들었을 때, 머릿속으로 금액을 굴리다가 헷갈린 적 있으시죠. 특히 카드 영수증 총액에서 부가세만 뽑아내야 할 때 많이들 막혀요. 위 부가세계산기에 숫자만 넣으면 공급가액·세액·합계가 한 번에 나오지만, 원리를 알아두면 계산기 없이도 암산이 가능해집니다.</p>
+
+<div class="separator" style="clear: both;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg3xFu-uCn05XsKlddvk54ZDh3oKS34-xp5XoJmW7SSAdl5wc8T_srb_zlazD1RBcMjruKbb697aW72n76HKnZz4jfWIOvRcgnQ5PEmDhekSPyztPfCN3UiiW7rioSyxQhCQemGbIQrcnUhURRnhdX31asr5Vb3GTFFGhh045dA00wtomRukjCHPw28VX4/s1024/photo-1%20%285%29.png" style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="600" data-original-height="1024" data-original-width="1024" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg3xFu-uCn05XsKlddvk54ZDh3oKS34-xp5XoJmW7SSAdl5wc8T_srb_zlazD1RBcMjruKbb697aW72n76HKnZz4jfWIOvRcgnQ5PEmDhekSPyztPfCN3UiiW7rioSyxQhCQemGbIQrcnUhURRnhdX31asr5Vb3GTFFGhh045dA00wtomRukjCHPw28VX4/s600/photo-1%20%285%29.png"/></a></div>
+
+<h2>부가세, 왜 10%인데 총액의 10%가 아닐까</h2>
+<p>부가가치세는 공급가액(물건·서비스의 순수 값)에 10%를 붙이는 세금이에요. 그래서 공급가액이 100만 원이면 부가세는 10만 원, 소비자가 실제로 내는 총액은 110만 원이 됩니다. 여기서 헷갈리는 지점이 총액 110만 원에 다시 10%를 곱하면 11만 원이 나온다는 거예요.</p>
+<p>총액에는 이미 부가세가 포함돼 있으니, 총액 기준으로는 <strong>11분의 1</strong>이 세액이에요. 110만 원 ÷ 11 = 10만 원. 이 두 방향을 구분하는 게 부가세 계산의 전부라고 봐도 됩니다.</p>
+
+<h2>부가세 계산 공식 두 가지</h2>
+<table>
+<tr><td><strong>상황</strong></td><td><strong>공식</strong></td><td><strong>예시(공급가액 50만 원)</strong></td></tr>
+<tr><td>부가세 별도 → 총액 구하기</td><td>공급가액 × 1.1</td><td>500,000 × 1.1 = 550,000원</td></tr>
+<tr><td>부가세만 구하기</td><td>공급가액 × 0.1</td><td>500,000 × 0.1 = 50,000원</td></tr>
+<tr><td>부가세 포함 → 공급가액 역산</td><td>총액 ÷ 1.1</td><td>550,000 ÷ 1.1 = 500,000원</td></tr>
+<tr><td>부가세 포함 → 세액만 역산</td><td>총액 ÷ 11</td><td>550,000 ÷ 11 = 50,000원</td></tr>
+</table>
+<p>실무에서는 원 단위 절사 때문에 1~2원 차이가 나기도 해요. 세금계산서를 발행할 땐 공급가액을 먼저 확정하고 세액을 계산하는 방식이 깔끔합니다.</p>
+
+<h3>실제 예시로 한 번 계산해볼게요</h3>
+<ol>
+<li>디자인 외주비를 <strong>부가세 별도 300만 원</strong>에 계약했어요. → 부가세 30만 원, 입금받을 총액은 330만 원이에요.</li>
+<li>사무용품을 카드로 <strong>총 143,000원</strong> 결제했어요. → 143,000 ÷ 11 = 13,000원이 매입세액, 공급가액은 130,000원이에요.</li>
+<li>단가 25,000원짜리 상품을 <strong>40개</strong> 납품했어요. → 공급가액 1,000,000원, 부가세 100,000원, 합계 1,100,000원이에요.</li>
+</ol>
+
+<h2>납부할 부가세는 매출세액 - 매입세액</h2>
+<p>사업자가 실제로 내는 돈은 받은 부가세 전액이 아니에요. <strong>납부세액 = 매출세액 − 매입세액</strong> 구조라서, 물건을 살 때 낸 부가세는 빼줍니다. 예를 들어 반기 매출이 5,500만 원(부가세 포함)이고 매입이 3,300만 원(부가세 포함)이라면 매출세액 500만 원, 매입세액 300만 원, 납부할 금액은 200만 원이에요.</p>
+<p>다만 매입세액을 빼려면 세금계산서·사업용 카드·현금영수증(지출증빙) 같은 적격증빙이 있어야 해요. 간이영수증만 있는 지출은 공제가 안 되니 결제 단계에서부터 챙기는 습관이 중요합니다. 신고 일정과 공제 항목은 <a href="https://www.nts.go.kr" target="_blank" rel="noopener">국세청</a> 안내를 확인하는 게 가장 안전해요.</p>
+
+<div class="separator" style="clear: both;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh1BCPVWSkAxM7SEey86ufLfLsM5RzTtJGgUpYjW4XYamjH82AP755KZu3GcuuFHs_wMlH4tKD-HFCAWV6sJx5FUWu4NojJ_7NOS0ovIB69C8dZ_v7Nddt-ODPWp3uHoY1SDNu3Wv2CMw60UPBMREOXZiWXtlQzG7BhiD_GUeMuKCYCIAh7d5q8DF2iDco/s1024/blog-image%20%284%29.png" style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="600" data-original-height="1024" data-original-width="1024" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh1BCPVWSkAxM7SEey86ufLfLsM5RzTtJGgUpYjW4XYamjH82AP755KZu3GcuuFHs_wMlH4tKD-HFCAWV6sJx5FUWu4NojJ_7NOS0ovIB69C8dZ_v7Nddt-ODPWp3uHoY1SDNu3Wv2CMw60UPBMREOXZiWXtlQzG7BhiD_GUeMuKCYCIAh7d5q8DF2iDco/s600/blog-image%20%284%29.png"/></a></div>
+
+<h2>간이과세자는 계산 방식이 달라요</h2>
+<p>간이과세자는 위 위젯 공식(공급가액 10%)을 그대로 적용하지 않아요. 업종별 부가가치율을 곱한 뒤 10%를 적용하는 구조라 실제 부담이 훨씬 낮습니다. 업종별 부가가치율과 납부면제 기준 금액은 개정이 잦으니, 본인 업종 수치는 홈택스나 세무 상담을 통해 그해 기준으로 확인하세요.</p>
+<p>또 하나, 면세사업자(학원 일부, 도서, 기초 농수산물 등)는 애초에 부가세를 붙이지 않아요. 견적서에 "면세"라고 적혀 있으면 1.1을 곱하면 안 됩니다.</p>
+
+<h2>자주 하는 실수 체크리스트</h2>
+<ul>
+<li><strong>총액 × 0.1</strong>로 계산하기 — 실제 세액보다 약 10% 많이 나와요. 반드시 ÷ 11을 쓰세요.</li>
+<li>견적서에 <strong>'부가세 별도' 표기 누락</strong> — 나중에 10%를 못 받고 떠안는 경우가 정말 많아요.</li>
+<li>매입세액 공제 안 되는 지출(접대비, 비영업용 승용차 관련 비용 등)을 공제로 잡기.</li>
+<li>수량이 여러 개일 때 <strong>단가에 부가세를 먼저 붙여</strong> 곱하면서 원 단위 오차가 커지는 경우.</li>
+<li>카드 매출과 현금영수증 매출을 <strong>중복 집계</strong>해 매출세액이 부풀려지는 경우.</li>
+</ul>
+
+<h2>마무리</h2>
+<p>결국 외울 건 딱 두 개예요. 붙일 땐 ×1.1, 뺄 땐 ÷11. 이것만 알면 견적서를 쓸 때도, 영수증에서 매입세액을 뽑을 때도 헷갈릴 일이 없어요. 저는 거래 단가를 정할 때 아예 <strong>부가세 포함가로 딱 떨어지는 숫자</strong>(예: 110,000원)를 쓰는 편인데, 계산도 편하고 고객 입장에서도 오해가 없더라고요. 😊</p>
+
+<div class="separator" style="clear: both;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjGxIGDXYgyA_qIj90F5ztSxMJ4RY7WtQPwcP0RaBsME9dLIrQNkQ53sVBeo4ygyJfuzN0GL9YZl9ZNNmB-Up-CFBm_pmnkMPnDpND4Fgu38kgVxi0dS8RfZntpW1giEX0d5Sp8JgekHufyBfd6DdnQPApCydwluhhj0Co2yP-CbvpUtqHIALfaYLjgoKw/s1024/blog-image%20%285%29.png" style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="600" data-original-height="1024" data-original-width="1024" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjGxIGDXYgyA_qIj90F5ztSxMJ4RY7WtQPwcP0RaBsME9dLIrQNkQ53sVBeo4ygyJfuzN0GL9YZl9ZNNmB-Up-CFBm_pmnkMPnDpND4Fgu38kgVxi0dS8RfZntpW1giEX0d5Sp8JgekHufyBfd6DdnQPApCydwluhhj0Co2yP-CbvpUtqHIALfaYLjgoKw/s600/blog-image%20%285%29.png"/></a></div>
+
+<h2>자주 묻는 질문(FAQ)</h2>
+<h3>Q1. 총액에서 부가세를 뺄 때 왜 1.1로 나누나요?</h3>
+<p>총액은 이미 공급가액의 110%이기 때문이에요. 110%를 1.1로 나눠야 원래 100%인 공급가액이 나옵니다. 세액만 바로 구하고 싶으면 총액을 11로 나누면 돼요.</p>
+
+<h3>Q2. 개인 간 거래에도 부가세를 붙여야 하나요?</h3>
+<p>부가세는 사업자가 재화·용역을 공급할 때 발생하는 세금이에요. 사업자가 아닌 개인끼리의 중고 거래 같은 경우엔 해당하지 않아요. 다만 반복·계속적으로 판매한다면 사업자 등록 대상이 될 수 있습니다.</p>
+
+<h3>Q3. 위 계산기 결과를 그대로 신고에 써도 되나요?</h3>
+<p>단건 거래의 공급가액·세액 확인용으로는 충분하지만, 실제 신고는 매출세액에서 매입세액과 각종 공제·가산세를 반영해야 해요. 최종 금액은 <a href="https://www.hometax.go.kr" target="_blank" rel="noopener">홈택스</a> 신고 화면이나 세무 대리인을 통해 확정하는 걸 권해요.</p>
+  </div>
+</main>
+<footer><div class="wrap">© 2026 똑노트(ttoknote.com) · <a href="/privacy/">개인정보처리방침</a><br>본 사이트의 정보·계산 결과는 참고용이며, 정확한 내용은 관련 기관에서 확인하세요.</div></footer>
+</body>
+</html>

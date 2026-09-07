@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>연차계산기｜입사일 넣으면 연차일수·수당 바로 계산</title>
+<meta name="description" content="'저 올해 연차 며칠이에요?' 이거 회사 총무팀에 물어보기 은근 눈치 보이죠. 저도 예전에 이직하고 나서 첫해 연차가 몇 개인지 몰라서 그냥 안 쓰고 넘긴 적이 있어요. 나중에 알고 보니 쓸 수 있는 날이 꽤 있었더">
+<link rel="canonical" href="https://ttoknote.com/계산기/연차계산기/">
+<meta property="og:title" content="연차계산기｜입사일 넣으면 연차일수·수당 바로 계산">
+<meta property="og:url" content="https://ttoknote.com/계산기/연차계산기/">
+<meta property="og:type" content="article">
+<style>
+  :root{--pt:#2563eb;--pt2:#1e40af;--bg:#f7f8fa;--card:#fff;--tx:#1f2937;--mut:#6b7280;--line:#e5e7eb}
+  *{box-sizing:border-box}
+  body{margin:0;font-family:'Malgun Gothic','맑은 고딕',system-ui,sans-serif;background:var(--bg);color:var(--tx);line-height:1.8}
+  a{color:var(--pt);text-decoration:none}
+  .wrap{max-width:760px;margin:0 auto;padding:0 20px}
+  header{background:var(--card);border-bottom:1px solid var(--line)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:60px;max-width:960px;margin:0 auto;padding:0 20px}
+  .logo{font-size:22px;font-weight:800;color:var(--pt)}.logo span{color:var(--tx)}
+  .menu{display:flex;gap:20px;font-weight:600;font-size:15px}.menu a{color:var(--tx)}
+  .crumb{font-size:13px;color:var(--mut);margin:20px 0 6px}
+  h1{font-size:26px;margin:6px 0 4px;line-height:1.35}
+  .date{color:var(--mut);font-size:13px;margin-bottom:22px}
+  .post img{max-width:100%;height:auto;border-radius:10px}
+  .post h2{font-size:20px;margin:30px 0 10px}
+  .post h3{font-size:17px;margin:24px 0 8px}
+  .post table{width:100%;border-collapse:collapse;margin:14px 0;font-size:15px}
+  .post th,.post td{border:1px solid var(--line);padding:10px 12px}
+  .post th{background:#f0f5ff}
+  footer{margin-top:44px;background:#1f2937;color:#cbd5e1;padding:26px 0;font-size:13px}
+  footer a{color:#cbd5e1;text-decoration:underline}
+</style>
+</head>
+<body>
+<header>
+  <div class="nav">
+    <a class="logo" href="/">똑<span>노트</span></a>
+    <nav class="menu"><a href="/계산기/">계산기</a><a href="/혜택/">정부혜택</a><a href="/셀러/">셀러정보</a></nav>
+  </div>
+</header>
+<main class="wrap">
+  <div class="crumb"><a href="/">홈</a> › <a href="/계산기/">계산기</a> › 연차계산기｜입사일 넣으면 연차일수·수당 바로 계산</div>
+  <h1>연차계산기｜입사일 넣으면 연차일수·수당 바로 계산</h1>
+  <div class="date">2026-09-01 · 똑노트</div>
+  <div class="post">
+<!-- 메타설명: 연차계산기로 입사일만 넣으면 근속연수별 연차휴가 일수와 미사용 연차수당까지 바로 나옵니다. 1년 미만 11일, 1년 이상 15일, 가산 규칙과 계산 공식까지 정리했어요. -->
+
+
+<p>"저 올해 연차 며칠이에요?" 이거 회사 총무팀에 물어보기 은근 눈치 보이죠. 저도 예전에 이직하고 나서 첫해 연차가 몇 개인지 몰라서 그냥 안 쓰고 넘긴 적이 있어요. 나중에 알고 보니 쓸 수 있는 날이 꽤 있었더라고요. 아깝잖아요, 그거. 그래서 입사일만 넣으면 바로 나오는 <strong>연차계산기</strong>부터 아래에 붙여뒀어요.</p>
+
+<div id="calc_yeoncha" style="max-width:480px;margin:20px auto;padding:22px;border:1px solid #e5e7eb;border-radius:14px;background:#fafafa;">
+  <div style="font-size:17px;font-weight:700;margin-bottom:14px;">연차휴가 일수 &amp; 미사용 수당 계산기</div>
+
+  <div style="margin-bottom:10px;">
+    <span style="display:block;font-size:14px;margin-bottom:4px;">입사일</span>
+    <input type="date" id="yc_join" style="width:100%;padding:9px;border:1px solid #d1d5db;border-radius:8px;box-sizing:border-box;">
+  </div>
+
+  <div style="margin-bottom:10px;">
+    <span style="display:block;font-size:14px;margin-bottom:4px;">계산 기준일 (보통 오늘)</span>
+    <input type="date" id="yc_base" style="width:100%;padding:9px;border:1px solid #d1d5db;border-radius:8px;box-sizing:border-box;">
+  </div>
+
+  <div style="margin-bottom:10px;">
+    <span style="display:block;font-size:14px;margin-bottom:4px;">미사용 연차 일수 (선택)</span>
+    <input type="number" inputmode="numeric" id="yc_left" placeholder="예: 5" style="width:100%;padding:9px;border:1px solid #d1d5db;border-radius:8px;box-sizing:border-box;">
+  </div>
+
+  <div style="margin-bottom:14px;">
+    <span style="display:block;font-size:14px;margin-bottom:4px;">월 통상임금 (선택, 원)</span>
+    <input type="number" inputmode="numeric" id="yc_pay" placeholder="예: 2800000" style="width:100%;padding:9px;border:1px solid #d1d5db;border-radius:8px;box-sizing:border-box;">
+  </div>
+
+  <button id="yc_btn" style="width:100%;padding:12px;background:#2563eb;color:#fff;border:0;border-radius:8px;font-size:16px;font-weight:700;cursor:pointer;">연차 계산하기</button>
+
+  <div id="yc_out" style="display:none;margin-top:16px;padding:14px;background:#fff;border:1px solid #e5e7eb;border-radius:10px;font-size:15px;line-height:1.7;"></div>
+
+  <div style="margin-top:12px;font-size:12px;color:#6b7280;line-height:1.6;">
+    주 40시간·월 소정근로시간 209시간·1일 8시간 근무, 출근율 80% 이상 개근을 가정한 <strong>입사일 기준</strong> 계산이에요. 회사가 회계연도 기준을 쓰면 숫자가 달라질 수 있어요. 참고용 추정이며 정확한 기준은 <a href="https://www.moel.go.kr" target="_blank" rel="noopener">고용노동부</a>에서 확인하세요.
+  </div>
+</div>
+
+<script>
+(function(){
+  var j=document.getElementById('yc_join'), b=document.getElementById('yc_base'),
+      l=document.getElementById('yc_left'), p=document.getElementById('yc_pay'),
+      o=document.getElementById('yc_out');
+  var t=new Date(); var pad=function(n){return (n<10?'0':'')+n;};
+  b.value=t.getFullYear()+'-'+pad(t.getMonth()+1)+'-'+pad(t.getDate());
+
+  function months(a,c){
+    var m=(c.getFullYear()-a.getFullYear())*12+(c.getMonth()-a.getMonth());
+    if(c.getDate()<a.getDate()) m--;
+    return m;
+  }
+  document.getElementById('yc_btn').onclick=function(){
+    o.style.display='block';
+    if(!j.value||!b.value){o.innerHTML='<span style="color:#dc2626;">입사일과 기준일을 모두 입력해 주세요.</span>';return;}
+    var a=new Date(j.value), c=new Date(b.value);
+    var m=months(a,c);
+    if(m<0){o.innerHTML='<span style="color:#dc2626;">기준일이 입사일보다 빠릅니다. 날짜를 확인해 주세요.</span>';return;}
+    var y=Math.floor(m/12), days, formula, extra='';
+    if(m<12){
+      days=Math.min(m,11);
+      formula='1년 미만 → 만 1개월 개근마다 1일 (최대 11일)';
+      extra='입사 후 1년이 되는 날 별도로 15일이 새로 생겨요.';
+    }else{
+      days=15+Math.floor((y-1)/2);
+      if(days>25) days=25;
+      formula='15일 + 소수점 버림((근속 '+y+'년 − 1) ÷ 2) = '+days+'일 (최대 25일)';
+    }
+    var html='<div>근속기간 : <strong>'+y+'년 '+(m-y*12)+'개월</strong></div>';
+    html+='<div>현재 발생 연차 : <strong style="color:#2563eb;">'+days+'일</strong></div>';
+    if(extra) html+='<div style="font-size:13px;color:#6b7280;">'+extra+'</div>';
+
+    var lv=parseFloat(l.value), pv=parseFloat(p.value);
+    if(lv>0&&pv>0){
+      var hour=pv/209, daily=hour*8, sum=daily*lv;
+      html+='<div style="margin-top:8px;padding-top:8px;border-top:1px dashed #e5e7eb;">1일 통상임금 : <strong>'+Math.round(daily).toLocaleString('ko-KR')+'원</strong></div>';
+      html+='<div>미사용 연차수당 : <strong style="color:#2563eb;">'+Math.round(sum).toLocaleString('ko-KR')+'원</strong></div>';
+      html+='<div style="font-size:13px;color:#6b7280;">계산식 : ('+Math.round(pv).toLocaleString('ko-KR')+'원 ÷ 209시간) × 8시간 × '+lv+'일</div>';
+    }
+    html+='<div style="margin-top:8px;font-size:13px;color:#6b7280;">적용한 계산식 : '+formula+'</div>';
+    o.innerHTML=html;
+  };
+})();
+</script>
+
+<h2>연차는 언제, 며칠씩 생기나요</h2>
+
+<p>근로기준법상 연차유급휴가는 딱 두 갈래로 나뉘어요. 입사 1년 미만인 사람과, 1년을 채운 사람.</p>
+
+<p>1년이 안 됐으면 <strong>한 달 개근할 때마다 1일씩</strong> 붙어요. 11개월까지 채우면 최대 11일이죠. 여기서 많이들 착각하는 게, 이 11일이 1년 뒤 15일에서 차감된다고 생각하는 건데 아니에요. 2017년 이후 입사자는 별개로 계산돼서 첫 2년 동안 최대 26일까지 쓸 수 있어요.</p>
+
+<p>1년을 채우고 출근율이 80% 이상이면 <strong>15일</strong>. 그리고 3년째부터는 2년마다 1일씩 붙습니다. 상한은 25일이고요.</p>
+
+<img src="https://blogautomation.netlify.app/.netlify/functions/img?id=calc_1788112949636_0" alt="연차 일정 표시하는 모습" style="max-width:100%;height:auto;border-radius:8px;" />
+
+<h2>근속연수별 연차일수, 표로 보면 간단해요</h2>
+
+<table>
+<tr><td><strong>근속연수</strong></td><td><strong>연차일수</strong></td></tr>
+<tr><td>1년 미만</td><td>매월 개근 시 1일 (최대 11일)</td></tr>
+<tr><td>1년~2년</td><td>15일</td></tr>
+<tr><td>3년~4년</td><td>16일</td></tr>
+<tr><td>5년~6년</td><td>17일</td></tr>
+<tr><td>7년~8년</td><td>18일</td></tr>
+<tr><td>10년~11년</td><td>20일</td></tr>
+<tr><td>21년 이상</td><td>25일 (상한)</td></tr>
+</table>
+
+<p>공식으로 쓰면 이렇게 돼요.</p>
+
+<blockquote>연차일수 = 15일 + [(근속연수 − 1) ÷ 2]의 소수점 버림 값 (최대 25일)</blockquote>
+
+<p>예를 들어 근속 7년이면 (7−1)÷2 = 3, 그래서 15+3 = 18일. 위 계산기도 정확히 이 식으로 돌아갑니다.</p>
+
+<h2>입사일 기준 vs 회계연도 기준</h2>
+
+<p>여기가 진짜 헷갈리는 지점이에요. 법이 정한 원칙은 <strong>입사일 기준</strong>인데, 직원이 많은 회사는 관리가 번거로워서 <strong>회계연도(보통 1월 1일) 기준</strong>으로 일괄 부여하는 곳이 많아요.</p>
+
+<p>7월에 입사한 사람이 다음 해 1월에 연차를 받으면 6개월치만 일한 셈이니까, 그해에는 15일을 일할 개월 수만큼 비례해서 나눠 줍니다. 이런 방식 자체는 허용되지만 조건이 있어요. <strong>퇴사할 때 정산해서, 입사일 기준으로 계산한 것보다 적으면 안 된다</strong>는 것.</p>
+
+<p>그러니까 회계연도 기준 회사에 다닌다면 퇴직 시점에 한 번은 꼭 입사일 기준으로도 계산해 보세요. 이 계산기 결과랑 회사가 준 숫자를 비교해서 회사 쪽이 적으면 그 차액은 받을 수 있는 돈이에요. 개인적으로 이 부분이 제일 놓치기 쉬운 것 같아요.</p>
+
+<img src="https://blogautomation.netlify.app/.netlify/functions/img?id=calc_1788112955612_1" alt="근속기간 정리하며 계산하는 모습" style="max-width:100%;height:auto;border-radius:8px;" />
+
+<h2>미사용 연차수당, 얼마나 나올까</h2>
+
+<p>연차를 못 쓰고 남겼다면 돈으로 받는 게 연차수당이에요. 계산은 통상임금 기준입니다.</p>
+
+<blockquote>1일 통상임금 = 월 통상임금 ÷ 209시간 × 8시간<br>연차수당 = 1일 통상임금 × 미사용 일수</blockquote>
+
+<p>209시간은 주 40시간 근무자의 월 소정근로시간이에요. 주휴시간까지 포함한 숫자죠. 실제로 넣어볼게요.</p>
+
+<p>월 통상임금 280만 원, 미사용 연차 5일인 경우. 시급은 2,800,000 ÷ 209 = 약 13,397원. 1일 통상임금은 여기에 8을 곱해 약 107,177원. 5일이니까 <strong>약 535,885원</strong>이 나옵니다.</p>
+
+<p>참고로 통상임금은 기본급만이 아니라 정기적·일률적으로 주는 수당(직책수당, 정기상여 일부 등)이 포함될 수 있어요. 반대로 성과에 따라 들쭉날쭉한 인센티브나 실비 성격의 식대는 빠지는 경우가 많고요. 이 부분은 회사마다 임금 구성이 달라서, 급여명세서를 놓고 하나씩 따져봐야 정확해요.</p>
+
+<h2>이건 꼭 알아두세요</h2>
+
+<ul>
+<li><strong>5인 미만 사업장은 연차 규정 자체가 적용 안 돼요.</strong> 상시 근로자 5명 이상이어야 근로기준법상 연차유급휴가 조항이 적용됩니다. 이거 모르고 따지다 허탈해하는 분들 꽤 있어요.</li>
+<li><strong>연차촉진제도를 쓴 회사면 수당이 안 나올 수도 있어요.</strong> 회사가 법에서 정한 절차대로 서면으로 사용을 촉구했는데도 안 썼다면, 미사용분에 대한 금전 보상 의무가 사라집니다. 구두로 "연차 쓰세요" 한 건 해당 안 되고요.</li>
+<li><strong>출근율 80%는 결근 기준이에요.</strong> 육아휴직·업무상 부상 기간 등은 출근한 것으로 봅니다. 병가나 개인 사정 결근이 많았다면 그해 연차가 줄어들 수 있어요.</li>
+<li><strong>연차는 발생일로부터 1년 안에 써야 해요.</strong> 안 쓰면 소멸하고, 대신 수당 청구권이 생깁니다. 수당 자체의 소멸시효는 3년이에요.</li>
+</ul>
+
+<img src="https://blogautomation.netlify.app/.netlify/functions/img?id=calc_1788112961173_2" alt="연차 사용해 휴가 준비하는 장면" style="max-width:100%;height:auto;border-radius:8px;" />
+
+<p>정리하자면, 연차는 "회사가 알아서 챙겨주겠지" 하고 넘기면 조용히 사라지는 권리예요. 특히 이직이 잦거나 회계연도 기준 회사에 다니는 분들은 퇴사 전에 한 번 직접 계산해 보는 걸 추천해요. 1분이면 되는데 몇십만 원 차이가 나기도 하거든요.</p>
+
+<p>계산기 숫자가 회사에서 알려준 것과 많이 다르다면, 급여명세서랑 근로계약서 챙겨서 회사에 근거를 물어보세요. 그래도 정리가 안 되면 관할 고용노동지청 진정 절차가 있고요. 되도록 그 전에 대화로 풀리는 게 서로 편하긴 하죠.</p>
+  </div>
+</main>
+<footer><div class="wrap">© 2026 똑노트(ttoknote.com) · <a href="/privacy/">개인정보처리방침</a><br>본 사이트의 정보·계산 결과는 참고용이며, 정확한 내용은 관련 기관에서 확인하세요.</div></footer>
+</body>
+</html>

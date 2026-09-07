@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>취득세 계산기, 아파트 취득세 1분 자동계산</title>
+<meta name="description" content="잔금일 다가오는데 중개사무소에서 '취득세도 준비하셔야죠'라는 말 듣고 그제야 계산기 두드려 본 분들 많을 거예요. 저도 처음엔 매매가에 1%만 곱하면 되는 줄 알았는데, 지방교육세에 농어촌특별세까지 붙으면서 생각보다">
+<link rel="canonical" href="https://ttoknote.com/계산기/취득세/">
+<meta property="og:title" content="취득세 계산기, 아파트 취득세 1분 자동계산">
+<meta property="og:url" content="https://ttoknote.com/계산기/취득세/">
+<meta property="og:type" content="article">
+<style>
+  :root{--pt:#2563eb;--pt2:#1e40af;--bg:#f7f8fa;--card:#fff;--tx:#1f2937;--mut:#6b7280;--line:#e5e7eb}
+  *{box-sizing:border-box}
+  body{margin:0;font-family:'Malgun Gothic','맑은 고딕',system-ui,sans-serif;background:var(--bg);color:var(--tx);line-height:1.8}
+  a{color:var(--pt);text-decoration:none}
+  .wrap{max-width:760px;margin:0 auto;padding:0 20px}
+  header{background:var(--card);border-bottom:1px solid var(--line)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:60px;max-width:960px;margin:0 auto;padding:0 20px}
+  .logo{font-size:22px;font-weight:800;color:var(--pt)}.logo span{color:var(--tx)}
+  .menu{display:flex;gap:20px;font-weight:600;font-size:15px}.menu a{color:var(--tx)}
+  .crumb{font-size:13px;color:var(--mut);margin:20px 0 6px}
+  h1{font-size:26px;margin:6px 0 4px;line-height:1.35}
+  .date{color:var(--mut);font-size:13px;margin-bottom:22px}
+  .post img{max-width:100%;height:auto;border-radius:10px}
+  .post h2{font-size:20px;margin:30px 0 10px}
+  .post h3{font-size:17px;margin:24px 0 8px}
+  .post table{width:100%;border-collapse:collapse;margin:14px 0;font-size:15px}
+  .post th,.post td{border:1px solid var(--line);padding:10px 12px}
+  .post th{background:#f0f5ff}
+  footer{margin-top:44px;background:#1f2937;color:#cbd5e1;padding:26px 0;font-size:13px}
+  footer a{color:#cbd5e1;text-decoration:underline}
+</style>
+</head>
+<body>
+<header>
+  <div class="nav">
+    <a class="logo" href="/">똑<span>노트</span></a>
+    <nav class="menu"><a href="/계산기/">계산기</a><a href="/혜택/">정부혜택</a><a href="/셀러/">셀러정보</a></nav>
+  </div>
+</header>
+<main class="wrap">
+  <div class="crumb"><a href="/">홈</a> › <a href="/계산기/">계산기</a> › 취득세 계산기, 아파트 취득세 1분 자동계산</div>
+  <h1>취득세 계산기, 아파트 취득세 1분 자동계산</h1>
+  <div class="date">2026-08-30 · 똑노트</div>
+  <div class="post">
+<!-- 메타설명: 취득세 계산기로 아파트·주택 취득세를 바로 계산해 보세요. 6억·9억 구간 세율, 지방교육세와 농어촌특별세까지 합친 실제 납부액 계산법과 예시, 신고기한과 자주 하는 실수를 정리했습니다. -->
+
+
+<p>잔금일 다가오는데 중개사무소에서 "취득세도 준비하셔야죠"라는 말 듣고 그제야 계산기 두드려 본 분들 많을 거예요. 저도 처음엔 매매가에 1%만 곱하면 되는 줄 알았는데, 지방교육세에 농어촌특별세까지 붙으면서 생각보다 금액이 커지더라고요. 아래 <strong>취득세 계산기</strong>에 숫자만 넣어 보면 대략 얼마를 더 준비해야 하는지 바로 감이 옵니다.</p>
+
+<div id="calc_acqtax" style="max-width:480px;margin:20px auto;padding:22px;border:1px solid #e5e7eb;border-radius:14px;background:#fafafa;">
+  <div style="font-size:17px;font-weight:700;margin-bottom:14px;">주택 취득세 간편 계산기</div>
+  <div style="margin-bottom:10px;">
+    <span style="display:block;font-size:14px;margin-bottom:4px;">취득가액 (만원)</span>
+    <input type="number" inputmode="numeric" id="acq_price" placeholder="예: 50000 (5억원)" style="width:100%;padding:9px;border:1px solid #d1d5db;border-radius:8px;box-sizing:border-box;">
+  </div>
+  <div style="margin-bottom:10px;">
+    <span style="display:block;font-size:14px;margin-bottom:4px;">전용면적 (㎡)</span>
+    <input type="number" inputmode="numeric" id="acq_area" placeholder="예: 84" style="width:100%;padding:9px;border:1px solid #d1d5db;border-radius:8px;box-sizing:border-box;">
+  </div>
+  <div style="margin-bottom:10px;">
+    <span style="display:block;font-size:14px;margin-bottom:4px;">취득 후 보유 주택 수 (본인 세대 기준)</span>
+    <input type="number" inputmode="numeric" id="acq_cnt" placeholder="예: 1" style="width:100%;padding:9px;border:1px solid #d1d5db;border-radius:8px;box-sizing:border-box;">
+  </div>
+  <div style="margin-bottom:14px;font-size:14px;">
+    <input type="checkbox" id="acq_adj"> <span>조정대상지역 주택이에요</span>
+  </div>
+  <button id="acq_btn" style="width:100%;padding:12px;background:#2563eb;color:#fff;border:0;border-radius:8px;font-size:16px;font-weight:700;cursor:pointer;">취득세 계산하기</button>
+  <div id="acq_out" style="display:none;margin-top:16px;padding:14px;background:#fff;border:1px solid #e5e7eb;border-radius:10px;font-size:15px;line-height:1.7;"></div>
+  <div style="margin-top:12px;font-size:12px;color:#6b7280;line-height:1.6;">유상거래(매매)로 취득한 주택 기준이에요. 상속·증여, 주택 외 부동산(토지·상가), 생애최초 감면·일시적 2주택 등 특례는 반영되지 않습니다. 참고용 추정이며 정확한 금액은 <a href="https://www.gov.kr" target="_blank" rel="noopener">정부24</a>나 관할 시·군·구청 세무과에서 확인하세요.</div>
+</div>
+<script>(function(){var b=document.getElementById('acq_btn');b.onclick=function(){var p=parseFloat(document.getElementById('acq_price').value);var a=parseFloat(document.getElementById('acq_area').value);var c=parseInt(document.getElementById('acq_cnt').value);var adj=document.getElementById('acq_adj').checked;var o=document.getElementById('acq_out');o.style.display='block';if(!p||p<=0||!a||a<=0||!c||c<1){o.innerHTML='<span style="color:#dc2626">취득가액·전용면적·주택 수를 모두 0보다 큰 값으로 입력해 주세요.</span>';return;}var amt=p*10000;var std;if(amt<=600000000){std=1;}else if(amt<=900000000){std=Math.round((amt/100000000*2/3-3)*10000)/10000;}else{std=3;}var rate;if(c===1){rate=std;}else if(c===2){rate=adj?8:std;}else if(c===3){rate=adj?12:8;}else{rate=12;}var edu,farm;if(rate===8){edu=0.4;farm=a>85?0.6:0;}else if(rate===12){edu=0.4;farm=a>85?1.0:0;}else{edu=Math.round(rate*0.1*10000)/10000;farm=a>85?0.2:0;}var t1=Math.round(amt*rate/100);var t2=Math.round(amt*edu/100);var t3=Math.round(amt*farm/100);var sum=t1+t2+t3;var f=function(n){return n.toLocaleString('ko-KR');};var h='<div style="font-weight:700;font-size:17px;color:#2563eb;margin-bottom:8px;">총 납부 예상액 '+f(sum)+'원</div>';h+='취득세('+rate+'%) : '+f(t1)+'원<br>';h+='지방교육세('+edu+'%) : '+f(t2)+'원<br>';h+='농어촌특별세('+farm+'%) : '+f(t3)+'원';if(farm===0){h+=' <span style="color:#6b7280;font-size:13px;">(85㎡ 이하 비과세)</span>';}h+='<div style="margin-top:10px;font-size:13px;color:#4b5563;">적용한 계산식 : 취득가액 '+f(amt)+'원 × (취득세 '+rate+'% + 지방교육세 '+edu+'% + 농특세 '+farm+'%) = '+f(sum)+'원</div>';o.innerHTML=h;};})();</script>
+
+<h2>취득세는 언제, 어디에 내는 세금일까요</h2>
+<p>취득세는 부동산을 손에 넣는 그 시점에 한 번 내는 지방세예요. 매매라면 보통 <strong>잔금 지급일</strong>이 취득일이 되고(잔금일보다 등기접수일이 빠르면 그 날), 그날부터 <strong>60일 이내</strong>에 신고·납부해야 합니다. 상속은 상속개시일이 속한 달의 말일부터 6개월이라 여유가 좀 있는 편이고요.</p>
+<p>실무에서는 법무사가 등기 접수하면서 같이 납부해 주는 경우가 대부분이라 직접 신고할 일은 많지 않아요. 다만 <strong>납부할 돈은 내가 미리 준비해 둬야</strong> 합니다. 이걸 계산 안 해두고 잔금만 딱 맞춰뒀다가 등기 직전에 당황하는 분들이 정말 많아요.</p>
+
+<img src="https://blogautomation.netlify.app/.netlify/functions/img?id=calc_1788026564371_0" alt="아파트 취득 후 이사 짐 상자" style="max-width:100%;height:auto;border-radius:8px;" />
+
+<h2>2026년 기준 주택 취득세율 정리</h2>
+<p>주택을 매매로 사는 경우, 1주택자라면 가격에 따라 세율이 달라져요. 여기에 지방교육세가 늘 따라붙고, 전용면적이 85㎡를 넘으면 농어촌특별세까지 얹힙니다.</p>
+
+<table>
+<tr><td><strong>구분</strong></td><td><strong>취득세</strong></td><td><strong>지방교육세</strong></td><td><strong>농특세(85㎡ 초과)</strong></td></tr>
+<tr><td>6억 이하 주택(1주택)</td><td>1%</td><td>0.1%</td><td>0.2%</td></tr>
+<tr><td>6억 초과~9억 이하</td><td>1~3% 누진</td><td>취득세율의 1/10</td><td>0.2%</td></tr>
+<tr><td>9억 초과</td><td>3%</td><td>0.3%</td><td>0.2%</td></tr>
+<tr><td>다주택 중과(8%)</td><td>8%</td><td>0.4%</td><td>0.6%</td></tr>
+<tr><td>다주택·법인 중과(12%)</td><td>12%</td><td>0.4%</td><td>1.0%</td></tr>
+<tr><td>주택 외 부동산(토지·상가)</td><td>4%</td><td>0.4%</td><td>0.2%</td></tr>
+</table>
+
+<p>중과세율은 조정대상지역 2주택·3주택 이상 여부에 따라 갈리는데, 이 부분은 정책 변화가 잦은 영역이에요. 완화 논의도 계속 나오고 있으니 다주택자라면 계약 전에 관할 구청이나 세무 전문가에게 한 번 확인하는 게 안전합니다. 개인적으로 이 항목이 제일 조심스러운 부분이라고 봐요.</p>
+
+<h2>6억~9억 구간, 이 공식만 알면 돼요</h2>
+<p>제일 많이 헷갈려하는 구간이 6억 초과 9억 이하예요. 예전엔 6억 넘으면 바로 2%였는데, 지금은 계단식이 아니라 소수점까지 이어지는 누진 방식입니다.</p>
+<blockquote>세율(%) = (취득가액(억원) × 2 ÷ 3) − 3</blockquote>
+<p>예를 들어 7억 5천만 원짜리 아파트라면 7.5 × 2 ÷ 3 = 5, 여기서 3을 빼면 <strong>2%</strong>가 나와요. 8억이면 8×2÷3−3 ≈ 2.3333%가 되고요. 소수점 넷째 자리까지 쓴다고 보면 됩니다.</p>
+
+<h2>실제 숫자로 한번 계산해 볼게요</h2>
+<p><strong>사례 1.</strong> 전용 59㎡, 5억 원 아파트를 처음 사는 1주택자</p>
+<ul>
+<li>취득세 5억 × 1% = 500만 원</li>
+<li>지방교육세 5억 × 0.1% = 50만 원</li>
+<li>농특세 : 85㎡ 이하라 없음</li>
+<li><strong>합계 550만 원</strong></li>
+</ul>
+
+<p><strong>사례 2.</strong> 전용 101㎡, 10억 원 아파트를 사는 1주택자</p>
+<ul>
+<li>취득세 10억 × 3% = 3,000만 원</li>
+<li>지방교육세 10억 × 0.3% = 300만 원</li>
+<li>농특세 10억 × 0.2% = 200만 원</li>
+<li><strong>합계 3,500만 원</strong></li>
+</ul>
+<p>같은 10억이라도 전용면적 85㎡ 이하면 농특세 200만 원이 빠져요. 84㎡와 101㎡의 차이가 이렇게 200만 원으로 벌어지는 셈이죠. 국민주택규모 기준이 왜 중요한지 여기서 딱 드러납니다.</p>
+
+<img src="https://blogautomation.netlify.app/.netlify/functions/img?id=calc_1788026571588_1" alt="취득세 계산하는 손과 계산기" style="max-width:100%;height:auto;border-radius:8px;" />
+
+<h2>이런 데서 많이 틀려요</h2>
+<ol>
+<li><strong>취득세만 계산하고 끝내는 것</strong> — 지방교육세·농특세까지 더하면 체감상 10~30% 더 나옵니다. 5억 주택이면 500만 원이 아니라 550만 원이에요.</li>
+<li><strong>기준가액을 시가로 잡는 것</strong> — 매매는 <strong>실제 거래가액</strong>이 기준입니다. 공시가격이 아니에요(상속·증여는 시가표준액 등 별도 기준을 씁니다).</li>
+<li><strong>분양권·입주권 헷갈림</strong> — 분양권 자체를 살 땐 취득세를 안 내고, 나중에 준공돼 잔금 치를 때 냅니다. 다만 주택 수 판정에는 분양권이 들어갈 수 있어요.</li>
+<li><strong>오피스텔</strong> — 주거용으로 쓰더라도 건축물대장상 업무시설이면 취득 시엔 4.6%(취득세 4% + 지방교육세 0.4% + 농특세 0.2%)가 적용돼요. 이거 모르고 1% 생각했다가 놀라는 분이 꽤 많습니다.</li>
+<li><strong>60일 기한 넘기기</strong> — 신고불성실·납부지연 가산세가 붙습니다. 등기를 미룬다고 취득세까지 미뤄지는 게 아니에요.</li>
+</ol>
+
+<h2>감면 제도, 놓치면 아까워요</h2>
+<p>생애최초 주택 구입자에 대한 취득세 감면, 신혼부부·다자녀 관련 지원, 일시적 2주택 인정(기존 주택을 정해진 기간 안에 처분하면 중과 대신 일반세율 적용) 같은 제도가 있어요. 다만 소득·주택가액 요건과 적용 기한이 수시로 바뀌기 때문에 여기서 금액을 못 박아 말하긴 어렵습니다.</p>
+<p>계약서 쓰기 전에 <a href="https://www.gov.kr" target="_blank" rel="noopener">정부24</a>에서 관련 민원을 검색해 보거나, 관할 시·군·구청 세무과에 전화 한 통 넣어 보세요. 솔직히 이게 제일 빠르고 정확해요. 감면 요건 하나 확인 안 해서 수백만 원 날리는 건 너무 아깝잖아요.</p>
+
+<img src="https://blogautomation.netlify.app/.netlify/functions/img?id=calc_1788026577091_2" alt="아파트 단지 전경" style="max-width:100%;height:auto;border-radius:8px;" />
+
+<p>정리하면, 취득세는 <strong>가격 구간 × 주택 수 × 면적</strong> 이 세 가지가 만나서 정해집니다. 위 계산기로 대략적인 금액을 뽑아 잔금 계획에 미리 반영해 두시고, 다주택이거나 감면 대상 같으면 반드시 관할 지자체에 한 번 더 확인하시길 권해요. 집 사는 과정에서 마지막에 발목 잡히는 게 대개 이런 세금 부분이더라고요.</p>
+  </div>
+</main>
+<footer><div class="wrap">© 2026 똑노트(ttoknote.com) · <a href="/privacy/">개인정보처리방침</a><br>본 사이트의 정보·계산 결과는 참고용이며, 정확한 내용은 관련 기관에서 확인하세요.</div></footer>
+</body>
+</html>

@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>주휴수당계산기로 1분 만에 내 주휴수당 계산하는 법</title>
+<meta name="description" content="결론부터 3줄로 정리할게요. ① 주휴수당은 '1주 소정근로시간 ÷ 40 × 8 × 시급'으로 계산해요(주 40시간 미만 근로자 기준). ② 1주 소정근로 15시간 이상 + 약속한 근무일 개근, 이 두 가지를 모두 채">
+<link rel="canonical" href="https://ttoknote.com/계산기/주휴수당계산기로/">
+<meta property="og:title" content="주휴수당계산기로 1분 만에 내 주휴수당 계산하는 법">
+<meta property="og:url" content="https://ttoknote.com/계산기/주휴수당계산기로/">
+<meta property="og:type" content="article">
+<style>
+  :root{--pt:#2563eb;--pt2:#1e40af;--bg:#f7f8fa;--card:#fff;--tx:#1f2937;--mut:#6b7280;--line:#e5e7eb}
+  *{box-sizing:border-box}
+  body{margin:0;font-family:'Malgun Gothic','맑은 고딕',system-ui,sans-serif;background:var(--bg);color:var(--tx);line-height:1.8}
+  a{color:var(--pt);text-decoration:none}
+  .wrap{max-width:760px;margin:0 auto;padding:0 20px}
+  header{background:var(--card);border-bottom:1px solid var(--line)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:60px;max-width:960px;margin:0 auto;padding:0 20px}
+  .logo{font-size:22px;font-weight:800;color:var(--pt)}.logo span{color:var(--tx)}
+  .menu{display:flex;gap:20px;font-weight:600;font-size:15px}.menu a{color:var(--tx)}
+  .crumb{font-size:13px;color:var(--mut);margin:20px 0 6px}
+  h1{font-size:26px;margin:6px 0 4px;line-height:1.35}
+  .date{color:var(--mut);font-size:13px;margin-bottom:22px}
+  .post img{max-width:100%;height:auto;border-radius:10px}
+  .post h2{font-size:20px;margin:30px 0 10px}
+  .post h3{font-size:17px;margin:24px 0 8px}
+  .post table{width:100%;border-collapse:collapse;margin:14px 0;font-size:15px}
+  .post th,.post td{border:1px solid var(--line);padding:10px 12px}
+  .post th{background:#f0f5ff}
+  footer{margin-top:44px;background:#1f2937;color:#cbd5e1;padding:26px 0;font-size:13px}
+  footer a{color:#cbd5e1;text-decoration:underline}
+</style>
+</head>
+<body>
+<header>
+  <div class="nav">
+    <a class="logo" href="/">똑<span>노트</span></a>
+    <nav class="menu"><a href="/계산기/">계산기</a><a href="/혜택/">정부혜택</a><a href="/셀러/">셀러정보</a></nav>
+  </div>
+</header>
+<main class="wrap">
+  <div class="crumb"><a href="/">홈</a> › <a href="/계산기/">계산기</a> › 주휴수당계산기로 1분 만에 내 주휴수당 계산하는 법</div>
+  <h1>주휴수당계산기로 1분 만에 내 주휴수당 계산하는 법</h1>
+  <div class="date">2026-08-19 · 똑노트</div>
+  <div class="post">
+<p><strong>결론부터 3줄로 정리할게요.</strong> ① 주휴수당은 '1주 소정근로시간 ÷ 40 × 8 × 시급'으로 계산해요(주 40시간 미만 근로자 기준). ② 1주 소정근로 15시간 이상 + 약속한 근무일 개근, 이 두 가지를 모두 채워야 받아요. ③ 아래 주휴수당계산기에 시급과 주간 근무시간만 넣으면 주급까지 바로 나와요.</p>
+
+<div id="calc_juhyu" style="max-width:480px;margin:20px auto;padding:22px;border:1px solid #e5e7eb;border-radius:14px;background:#fafafa;">
+  <div style="font-weight:700;font-size:17px;margin-bottom:14px;">주휴수당 계산기</div>
+  <div style="margin-bottom:12px;">
+    <div style="font-size:14px;margin-bottom:5px;">시급 (원)</div>
+    <input type="number" inputmode="numeric" id="juhyu_wage" placeholder="예: 10030" style="width:100%;padding:10px;border:1px solid #d1d5db;border-radius:8px;box-sizing:border-box;font-size:15px;">
+  </div>
+  <div style="margin-bottom:12px;">
+    <div style="font-size:14px;margin-bottom:5px;">1주 소정근로시간 (시간)</div>
+    <input type="number" inputmode="numeric" id="juhyu_hours" placeholder="예: 20" style="width:100%;padding:10px;border:1px solid #d1d5db;border-radius:8px;box-sizing:border-box;font-size:15px;">
+  </div>
+  <button id="juhyu_btn" style="width:100%;padding:13px;background:#2563eb;color:#fff;border:0;border-radius:8px;font-size:16px;font-weight:700;cursor:pointer;">계산하기</button>
+  <div id="juhyu_out" style="display:none;margin-top:16px;padding:15px;background:#fff;border:1px solid #e5e7eb;border-radius:10px;font-size:15px;line-height:1.8;"></div>
+  <div style="font-size:12px;color:#6b7280;margin-top:12px;line-height:1.6;">
+    ※ 1주 소정근로시간 15시간 이상 + 개근을 전제로 한 계산이에요. 주 40시간을 넘겨 입력해도 주휴시간은 법정 상한인 8시간으로 계산돼요. 연장·야간·휴일 가산수당은 포함하지 않은 참고용 추정이며, 정확한 금액은 <a href="https://www.moel.go.kr" target="_blank" rel="noopener">고용노동부</a> 공식 계산기에서 확인하세요.
+  </div>
+</div>
+<script>(function(){
+  var b=document.getElementById('juhyu_btn');
+  b.onclick=function(){
+    var w=parseFloat(document.getElementById('juhyu_wage').value);
+    var h=parseFloat(document.getElementById('juhyu_hours').value);
+    var o=document.getElementById('juhyu_out');
+    o.style.display='block';
+    if(!w||!h||w<=0||h<=0){
+      o.innerHTML='<span style="color:#dc2626;">시급과 1주 근무시간을 모두 0보다 큰 숫자로 입력해 주세요.</span>';
+      return;
+    }
+    if(h<15){
+      o.innerHTML='<span style="color:#dc2626;">1주 소정근로시간이 15시간 미만이면 주휴수당 지급 대상이 아니에요.</span><br><span style="font-size:13px;color:#6b7280;">기본 주급만 계산하면 '+Math.round(w*h).toLocaleString('ko-KR')+'원이에요.</span>';
+      return;
+    }
+    var jh=h/40*8;
+    if(jh>8){jh=8;}
+    var pay=Math.round(w*jh);
+    var base=Math.round(w*h);
+    o.innerHTML='주휴시간: <strong>'+(Math.round(jh*100)/100)+'시간</strong><br>'+
+      '주휴수당: <strong style="color:#2563eb;font-size:19px;">'+pay.toLocaleString('ko-KR')+'원</strong><br>'+
+      '기본 주급: '+base.toLocaleString('ko-KR')+'원<br>'+
+      '<strong>주휴 포함 총 주급: '+(base+pay).toLocaleString('ko-KR')+'원</strong>'+
+      '<div style="font-size:12px;color:#6b7280;margin-top:8px;">적용한 계산식: 시급 × (1주 소정근로시간 ÷ 40 × 8, 최대 8시간)</div>';
+  };
+})();</script>
+
+<p>알바를 몇 달 했는데 급여명세서에 주휴수당 항목이 아예 없어서 당황한 적 있으신가요? 실제로 주휴수당은 아르바이트 임금 체불 유형 중 가장 흔한 항목이에요. 계산이 어려워서라기보다, 조건을 몰라서 못 받는 경우가 훨씬 많거든요. 오늘은 계산기와 함께 조건·공식·예시를 차근차근 풀어볼게요.</p>
+
+<div class="separator" style="clear: both;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiIMJrpVuSyiQPODwltpYyCtEWfy0MaMJOkDhmPDqGSBmj6-dxsrm-lKSc8vRYqultMAcwx_MlrZIBRK_fNGUsgCFiftZS1MtTbsUQVBa2qB_A9g44PHvhANAHqt7VrKErfmKS6R2_NJMxn3Aa8ZpxfchPRoCX7SbWzehyNXCO7CiwSjMEhYWlfG2ic90I/s1024/photo-1%20%281%29.png" style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="600" data-original-height="1024" data-original-width="1024" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiIMJrpVuSyiQPODwltpYyCtEWfy0MaMJOkDhmPDqGSBmj6-dxsrm-lKSc8vRYqultMAcwx_MlrZIBRK_fNGUsgCFiftZS1MtTbsUQVBa2qB_A9g44PHvhANAHqt7VrKErfmKS6R2_NJMxn3Aa8ZpxfchPRoCX7SbWzehyNXCO7CiwSjMEhYWlfG2ic90I/s600/photo-1%20%281%29.png"/></a></div>
+
+<h2>주휴수당이란 무엇이고 누가 받나요</h2>
+
+<p>주휴수당은 1주일 동안 정해진 근무일을 다 채운 근로자에게, 유급으로 주는 하루치 휴일 임금이에요. 근로기준법 제55조에 근거를 두고 있고, 상시 근로자 5인 미만 사업장에도 똑같이 적용돼요. 정규직이든 아르바이트든, 계약서에 '주휴수당 없음'이라고 써 있어도 법정 요건을 채웠다면 받을 권리가 있어요.</p>
+
+<p>지급 조건은 딱 두 가지예요. 이 두 개를 동시에 만족해야 해요.</p>
+
+<ul>
+<li><strong>1주 소정근로시간이 15시간 이상</strong>일 것 (계약서에 적힌 약속 시간 기준, 연장근로는 제외)</li>
+<li><strong>그 주에 약속한 근무일을 개근</strong>할 것 (지각·조퇴는 개근으로 봐요, 결근만 문제)</li>
+</ul>
+
+<p>여기서 헷갈리기 쉬운 게 '소정근로시간'이에요. 사장님이 갑자기 불러서 더 일한 시간은 연장근로라서 15시간 판단이나 주휴수당 계산에 넣지 않아요. 반대로 계약상 주 16시간인데 그 주에 사정이 생겨 14시간만 일했다면, 소정근로시간 자체는 여전히 16시간이라 대상이 될 수 있어요.</p>
+
+<h2>주휴수당 계산 공식 (주 40시간 미만 기준)</h2>
+
+<p>공식은 아래 한 줄이면 끝나요. 위 계산기도 이 식을 그대로 쓰고 있어요.</p>
+
+<blockquote>주휴수당 = (1주 소정근로시간 ÷ 40) × 8 × 시급<br>단, 주휴시간은 최대 8시간까지만 인정</blockquote>
+
+<p>주 40시간 이상 일하는 풀타임 근로자라면 계산이 더 단순해요. 그냥 <strong>시급 × 8시간</strong>이 주휴수당이에요. 주 45시간을 일했다고 주휴시간이 9시간이 되진 않아요. 법정 기준인 1일 8시간이 상한이거든요.</p>
+
+<table>
+<tr><td><strong>주 근무시간</strong></td><td><strong>주휴시간</strong></td><td><strong>시급 10,000원 기준 주휴수당</strong></td></tr>
+<tr><td>15시간</td><td>3시간</td><td>30,000원</td></tr>
+<tr><td>20시간</td><td>4시간</td><td>40,000원</td></tr>
+<tr><td>25시간</td><td>5시간</td><td>50,000원</td></tr>
+<tr><td>30시간</td><td>6시간</td><td>60,000원</td></tr>
+<tr><td>40시간 이상</td><td>8시간</td><td>80,000원</td></tr>
+</table>
+
+<h2>실제 숫자로 계산해볼게요</h2>
+
+<p><strong>사례 1. 주말 알바</strong> — 시급 10,000원, 토·일 각 8시간씩 주 16시간 근무, 결근 없음.<br>
+주휴시간 = 16 ÷ 40 × 8 = 3.2시간<br>
+주휴수당 = 10,000원 × 3.2 = <strong>32,000원</strong><br>
+기본 주급 160,000원 + 주휴 32,000원 = 총 <strong>192,000원</strong>이에요. 한 달(4.345주)이면 주휴수당만 약 13만 9천 원 차이가 나요.</p>
+
+<p><strong>사례 2. 평일 저녁 알바</strong> — 시급 11,000원, 월~금 하루 5시간씩 주 25시간.<br>
+주휴시간 = 25 ÷ 40 × 8 = 5시간<br>
+주휴수당 = 11,000원 × 5 = <strong>55,000원</strong><br>
+총 주급은 275,000 + 55,000 = 330,000원이에요.</p>
+
+<p><strong>사례 3. 풀타임</strong> — 시급 10,000원, 주 40시간(하루 8시간 × 5일).<br>
+주휴수당 = 10,000 × 8 = <strong>80,000원</strong>. 총 주급 480,000원이에요. 월 환산 시 209시간(주 40시간 근로자의 월 소정근로시간)에 이미 주휴시간이 포함돼 있다는 점도 기억해두면 좋아요.</p>
+
+<div class="separator" style="clear: both;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiKiwQch9NSSvFQO4AF0-iniy7Ir_lJrXbKa7VJXKm-zMpFrxrSopsl0dALymaHqjGKcBlQgbBE5NYnWMFyBf6MDE_AwYgUCSmyKnx7HAhdIanzKVZNGXrFMGEIMgWz7R0xaCSYTnkRT6TzjcSVqjZzyJmLCFPV6R0swTIcSt0fNIpkK9ksstrZMZ-maJ4/s1024/photo-2%20%281%29.png" style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="600" data-original-height="1024" data-original-width="1024" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiKiwQch9NSSvFQO4AF0-iniy7Ir_lJrXbKa7VJXKm-zMpFrxrSopsl0dALymaHqjGKcBlQgbBE5NYnWMFyBf6MDE_AwYgUCSmyKnx7HAhdIanzKVZNGXrFMGEIMgWz7R0xaCSYTnkRT6TzjcSVqjZzyJmLCFPV6R0swTIcSt0fNIpkK9ksstrZMZ-maJ4/s600/photo-2%20%281%29.png"/></a></div>
+
+<h2>자주 하는 실수 5가지</h2>
+
+<ol>
+<li><strong>"월급제니까 주휴수당은 없다"고 생각하기</strong> — 월급 안에 이미 포함된 경우가 대부분이지만, 시급 환산 시 최저임금 미달이 되는지 꼭 확인해야 해요. 월급 ÷ 209시간이 그 해 최저시급보다 낮으면 문제가 돼요.</li>
+<li><strong>연장근로를 소정근로에 넣기</strong> — 계약은 주 12시간인데 실제로 18시간 일했다면, 원칙적으로 소정근로시간은 12시간이라 대상이 아닐 수 있어요. 다만 계속 반복됐다면 실질을 따져볼 여지는 있어요.</li>
+<li><strong>지각을 결근으로 착각</strong> — 지각·조퇴는 개근을 깨지 않아요. 결근 딱 하루면 그 주 주휴수당은 사라져요.</li>
+<li><strong>주휴시간 상한 8시간 무시</strong> — 주 48시간 일해도 주휴수당은 8시간분이 최대예요.</li>
+<li><strong>퇴사 주 계산</strong> — 그 주를 다 채우고 다음 주 근로가 예정되어 있지 않은 채 그만두면, 마지막 주 주휴수당은 발생하지 않는 것으로 보는 게 일반적이에요.</li>
+</ol>
+
+<h2>못 받았을 때 어떻게 하나요</h2>
+
+<p>주휴수당 미지급은 임금체불이에요. 근로계약서, 출퇴근 기록(포스 로그·근무표·카톡 메시지도 증거가 돼요), 급여 입금 내역을 모아두세요. 그다음 사업장 관할 고용노동청에 진정을 넣으면 되고, 온라인으로는 <a href="https://www.moel.go.kr" target="_blank" rel="noopener">고용노동부</a> 민원마당에서 접수할 수 있어요. 임금채권 소멸시효는 3년이라, 예전 알바 것도 3년 안이면 청구 가능해요.</p>
+
+<p>매년 바뀌는 최저임금은 <a href="https://www.minimumwage.go.kr" target="_blank" rel="noopener">최저임금위원회</a>에서 확인하는 게 정확해요. 시급이 최저임금 이상인지부터 보고, 그다음 주휴수당을 얹어 계산하는 순서가 좋아요.</p>
+
+<div class="separator" style="clear: both;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjyg8aw0fp5HujlwZ0BDVrVPElwF77aXSonVqfMaP3lWKSvui2h3pzYuoswsX-0VfrqN3YybBpDmgTS1oMWG0cuOv0fknv3g9DNLAYSHKC-SG3wRQaZaEdsi7vRsCRZblApYtdF1eeWuUqnNRZilq9Lhfv-zm-fdfUMIXPO2Rx-yowlOQ_EF69TJ3Pq_mk/s1024/photo-3%20%281%29.png" style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="600" data-original-height="1024" data-original-width="1024" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjyg8aw0fp5HujlwZ0BDVrVPElwF77aXSonVqfMaP3lWKSvui2h3pzYuoswsX-0VfrqN3YybBpDmgTS1oMWG0cuOv0fknv3g9DNLAYSHKC-SG3wRQaZaEdsi7vRsCRZblApYtdF1eeWuUqnNRZilq9Lhfv-zm-fdfUMIXPO2Rx-yowlOQ_EF69TJ3Pq_mk/s600/photo-3%20%281%29.png"/></a></div>
+
+<h2>정리하면</h2>
+
+<p>주휴수당은 어렵게 느껴지지만 결국 '주 15시간 이상 + 개근'이라는 조건과 '주간 근무시간 ÷ 40 × 8 × 시급'이라는 공식 하나면 끝이에요. 위 주휴수당계산기에 숫자만 넣어보면 내가 받아야 할 금액이 바로 나오니, 지난달 급여명세서를 옆에 놓고 한 번 대조해보세요. 개인적으로는 주휴수당 하나만 챙겨도 연 단위로는 꽤 큰 금액이 되기 때문에, 알바를 시작할 때 계약서에 '주 소정근로시간'이 몇 시간으로 적혀 있는지부터 확인하는 습관을 권하고 싶어요. 😊</p>
+
+<h2>자주 묻는 질문(FAQ)</h2>
+
+<h3>주 14시간만 일하면 정말 한 푼도 못 받나요?</h3>
+<p>네, 1주 소정근로시간이 15시간 미만이면 주휴수당 지급 대상이 아니에요. 다만 여러 주의 근로시간이 들쭉날쭉하다면 4주 평균으로 판단하는 경우도 있으니, 평균이 15시간을 넘는지 따져볼 필요가 있어요. 애매하면 근로계약서를 들고 노동청에 상담해보세요.</p>
+
+<h3>주휴수당에도 세금이 붙나요?</h3>
+<p>주휴수당은 임금이라서 다른 급여와 합산해 소득세·4대보험 산정 대상이 돼요. 일용직이라면 원천징수 방식이 달라지고, 월 60시간 이상 근무 시 국민연금·건강보험 가입 대상이 될 수 있어요. 자세한 보험료 기준은 <a href="https://www.4insure.or.kr" target="_blank" rel="noopener">4대사회보험 정보연계센터</a>에서 확인할 수 있어요.</p>
+
+<h3>사장님이 시급에 주휴수당이 포함돼 있다고 하는데 맞나요?</h3>
+<p>이른바 '포괄임금'인데, 무조건 인정되진 않아요. 근로계약서에 기본시급과 주휴수당이 각각 얼마인지 구분해서 명시돼 있어야 하고, 그렇게 나눴을 때 기본시급이 최저임금 이상이어야 해요. 시급 10,000원에 주휴 포함이라고 했는데 나누면 기본시급이 최저임금 미달이 된다면 위법 소지가 있어요.</p>
+  </div>
+</main>
+<footer><div class="wrap">© 2026 똑노트(ttoknote.com) · <a href="/privacy/">개인정보처리방침</a><br>본 사이트의 정보·계산 결과는 참고용이며, 정확한 내용은 관련 기관에서 확인하세요.</div></footer>
+</body>
+</html>

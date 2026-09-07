@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>급여계산기로 실수령액 5초 만에 확인하는 법</title>
+<meta name="description" content="계약서엔 분명 연봉 4,000만 원이라고 적혀 있었는데, 첫 월급 통장을 열어보고 '어? 300만 원 아니었나?' 했던 경험 다들 한 번쯤 있으실 거예요. 저도 그랬고요. 급여계산기가 필요한 이유가 딱 여기 있습니다">
+<link rel="canonical" href="https://ttoknote.com/계산기/급여계산기로/">
+<meta property="og:title" content="급여계산기로 실수령액 5초 만에 확인하는 법">
+<meta property="og:url" content="https://ttoknote.com/계산기/급여계산기로/">
+<meta property="og:type" content="article">
+<style>
+  :root{--pt:#2563eb;--pt2:#1e40af;--bg:#f7f8fa;--card:#fff;--tx:#1f2937;--mut:#6b7280;--line:#e5e7eb}
+  *{box-sizing:border-box}
+  body{margin:0;font-family:'Malgun Gothic','맑은 고딕',system-ui,sans-serif;background:var(--bg);color:var(--tx);line-height:1.8}
+  a{color:var(--pt);text-decoration:none}
+  .wrap{max-width:760px;margin:0 auto;padding:0 20px}
+  header{background:var(--card);border-bottom:1px solid var(--line)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:60px;max-width:960px;margin:0 auto;padding:0 20px}
+  .logo{font-size:22px;font-weight:800;color:var(--pt)}.logo span{color:var(--tx)}
+  .menu{display:flex;gap:20px;font-weight:600;font-size:15px}.menu a{color:var(--tx)}
+  .crumb{font-size:13px;color:var(--mut);margin:20px 0 6px}
+  h1{font-size:26px;margin:6px 0 4px;line-height:1.35}
+  .date{color:var(--mut);font-size:13px;margin-bottom:22px}
+  .post img{max-width:100%;height:auto;border-radius:10px}
+  .post h2{font-size:20px;margin:30px 0 10px}
+  .post h3{font-size:17px;margin:24px 0 8px}
+  .post table{width:100%;border-collapse:collapse;margin:14px 0;font-size:15px}
+  .post th,.post td{border:1px solid var(--line);padding:10px 12px}
+  .post th{background:#f0f5ff}
+  footer{margin-top:44px;background:#1f2937;color:#cbd5e1;padding:26px 0;font-size:13px}
+  footer a{color:#cbd5e1;text-decoration:underline}
+</style>
+</head>
+<body>
+<header>
+  <div class="nav">
+    <a class="logo" href="/">똑<span>노트</span></a>
+    <nav class="menu"><a href="/계산기/">계산기</a><a href="/혜택/">정부혜택</a><a href="/셀러/">셀러정보</a></nav>
+  </div>
+</header>
+<main class="wrap">
+  <div class="crumb"><a href="/">홈</a> › <a href="/계산기/">계산기</a> › 급여계산기로 실수령액 5초 만에 확인하는 법</div>
+  <h1>급여계산기로 실수령액 5초 만에 확인하는 법</h1>
+  <div class="date">2026-08-31 · 똑노트</div>
+  <div class="post">
+<!-- 메타설명: 급여계산기로 연봉·월급에서 4대보험과 세금을 뺀 실수령액을 바로 계산해보세요. 공제 항목별 요율, 계산 순서, 자주 틀리는 부분까지 정리했습니다. -->
+
+
+<p>계약서엔 분명 연봉 4,000만 원이라고 적혀 있었는데, 첫 월급 통장을 열어보고 "어? 300만 원 아니었나?" 했던 경험 다들 한 번쯤 있으실 거예요. 저도 그랬고요. 급여계산기가 필요한 이유가 딱 여기 있습니다. 세전과 세후 사이에는 생각보다 두툼한 벽이 하나 있거든요.</p>
+
+<div id="calc_salary_net" style="max-width:480px;margin:20px auto;padding:22px;border:1px solid #e5e7eb;border-radius:14px;background:#fafafa;">
+  <div style="font-weight:700;font-size:18px;margin-bottom:14px;">월급 실수령액 간편 계산기</div>
+
+  <div style="margin-bottom:10px;">
+    <label for="sal_gross" style="display:block;font-size:14px;margin-bottom:4px;">세전 월급여 (원)</label>
+    <input type="number" inputmode="numeric" id="sal_gross" placeholder="예: 3000000" style="width:100%;padding:10px;border:1px solid #d1d5db;border-radius:8px;box-sizing:border-box;">
+  </div>
+
+  <div style="margin-bottom:10px;">
+    <label for="sal_meal" style="display:block;font-size:14px;margin-bottom:4px;">비과세액 (식대 등, 원)</label>
+    <input type="number" inputmode="numeric" id="sal_meal" placeholder="예: 200000" style="width:100%;padding:10px;border:1px solid #d1d5db;border-radius:8px;box-sizing:border-box;">
+  </div>
+
+  <div style="margin-bottom:14px;">
+    <label for="sal_family" style="display:block;font-size:14px;margin-bottom:4px;">부양가족 수 (본인 포함)</label>
+    <input type="number" inputmode="numeric" id="sal_family" value="1" style="width:100%;padding:10px;border:1px solid #d1d5db;border-radius:8px;box-sizing:border-box;">
+  </div>
+
+  <button id="sal_btn" style="width:100%;padding:13px;background:#2563eb;color:#fff;border:none;border-radius:8px;font-size:16px;font-weight:600;cursor:pointer;">실수령액 계산하기</button>
+
+  <div id="sal_out" style="display:none;margin-top:16px;padding:14px;background:#fff;border:1px solid #e5e7eb;border-radius:10px;font-size:15px;line-height:1.9;"></div>
+
+  <div style="font-size:12px;color:#6b7280;margin-top:12px;line-height:1.6;">
+    2025년 요율 기준(국민연금 4.5%, 건강보험 3.545%, 장기요양 건강보험료의 12.95%, 고용보험 0.9%) 근로자 부담분입니다. 소득세는 간이세액표를 단순화한 추정치라 실제 원천징수액과 차이가 날 수 있어요. 정확한 금액은 <a href="https://www.4insure.or.kr" target="_blank" rel="noopener">4대사회보험 정보연계센터</a>와 <a href="https://www.hometax.go.kr" target="_blank" rel="noopener">홈택스</a> 간이세액표에서 확인하세요.
+  </div>
+</div>
+
+<script>
+(function(){
+  var btn = document.getElementById('sal_btn');
+  var out = document.getElementById('sal_out');
+  btn.onclick = function(){
+    var gross = parseFloat(document.getElementById('sal_gross').value) || 0;
+    var meal = parseFloat(document.getElementById('sal_meal').value) || 0;
+    var fam = parseInt(document.getElementById('sal_family').value) || 1;
+    out.style.display = 'block';
+    if(gross <= 0){
+      out.innerHTML = '<span style="color:#dc2626;">세전 월급여를 정확히 입력해 주세요.</span>';
+      return;
+    }
+    if(meal < 0 || meal >= gross){
+      out.innerHTML = '<span style="color:#dc2626;">비과세액은 월급여보다 작아야 해요.</span>';
+      return;
+    }
+    var taxable = gross - meal;
+    var pensionBase = Math.min(Math.max(taxable, 400000), 6370000);
+    var pension = Math.round(pensionBase * 0.045 / 10) * 10;
+    var health = Math.round(taxable * 0.03545 / 10) * 10;
+    var care = Math.round(health * 0.1295 / 10) * 10;
+    var employ = Math.round(taxable * 0.009 / 10) * 10;
+
+    // 간이세액 단순 추정: 연환산 과세소득에서 근로소득공제·인적공제 적용 후 기본세율
+    var annual = taxable * 12;
+    var wd;
+    if(annual <= 5000000) wd = annual * 0.7;
+    else if(annual <= 15000000) wd = 3500000 + (annual - 5000000) * 0.4;
+    else if(annual <= 45000000) wd = 7500000 + (annual - 15000000) * 0.15;
+    else if(annual <= 100000000) wd = 12000000 + (annual - 45000000) * 0.05;
+    else wd = 14750000 + (annual - 100000000) * 0.02;
+    var base = annual - wd - (1500000 * fam) - (pension + health + care + employ) * 12;
+    if(base < 0) base = 0;
+    var tax;
+    if(base <= 14000000) tax = base * 0.06;
+    else if(base <= 50000000) tax = 840000 + (base - 14000000) * 0.15;
+    else if(base <= 88000000) tax = 6240000 + (base - 50000000) * 0.24;
+    else if(base <= 150000000) tax = 15360000 + (base - 88000000) * 0.35;
+    else tax = 37060000 + (base - 150000000) * 0.38;
+    // 근로소득세액공제 간이 반영
+    var credit = tax <= 1300000 ? tax * 0.55 : 715000 + (tax - 1300000) * 0.3;
+    var cap = annual <= 33000000 ? 740000 : (annual <= 70000000 ? 660000 : 500000);
+    if(credit > cap) credit = cap;
+    var finalTax = tax - credit;
+    if(finalTax < 0) finalTax = 0;
+    var incomeTax = Math.round(finalTax / 12 / 10) * 10;
+    var localTax = Math.round(incomeTax * 0.1 / 10) * 10;
+
+    var total = pension + health + care + employ + incomeTax + localTax;
+    var net = gross - total;
+
+    out.innerHTML =
+      '<div style="font-size:17px;font-weight:700;color:#2563eb;margin-bottom:8px;">월 실수령액 약 ' + net.toLocaleString('ko-KR') + '원</div>' +
+      '국민연금 ' + pension.toLocaleString('ko-KR') + '원<br>' +
+      '건강보험 ' + health.toLocaleString('ko-KR') + '원<br>' +
+      '장기요양보험 ' + care.toLocaleString('ko-KR') + '원<br>' +
+      '고용보험 ' + employ.toLocaleString('ko-KR') + '원<br>' +
+      '소득세(추정) ' + incomeTax.toLocaleString('ko-KR') + '원<br>' +
+      '지방소득세 ' + localTax.toLocaleString('ko-KR') + '원<br>' +
+      '<strong>공제 합계 ' + total.toLocaleString('ko-KR') + '원</strong><br>' +
+      '<span style="font-size:13px;color:#6b7280;">적용식: 실수령액 = 세전월급 − (4대보험 + 소득세 + 지방소득세), 보험료는 비과세 제외 과세급여 기준</span>';
+  };
+})();
+</script>
+
+<h2>세전과 세후, 왜 이렇게 차이가 날까요</h2>
+
+<p>월급에서 빠져나가는 건 크게 두 덩어리예요. <strong>4대보험료</strong>와 <strong>세금</strong>. 이 둘을 합치면 대략 세전 급여의 9~13% 정도가 사라집니다. 연봉이 높아질수록 소득세 비중이 커지니까 공제율도 같이 올라가고요.</p>
+
+<p>재밌는 건 4대보험은 소득이 아무리 높아도 요율 자체는 똑같다는 점이에요. 대신 국민연금은 상한선이 있어서 일정 금액 이상 벌면 더 안 냅니다. 반면 소득세는 누진구조라 계속 올라가죠.</p>
+
+<img src="https://blogautomation.netlify.app/.netlify/functions/img?id=calc_1788199346918_0" alt="급여계산기로 실수령액을 계산하는 모습" style="max-width:100%;height:auto;border-radius:8px;" />
+
+<h2>공제 항목별로 뜯어보면</h2>
+
+<table>
+<tr><td><strong>항목</strong></td><td><strong>근로자 부담 요율</strong></td><td><strong>기준</strong></td></tr>
+<tr><td>국민연금</td><td>4.5%</td><td>기준소득월액(상·하한 적용)</td></tr>
+<tr><td>건강보험</td><td>3.545%</td><td>보수월액(비과세 제외)</td></tr>
+<tr><td>장기요양보험</td><td>건강보험료의 12.95%</td><td>건강보험료 기준</td></tr>
+<tr><td>고용보험</td><td>0.9%</td><td>보수월액(실업급여분)</td></tr>
+<tr><td>소득세</td><td>간이세액표</td><td>과세급여·부양가족 수</td></tr>
+<tr><td>지방소득세</td><td>소득세의 10%</td><td>소득세액</td></tr>
+</table>
+
+<p>여기서 놓치기 쉬운 게 <strong>산재보험</strong>인데요, 이건 전액 회사가 부담합니다. 그래서 급여명세서에 안 보이는 거예요. 4대보험이라면서 왜 셋만 빠지지? 싶었다면 이유가 이겁니다.</p>
+
+<h2>비과세 항목, 이거 챙기면 확실히 이득</h2>
+
+<p>계산기에 '비과세액' 칸을 따로 둔 이유가 있어요. 비과세로 잡히는 돈은 세금도 안 붙고 4대보험료 산정 기준에서도 빠집니다. 즉 <strong>같은 총액이어도 비과세 비중이 크면 실수령액이 늘어난다</strong>는 뜻이죠.</p>
+
+<p>대표적인 게 식대예요. 월 20만 원까지 비과세로 인정됩니다. 자가운전보조금도 월 20만 원 한도로 비과세고요. 출산·6세 이하 자녀 보육수당도 조건에 따라 비과세 대상이 됩니다.</p>
+
+<p>실제로 계산기에 월급 300만 원을 넣고 비과세 0원일 때와 20만 원일 때를 각각 돌려보세요. 만 원 넘게 차이 납니다. 1년이면 십몇만 원이에요. 작아 보여도 그냥 놔둘 돈은 아니죠.</p>
+
+<h2>실제로 한번 계산해볼게요</h2>
+
+<p>연봉 3,600만 원, 월 300만 원(식대 20만 원 포함), 부양가족 본인 1명인 직장인을 가정해봅시다.</p>
+
+<ol>
+<li>과세대상 급여 = 300만 원 − 20만 원 = <strong>280만 원</strong></li>
+<li>국민연금 = 280만 × 4.5% = 126,000원</li>
+<li>건강보험 = 280만 × 3.545% = 99,260원</li>
+<li>장기요양 = 99,260 × 12.95% = 12,850원</li>
+<li>고용보험 = 280만 × 0.9% = 25,200원</li>
+<li>소득세·지방소득세는 간이세액표에 따라 별도 산정</li>
+</ol>
+
+<p>보험료만 해도 26만 원가량이 빠지죠. 여기에 세금까지 더하면 30만 원 안팎이 사라집니다. 그래서 세전 300만 원인데 통장에는 270만 원 언저리가 들어오는 거예요.</p>
+
+<img src="https://blogautomation.netlify.app/.netlify/functions/img?id=calc_1788199353716_1" alt="월급 공제 항목을 정리하는 작업 공간" style="max-width:100%;height:auto;border-radius:8px;" />
+
+<h2>급여계산기 쓸 때 자주 하는 실수</h2>
+
+<p>가장 흔한 건 <strong>연봉에 퇴직금이 포함됐는지 안 봤을 때</strong>예요. "연봉 3,900만 원(퇴직금 포함)"이라고 적힌 계약서면 실제 월급은 3,900÷13이 됩니다. 12로 나누면 계산이 통째로 어긋나요. 이거 모르고 계산했다가 첫 월급에 당황하는 분들 정말 많습니다.
+
+<p>두 번째는 <strong>상여금·성과급을 월급에 섞어 넣는 것</strong>. 상여금은 지급되는 달에만 반영되고, 그 달은 소득세도 확 올라갑니다. 평월 기준으로 계산기를 돌려야 실제 감이 잡혀요.</p>
+
+<p>세 번째는 부양가족 수를 대충 넣는 경우. 간이세액표는 부양가족 수에 따라 원천징수액이 눈에 띄게 달라집니다. 배우자·자녀가 있으면 반드시 반영하세요.</p>
+
+<p>마지막으로, 원천징수는 어디까지나 <strong>임시로 떼어가는 돈</strong>이라는 점. 연말정산에서 최종 세액이 확정되면서 돌려받거나 더 내게 되죠. 그래서 매달 실수령액이 조금 적어 보여도 연말에 환급으로 돌아오는 경우가 있어요.</p>
+
+<h2>4대보험 요율은 매년 바뀝니다</h2>
+
+<p>이게 좀 귀찮은 부분인데요. 건강보험료율과 장기요양보험료율은 거의 매년 조정돼요. 국민연금도 요율 인상 논의가 계속 나오고 있고요. 그래서 작년에 저장해둔 엑셀 계산식을 그대로 쓰면 슬쩍 틀립니다.</p>
+
+<p>정확한 최신 요율은 <a href="https://www.4insure.or.kr" target="_blank" rel="noopener">4대사회보험 정보연계센터</a>에서 확인하는 게 제일 빠르고, 소득세 간이세액표는 <a href="https://www.hometax.go.kr" target="_blank" rel="noopener">홈택스</a>에서 조회할 수 있습니다. 위 계산기도 참고용 추정치이니 큰 금액 협상이나 이직 판단에는 공식 자료를 한 번 더 대조해보세요.</p>
+
+<img src="https://blogautomation.netlify.app/.netlify/functions/img?id=calc_1788199359537_2" alt="급여명세서 관련 서류를 확인하는 손" style="max-width:100%;height:auto;border-radius:8px;" />
+
+<h2>이직 협상할 때 이 계산기를 쓰는 법</h2>
+
+<p>연봉 협상 자리에서 "3,800이요, 4,000이요" 하고 숫자만 오가면 감이 잘 안 옵니다. 저는 협상 전에 후보 금액 두세 개를 계산기에 미리 넣어보라고 권해요. 세전 200만 원 차이가 세후로는 얼마 차이인지 알고 들어가면 대화가 훨씬 명확해집니다.</p>
+
+<p>그리고 총액이 조금 낮아도 식대·차량유지비 같은 비과세 항목이 잡혀 있는 조건이 실수령 기준으론 더 나을 수 있어요. 이건 숫자로 확인해보기 전엔 절대 감으로 안 잡히는 부분이더라고요.</p>
+
+<p>월급명세서를 매달 그냥 넘기지 말고, 한 달에 한 번은 계산기 돌려서 대조해보시길요. 회사가 실수하는 경우도 생각보다 드물지 않습니다. 내 돈은 내가 챙기는 수밖에 없어요. 🙂</p>
+  </div>
+</main>
+<footer><div class="wrap">© 2026 똑노트(ttoknote.com) · <a href="/privacy/">개인정보처리방침</a><br>본 사이트의 정보·계산 결과는 참고용이며, 정확한 내용은 관련 기관에서 확인하세요.</div></footer>
+</body>
+</html>

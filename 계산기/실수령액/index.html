@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>실수령액 계산기, 2026년 월급 실수령액 바로 계산</title>
+<meta name="description" content="결론부터 3줄 요약할게요. ① 실수령액은 '세전 월급 − 국민연금 4.5% − 건강보험 3.545% − 장기요양(건강보험료의 12.95%) − 고용보험 0.9% − 소득세·지방소득세'로 계산해요. ② 보통 세전 월급">
+<link rel="canonical" href="https://ttoknote.com/계산기/실수령액/">
+<meta property="og:title" content="실수령액 계산기, 2026년 월급 실수령액 바로 계산">
+<meta property="og:url" content="https://ttoknote.com/계산기/실수령액/">
+<meta property="og:type" content="article">
+<style>
+  :root{--pt:#2563eb;--pt2:#1e40af;--bg:#f7f8fa;--card:#fff;--tx:#1f2937;--mut:#6b7280;--line:#e5e7eb}
+  *{box-sizing:border-box}
+  body{margin:0;font-family:'Malgun Gothic','맑은 고딕',system-ui,sans-serif;background:var(--bg);color:var(--tx);line-height:1.8}
+  a{color:var(--pt);text-decoration:none}
+  .wrap{max-width:760px;margin:0 auto;padding:0 20px}
+  header{background:var(--card);border-bottom:1px solid var(--line)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:60px;max-width:960px;margin:0 auto;padding:0 20px}
+  .logo{font-size:22px;font-weight:800;color:var(--pt)}.logo span{color:var(--tx)}
+  .menu{display:flex;gap:20px;font-weight:600;font-size:15px}.menu a{color:var(--tx)}
+  .crumb{font-size:13px;color:var(--mut);margin:20px 0 6px}
+  h1{font-size:26px;margin:6px 0 4px;line-height:1.35}
+  .date{color:var(--mut);font-size:13px;margin-bottom:22px}
+  .post img{max-width:100%;height:auto;border-radius:10px}
+  .post h2{font-size:20px;margin:30px 0 10px}
+  .post h3{font-size:17px;margin:24px 0 8px}
+  .post table{width:100%;border-collapse:collapse;margin:14px 0;font-size:15px}
+  .post th,.post td{border:1px solid var(--line);padding:10px 12px}
+  .post th{background:#f0f5ff}
+  footer{margin-top:44px;background:#1f2937;color:#cbd5e1;padding:26px 0;font-size:13px}
+  footer a{color:#cbd5e1;text-decoration:underline}
+</style>
+</head>
+<body>
+<header>
+  <div class="nav">
+    <a class="logo" href="/">똑<span>노트</span></a>
+    <nav class="menu"><a href="/계산기/">계산기</a><a href="/혜택/">정부혜택</a><a href="/셀러/">셀러정보</a></nav>
+  </div>
+</header>
+<main class="wrap">
+  <div class="crumb"><a href="/">홈</a> › <a href="/계산기/">계산기</a> › 실수령액 계산기, 2026년 월급 실수령액 바로 계산</div>
+  <h1>실수령액 계산기, 2026년 월급 실수령액 바로 계산</h1>
+  <div class="date">2026-08-21 · 똑노트</div>
+  <div class="post">
+<p><strong>결론부터 3줄 요약할게요.</strong> ① 실수령액은 '세전 월급 − 국민연금 4.5% − 건강보험 3.545% − 장기요양(건강보험료의 12.95%) − 고용보험 0.9% − 소득세·지방소득세'로 계산해요. ② 보통 세전 월급의 <strong>약 87~91%</strong>가 통장에 들어와요(부양가족·비과세액에 따라 달라짐). ③ 아래 계산기에 월급과 비과세액, 부양가족 수를 넣으면 바로 나와요.</p>
+
+<div id="calc_netpay" style="max-width:480px;margin:20px auto;padding:22px;border:1px solid #e5e7eb;border-radius:14px;background:#fafafa;">
+  <div style="font-size:18px;font-weight:700;margin-bottom:14px;">월급 실수령액 계산기</div>
+
+  <div style="margin-bottom:10px;">
+    <div style="font-size:14px;margin-bottom:4px;">세전 월급 (원)</div>
+    <input type="number" inputmode="numeric" id="np_gross" placeholder="예: 3000000" style="width:100%;padding:10px;border:1px solid #d1d5db;border-radius:8px;box-sizing:border-box;">
+  </div>
+
+  <div style="margin-bottom:10px;">
+    <div style="font-size:14px;margin-bottom:4px;">비과세액 (식대 등, 원)</div>
+    <input type="number" inputmode="numeric" id="np_tax_free" placeholder="예: 200000" style="width:100%;padding:10px;border:1px solid #d1d5db;border-radius:8px;box-sizing:border-box;">
+  </div>
+
+  <div style="margin-bottom:10px;">
+    <div style="font-size:14px;margin-bottom:4px;">부양가족 수 (본인 포함, 명)</div>
+    <input type="number" inputmode="numeric" id="np_family" placeholder="예: 1" style="width:100%;padding:10px;border:1px solid #d1d5db;border-radius:8px;box-sizing:border-box;">
+  </div>
+
+  <button id="np_btn" style="width:100%;padding:13px;background:#2563eb;color:#fff;border:none;border-radius:8px;font-size:16px;font-weight:700;cursor:pointer;">실수령액 계산하기</button>
+
+  <div id="np_out" style="display:none;margin-top:16px;padding:14px;background:#fff;border:1px solid #e5e7eb;border-radius:10px;font-size:15px;line-height:1.8;"></div>
+</div>
+<script>(function(){
+  var btn=document.getElementById('np_btn');
+  var out=document.getElementById('np_out');
+  function won(n){return Math.round(n).toLocaleString('ko-KR')+'원';}
+  btn.onclick=function(){
+    var gross=parseFloat(document.getElementById('np_gross').value)||0;
+    var free=parseFloat(document.getElementById('np_tax_free').value)||0;
+    var fam=parseInt(document.getElementById('np_family').value)||1;
+    out.style.display='block';
+    if(gross<=0){out.innerHTML='<span style="color:#dc2626;">세전 월급을 0보다 큰 숫자로 입력해 주세요.</span>';return;}
+    if(free<0||free>=gross){out.innerHTML='<span style="color:#dc2626;">비과세액은 0 이상, 세전 월급보다 작아야 해요.</span>';return;}
+    if(fam<1){fam=1;}
+    var taxable=gross-free;
+    // 국민연금 기준소득월액 상·하한 반영(2025.7~ 적용 구간 기준)
+    var pensionBase=taxable;
+    if(pensionBase<400000)pensionBase=400000;
+    if(pensionBase>6370000)pensionBase=6370000;
+    var pension=Math.floor(pensionBase*0.045/10)*10;
+    var health=Math.floor(taxable*0.03545/10)*10;
+    var care=Math.floor(health*0.1295/10)*10;
+    var emp=Math.floor(taxable*0.009/10)*10;
+    // 간이세액 근사: 과세급여에서 4대보험·근로소득공제 성격 반영한 단순 추정
+    var yearly=taxable*12;
+    var ded=0;
+    if(yearly<=5000000)ded=yearly*0.7;
+    else if(yearly<=15000000)ded=3500000+(yearly-5000000)*0.4;
+    else if(yearly<=45000000)ded=7500000+(yearly-15000000)*0.15;
+    else if(yearly<=100000000)ded=12000000+(yearly-45000000)*0.05;
+    else ded=14750000+(yearly-100000000)*0.02;
+    var base=yearly-ded-1500000*fam-(pension+health+care+emp)*12;
+    if(base<0)base=0;
+    var tax=0;
+    if(base<=14000000)tax=base*0.06;
+    else if(base<=50000000)tax=840000+(base-14000000)*0.15;
+    else if(base<=88000000)tax=6240000+(base-50000000)*0.24;
+    else if(base<=150000000)tax=15360000+(base-88000000)*0.35;
+    else tax=37060000+(base-150000000)*0.38;
+    // 근로소득세액공제 단순 반영
+    var credit=0;
+    if(tax<=1300000)credit=tax*0.55;else credit=715000+(tax-1300000)*0.30;
+    if(credit>740000)credit=740000;
+    var finalTax=tax-credit;
+    if(finalTax<0)finalTax=0;
+    var incomeTax=Math.floor(finalTax/12/10)*10;
+    var localTax=Math.floor(incomeTax*0.1/10)*10;
+    var total=pension+health+care+emp+incomeTax+localTax;
+    var net=gross-total;
+    var rate=(net/gross*100).toFixed(1);
+    out.innerHTML=
+      '<div style="font-size:19px;font-weight:700;color:#2563eb;margin-bottom:8px;">월 실수령액 약 '+won(net)+'</div>'+
+      '<div>국민연금(4.5%) : '+won(pension)+'</div>'+
+      '<div>건강보험(3.545%) : '+won(health)+'</div>'+
+      '<div>장기요양(건보료의 12.95%) : '+won(care)+'</div>'+
+      '<div>고용보험(0.9%) : '+won(emp)+'</div>'+
+      '<div>소득세(추정) : '+won(incomeTax)+'</div>'+
+      '<div>지방소득세(소득세의 10%) : '+won(localTax)+'</div>'+
+      '<div style="border-top:1px solid #e5e7eb;margin-top:8px;padding-top:8px;">공제 합계 : '+won(total)+' / 실수령 비율 약 '+rate+'%</div>'+
+      '<div style="margin-top:8px;font-size:13px;color:#6b7280;">적용한 계산식 : 실수령액 = 세전월급 − (과세급여×보험요율 합) − 소득세 − 지방소득세</div>';
+  };
+})();</script>
+
+<p style="font-size:13px;color:#6b7280;max-width:480px;margin:0 auto 24px;">가정 : 2025~2026년에 적용 중인 보험요율(국민연금 4.5%, 건강보험 3.545%, 장기요양 12.95%, 고용보험 0.9%)을 사용했고, 소득세는 부양가족 수만 반영한 <strong>단순 추정치</strong>예요. 실제 원천징수는 국세청 근로소득 간이세액표를 따르므로 수천 원 차이가 날 수 있어요. 참고용 추정이며 정확한 금액은 <a href="https://www.hometax.go.kr" target="_blank" rel="noopener">홈택스</a>와 <a href="https://www.4insure.or.kr" target="_blank" rel="noopener">4대사회보험 정보연계센터</a>의 공식 계산기에서 확인하세요.</p>
+
+<p>연봉 협상 자리에서 "3,600만원 어때요?"라는 말을 듣고 머릿속으로 300만원을 그렸는데, 첫 월급날 통장에 268만원쯤 찍혀서 당황했던 경험 다들 있으실 거예요. 세전과 세후 사이에는 생각보다 큰 계곡이 있어요. 이 글에서는 그 계곡의 정체를 항목별로 뜯어보고, 직접 손으로 계산하는 방법까지 정리했어요.</p>
+
+<div class="separator" style="clear: both;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEixDKPoXpV3Gf6GkzBu_sNQAe1B4m11QwBNcz2sqgPoc8CPxotj7POM7OqdWCh_rdPSNEa7n9udVOnSPpOcepVrUjlge4ECp1vN2t2PsRMhnz6Mbyo7hyhcdhPqVryp7GwuAhsL5v_MNv9e9iURJGwNzTA7EnyfVBVcujmoVuyY-S0T-VVNnMcX-6YSmS0/s1024/photo-1%20%286%29.png" style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="600" data-original-height="1024" data-original-width="1024" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEixDKPoXpV3Gf6GkzBu_sNQAe1B4m11QwBNcz2sqgPoc8CPxotj7POM7OqdWCh_rdPSNEa7n9udVOnSPpOcepVrUjlge4ECp1vN2t2PsRMhnz6Mbyo7hyhcdhPqVryp7GwuAhsL5v_MNv9e9iURJGwNzTA7EnyfVBVcujmoVuyY-S0T-VVNnMcX-6YSmS0/s600/photo-1%20%286%29.png"/></a></div>
+
+<h2>실수령액 계산기에서 빠지는 공제 항목 5가지</h2>
+
+<p>세전 월급에서 빠지는 돈은 크게 <strong>4대보험 3종(국민연금·건강보험·고용보험)</strong>과 <strong>세금 2종(소득세·지방소득세)</strong>이에요. 산재보험은 전액 회사 부담이라 근로자 급여에서는 빠지지 않아요. 여기에 건강보험료에 붙는 장기요양보험료를 따로 세면 항목이 다섯 개가 되는 셈이에요.</p>
+
+<table>
+<tr><td><strong>항목</strong></td><td><strong>근로자 부담 요율</strong></td><td><strong>부과 기준</strong></td></tr>
+<tr><td>국민연금</td><td>4.5%</td><td>기준소득월액(상·하한 있음)</td></tr>
+<tr><td>건강보험</td><td>3.545%</td><td>과세 대상 보수월액</td></tr>
+<tr><td>장기요양보험</td><td>건강보험료의 12.95%</td><td>건강보험료</td></tr>
+<tr><td>고용보험</td><td>0.9%</td><td>과세 대상 보수월액</td></tr>
+<tr><td>소득세 + 지방소득세</td><td>간이세액표 적용</td><td>과세급여, 부양가족 수</td></tr>
+</table>
+
+<p>여기서 꼭 기억할 포인트는 <strong>'과세 대상'</strong>이라는 단어예요. 월 20만원까지의 식대, 자가운전보조금(월 20만원 한도), 출산·6세 이하 자녀 보육수당 등은 비과세라서 보험료와 세금 계산에서 아예 빠져요. 그래서 같은 세전 300만원이라도 식대 20만원이 비과세로 잡히면 실수령액이 2만원 안팎 더 늘어나요.</p>
+
+<h2>실수령액 계산 공식과 실제 예시</h2>
+
+<p>공식 자체는 단순해요.</p>
+
+<blockquote>실수령액 = 세전 월급 − (과세급여 × 8.945% 내외) − 소득세 − 지방소득세<br>※ 8.945% = 국민연금 4.5% + 건강보험 3.545% + 고용보험 0.9% (장기요양은 별도 가산)</blockquote>
+
+<p><strong>예시 : 세전 월급 300만원, 비과세 식대 20만원, 부양가족 1명(본인)</strong></p>
+
+<ol>
+<li>과세급여 = 3,000,000 − 200,000 = <strong>2,800,000원</strong></li>
+<li>국민연금 = 2,800,000 × 4.5% = <strong>126,000원</strong></li>
+<li>건강보험 = 2,800,000 × 3.545% = <strong>99,260원</strong></li>
+<li>장기요양 = 99,260 × 12.95% = <strong>12,850원</strong></li>
+<li>고용보험 = 2,800,000 × 0.9% = <strong>25,200원</strong></li>
+<li>소득세 + 지방소득세 ≒ <strong>6만원 안팎</strong>(간이세액표 기준, 부양가족 수에 따라 변동)</li>
+<li>공제 합계 ≒ 32만원대 → <strong>실수령액 약 267~270만원</strong></li>
+</ol>
+
+<p>즉 세전의 약 89% 수준이에요. 연봉으로 바꾸면 3,600만원 계약자의 월 통장 입금액이 270만원 근처라는 뜻이고, 여기에 상여나 성과급이 붙으면 그 달만 세금이 확 튀어 오르기도 해요.</p>
+
+<h2>연봉 구간별 실수령 비율 감 잡기</h2>
+
+<p>정확한 금액은 위 계산기로 확인하되, 대략의 감을 잡아두면 협상할 때 유리해요. 비과세 20만원, 부양가족 1인 기준 어림값이에요.</p>
+
+<table>
+<tr><td><strong>세전 월급</strong></td><td><strong>대략 실수령</strong></td><td><strong>비율</strong></td></tr>
+<tr><td>250만원</td><td>약 226만원</td><td>약 90%</td></tr>
+<tr><td>300만원</td><td>약 268만원</td><td>약 89%</td></tr>
+<tr><td>400만원</td><td>약 348만원</td><td>약 87%</td></tr>
+<tr><td>500만원</td><td>약 428만원</td><td>약 86%</td></tr>
+</table>
+
+<p>보시면 월급이 오를수록 실수령 비율은 조금씩 <strong>내려가요</strong>. 소득세가 누진 구조라서 그래요. 반대로 국민연금은 기준소득월액 상한(월 617만원대~637만원대 구간에서 매년 7월 조정)이 있어서, 고소득자는 연금 보험료가 어느 선에서 멈춰요. 정확한 상한액은 <a href="https://www.nps.or.kr" target="_blank" rel="noopener">국민연금공단</a>에서 매년 확인하는 게 좋아요.</p>
+
+<div class="separator" style="clear: both;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiiND0fYVMiYAHj2YmugmEok9as7iOSp_M5rM1kLzJiOr_-JtK7_VaCGXbdsO4PcqNAKZpeQ-RUPmElK4tR33Qolzrq__zv1Tp9LdcNfImDR0xh4-8Z_CjrC26iGxmxbUDy243FxBbjbf4SMBjc5Maga9MTX0uwB8zIK7C-y5yU7j9eXKeUcAl3YY81Ah4/s1024/photo-2%20%286%29.png" style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="600" data-original-height="1024" data-original-width="1024" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiiND0fYVMiYAHj2YmugmEok9as7iOSp_M5rM1kLzJiOr_-JtK7_VaCGXbdsO4PcqNAKZpeQ-RUPmElK4tR33Qolzrq__zv1Tp9LdcNfImDR0xh4-8Z_CjrC26iGxmxbUDy243FxBbjbf4SMBjc5Maga9MTX0uwB8zIK7C-y5yU7j9eXKeUcAl3YY81Ah4/s600/photo-2%20%286%29.png"/></a></div>
+
+<h2>자주 하는 실수 4가지</h2>
+
+<ul>
+<li><strong>연봉을 12로 나눈다</strong> — 퇴직금이 연봉에 포함된 '13분할' 계약이면 12가 아니라 13으로 나눠야 실제 월급이 나와요. 계약서의 '퇴직금 별도' 문구를 꼭 확인하세요.</li>
+<li><strong>비과세를 빼지 않고 보험료를 계산</strong> — 식대 20만원을 과세급여에 포함시키면 보험료가 실제보다 1만 8천원쯤 많게 나와요.</li>
+<li><strong>연말정산 환급을 실수령에 포함</strong> — 매달 떼는 소득세는 어디까지나 '미리 내는 돈'이에요. 연말정산에서 돌려받거나 더 낼 수 있으니 월 실수령액과는 분리해서 보세요.</li>
+<li><strong>보험료 정산분을 잊음</strong> — 건강보험은 매년 4월경 전년도 보수 기준으로 정산해요. 급여가 올랐다면 4월 급여에서 목돈이 한 번 빠질 수 있어요.</li>
+</ul>
+
+<h2>계산기 결과가 명세서와 다를 때</h2>
+
+<p>몇 천원에서 1~2만원 정도 차이는 대부분 <strong>소득세 간이세액표</strong> 때문이에요. 국세청 간이세액표는 부양가족 수뿐 아니라 20세 이하 자녀 수까지 반영한 별도 표를 쓰거든요. 또 근로자가 회사에 신청하면 간이세액의 80% 또는 120%로 조정해서 뗄 수도 있어서, 같은 급여라도 원천징수액이 다를 수 있어요.</p>
+
+<p>차이가 5만원 이상으로 크다면 노조회비, 사우회비, 단체보험료, 식대 공제, 학자금 상환 같은 <strong>회사 자체 공제 항목</strong>이 명세서에 있는지 확인해 보세요. 그래도 이상하면 4대보험 부과 내역을 <a href="https://www.4insure.or.kr" target="_blank" rel="noopener">4대사회보험 정보연계센터</a>에서 직접 조회할 수 있어요.</p>
+
+<h2>마무리</h2>
+
+<p>실수령액을 알고 협상하는 사람과 세전 숫자만 보고 도장 찍는 사람의 1년 차이는 꽤 커요. 연봉 200만원 인상이 실제로는 월 14만원 남짓이라는 걸 알면, 대신 식대 비과세나 교통비 항목을 챙기는 쪽이 더 이득일 때도 있거든요. 저는 이직 제안을 받을 때마다 이 계산부터 돌려보고 표로 정리해두는 편인데, 감정 대신 숫자로 대화하게 되니 훨씬 마음이 편하더라고요. 🙂</p>
+
+<div class="separator" style="clear: both;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh3vstsgHYzU47kdqSAknZGIlEzBA97tW1yw1XKFfmhvy7fZgykRjWJqk3FYAhKswZNDoxrrtzb0yiPKhtNURDELobBv0gm1MZlqaAzVDE_qznH3ConhhI9h4OqHARrjTkLkHbPviR2U1zdTdkcwRXilK7SWNaJNUT2LlM7AnOb_dc8qlICA7-Ln_Lsnmw/s1024/blog-image%20%282%29.png" style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="600" data-original-height="1024" data-original-width="1024" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh3vstsgHYzU47kdqSAknZGIlEzBA97tW1yw1XKFfmhvy7fZgykRjWJqk3FYAhKswZNDoxrrtzb0yiPKhtNURDELobBv0gm1MZlqaAzVDE_qznH3ConhhI9h4OqHARrjTkLkHbPviR2U1zdTdkcwRXilK7SWNaJNUT2LlM7AnOb_dc8qlICA7-Ln_Lsnmw/s600/blog-image%20%282%29.png"/></a></div>
+
+
+<h2>자주 묻는 질문(FAQ)</h2>
+
+<h3>Q1. 4대보험 중 산재보험은 왜 안 빠지나요?</h3>
+<p>산재보험은 업무상 재해에 대한 사업주 책임을 보장하는 제도라 <strong>보험료 전액을 회사가 부담</strong>해요. 그래서 급여명세서 공제란에 산재보험이 적혀 있다면 잘못 계산된 것일 수 있으니 확인이 필요해요.</p>
+
+<h3>Q2. 아르바이트나 주휴수당 포함 급여도 이 계산기로 되나요?</h3>
+<p>월 소정근로시간 60시간 이상이고 4대보험에 가입돼 있다면 동일하게 적용돼요. 다만 주 15시간 미만 초단시간 근로자는 국민연금·고용보험 적용 예외인 경우가 있으니, 근로조건 기준은 <a href="https://www.moel.go.kr" target="_blank" rel="noopener">고용노동부</a> 안내를 참고하세요.</p>
+
+<h3>Q3. 부양가족을 늘리면 실수령액이 늘어나나요?</h3>
+<p>네, 매달 떼는 소득세가 줄어서 월 실수령액은 늘어요. 다만 총 세금이 사라지는 게 아니라 연말정산 시점에 최종 정산되는 구조라, 부양가족 요건(소득·나이 기준)을 만족하지 못하면 나중에 추징될 수 있어요. 실제 부양 요건을 갖춘 가족만 등록하는 게 안전해요.</p>
+  </div>
+</main>
+<footer><div class="wrap">© 2026 똑노트(ttoknote.com) · <a href="/privacy/">개인정보처리방침</a><br>본 사이트의 정보·계산 결과는 참고용이며, 정확한 내용은 관련 기관에서 확인하세요.</div></footer>
+</body>
+</html>

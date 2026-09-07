@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>연차수당 계산기, 1분 만에 내 미사용 연차 돈으로 환산</title>
+<meta name="description" content="결론부터 3줄로 정리할게요. ① 연차수당 = 1일 통상임금 × 미사용 연차일수 예요. ② 1일 통상임금은 월 통상임금을 209시간으로 나눈 시급에 하루 소정근로시간(보통 8시간)을 곱해서 구해요. ③ 월급 300만 ">
+<link rel="canonical" href="https://ttoknote.com/계산기/연차수당/">
+<meta property="og:title" content="연차수당 계산기, 1분 만에 내 미사용 연차 돈으로 환산">
+<meta property="og:url" content="https://ttoknote.com/계산기/연차수당/">
+<meta property="og:type" content="article">
+<style>
+  :root{--pt:#2563eb;--pt2:#1e40af;--bg:#f7f8fa;--card:#fff;--tx:#1f2937;--mut:#6b7280;--line:#e5e7eb}
+  *{box-sizing:border-box}
+  body{margin:0;font-family:'Malgun Gothic','맑은 고딕',system-ui,sans-serif;background:var(--bg);color:var(--tx);line-height:1.8}
+  a{color:var(--pt);text-decoration:none}
+  .wrap{max-width:760px;margin:0 auto;padding:0 20px}
+  header{background:var(--card);border-bottom:1px solid var(--line)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:60px;max-width:960px;margin:0 auto;padding:0 20px}
+  .logo{font-size:22px;font-weight:800;color:var(--pt)}.logo span{color:var(--tx)}
+  .menu{display:flex;gap:20px;font-weight:600;font-size:15px}.menu a{color:var(--tx)}
+  .crumb{font-size:13px;color:var(--mut);margin:20px 0 6px}
+  h1{font-size:26px;margin:6px 0 4px;line-height:1.35}
+  .date{color:var(--mut);font-size:13px;margin-bottom:22px}
+  .post img{max-width:100%;height:auto;border-radius:10px}
+  .post h2{font-size:20px;margin:30px 0 10px}
+  .post h3{font-size:17px;margin:24px 0 8px}
+  .post table{width:100%;border-collapse:collapse;margin:14px 0;font-size:15px}
+  .post th,.post td{border:1px solid var(--line);padding:10px 12px}
+  .post th{background:#f0f5ff}
+  footer{margin-top:44px;background:#1f2937;color:#cbd5e1;padding:26px 0;font-size:13px}
+  footer a{color:#cbd5e1;text-decoration:underline}
+</style>
+</head>
+<body>
+<header>
+  <div class="nav">
+    <a class="logo" href="/">똑<span>노트</span></a>
+    <nav class="menu"><a href="/계산기/">계산기</a><a href="/혜택/">정부혜택</a><a href="/셀러/">셀러정보</a></nav>
+  </div>
+</header>
+<main class="wrap">
+  <div class="crumb"><a href="/">홈</a> › <a href="/계산기/">계산기</a> › 연차수당 계산기, 1분 만에 내 미사용 연차 돈으로 환산</div>
+  <h1>연차수당 계산기, 1분 만에 내 미사용 연차 돈으로 환산</h1>
+  <div class="date">2026-08-22 · 똑노트</div>
+  <div class="post">
+<p><strong>결론부터 3줄로 정리할게요.</strong> ① 연차수당 = <strong>1일 통상임금 × 미사용 연차일수</strong>예요. ② 1일 통상임금은 월 통상임금을 209시간으로 나눈 시급에 하루 소정근로시간(보통 8시간)을 곱해서 구해요. ③ 월급 300만 원(통상임금 기준), 미사용 연차 5일이면 대략 574,160원 정도가 나와요.</p>
+
+<div id="calc_annualpay" style="max-width:480px;margin:20px auto;padding:22px;border:1px solid #e5e7eb;border-radius:14px;background:#fafafa;">
+  <div style="font-size:18px;font-weight:700;margin-bottom:14px;">연차수당 계산기</div>
+
+  <div style="margin-bottom:12px;">
+    <label for="ap_pay" style="display:block;font-size:14px;margin-bottom:5px;">월 통상임금 (원)</label>
+    <input type="number" inputmode="numeric" id="ap_pay" placeholder="예: 3000000" style="width:100%;padding:10px;border:1px solid #d1d5db;border-radius:8px;box-sizing:border-box;">
+    <div style="font-size:12px;color:#6b7280;margin-top:4px;">기본급 + 고정수당 합계 (상여·성과급·시간외수당 제외)</div>
+  </div>
+
+  <div style="margin-bottom:12px;">
+    <label for="ap_hours" style="display:block;font-size:14px;margin-bottom:5px;">월 소정근로시간</label>
+    <input type="number" inputmode="numeric" id="ap_hours" value="209" style="width:100%;padding:10px;border:1px solid #d1d5db;border-radius:8px;box-sizing:border-box;">
+    <div style="font-size:12px;color:#6b7280;margin-top:4px;">주 40시간 + 주휴 기준 209시간이 일반적이에요</div>
+  </div>
+
+  <div style="margin-bottom:12px;">
+    <label for="ap_daily" style="display:block;font-size:14px;margin-bottom:5px;">1일 소정근로시간</label>
+    <input type="number" inputmode="numeric" id="ap_daily" value="8" style="width:100%;padding:10px;border:1px solid #d1d5db;border-radius:8px;box-sizing:border-box;">
+  </div>
+
+  <div style="margin-bottom:16px;">
+    <label for="ap_days" style="display:block;font-size:14px;margin-bottom:5px;">미사용 연차일수 (일)</label>
+    <input type="number" inputmode="numeric" id="ap_days" placeholder="예: 5" style="width:100%;padding:10px;border:1px solid #d1d5db;border-radius:8px;box-sizing:border-box;">
+  </div>
+
+  <button id="ap_btn" style="width:100%;padding:13px;background:#2563eb;color:#fff;border:none;border-radius:8px;font-size:16px;font-weight:700;cursor:pointer;">연차수당 계산하기</button>
+
+  <div id="ap_out" style="display:none;margin-top:16px;padding:16px;background:#fff;border:1px solid #e5e7eb;border-radius:10px;"></div>
+
+  <div style="font-size:12px;color:#6b7280;margin-top:14px;line-height:1.6;">
+    참고용 추정이며, 회사 취업규칙·임금 구성에 따라 달라질 수 있어요. 정확한 기준은 <a href="https://www.moel.go.kr" target="_blank" rel="noopener">고용노동부</a>에서 확인하세요.
+  </div>
+</div>
+<script>(function(){
+  var btn=document.getElementById('ap_btn');
+  btn.onclick=function(){
+    var out=document.getElementById('ap_out');
+    var pay=parseFloat(document.getElementById('ap_pay').value);
+    var mh=parseFloat(document.getElementById('ap_hours').value);
+    var dh=parseFloat(document.getElementById('ap_daily').value);
+    var d=parseFloat(document.getElementById('ap_days').value);
+    out.style.display='block';
+    if(!(pay>0)||!(mh>0)||!(dh>0)||!(d>0)){
+      out.innerHTML='<span style="color:#dc2626;">월 통상임금, 근로시간, 미사용 연차일수를 모두 0보다 큰 값으로 입력해 주세요.</span>';
+      return;
+    }
+    var hourly=pay/mh;
+    var daily=hourly*dh;
+    var total=daily*d;
+    out.innerHTML='<div style="font-size:14px;color:#374151;">통상임금 시급</div>'+
+      '<div style="font-size:17px;font-weight:700;margin-bottom:8px;">'+Math.round(hourly).toLocaleString('ko-KR')+'원</div>'+
+      '<div style="font-size:14px;color:#374151;">1일 통상임금</div>'+
+      '<div style="font-size:17px;font-weight:700;margin-bottom:8px;">'+Math.round(daily).toLocaleString('ko-KR')+'원</div>'+
+      '<div style="font-size:14px;color:#374151;">미사용 연차수당 합계</div>'+
+      '<div style="font-size:24px;font-weight:800;color:#2563eb;">'+Math.round(total).toLocaleString('ko-KR')+'원</div>'+
+      '<div style="font-size:12px;color:#6b7280;margin-top:10px;">적용한 계산식: '+pay.toLocaleString('ko-KR')+'원 ÷ '+mh+'시간 × '+dh+'시간 × '+d+'일 (세전 금액)</div>';
+  };
+})();</script>
+
+<p>연말이나 퇴사할 때 "내 남은 연차, 돈으로 받으면 얼마지?" 하고 한 번쯤 계산해 보셨을 거예요. 그런데 막상 검색하면 통상임금이니 209시간이니 낯선 말만 나와서 포기하게 되죠. 사실 공식 자체는 아주 단순해요. 헷갈리는 건 '무엇을 통상임금에 넣느냐' 하나뿐이에요.</p>
+
+<div class="separator" style="clear: both;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhEJbCAwP7nOqK2pRpB44ewhYq4NVOWeZBY_9xWIaql780GUuT2oM4wvee8NE8opzejvTGS7LShseJCRMWYxviXy49HCJe6ytHDx2w5F9hnZs289yvShfY4GsK6TfGpMOj9wOLCSsJ1JRW2GoUpUXCECE7tTGMNNQMPCHWQBZIyFZ_uue5dJ8BpufVTXfo/s1024/photo-1%20%282%29.png" style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="600" data-original-height="1024" data-original-width="1024" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhEJbCAwP7nOqK2pRpB44ewhYq4NVOWeZBY_9xWIaql780GUuT2oM4wvee8NE8opzejvTGS7LShseJCRMWYxviXy49HCJe6ytHDx2w5F9hnZs289yvShfY4GsK6TfGpMOj9wOLCSsJ1JRW2GoUpUXCECE7tTGMNNQMPCHWQBZIyFZ_uue5dJ8BpufVTXfo/s600/photo-1%20%282%29.png"/></a></div>
+
+<h2>연차수당 계산기 쓰기 전에 알아야 할 3가지</h2>
+
+<p>계산기에 숫자만 넣으면 결과는 나오지만, 그 숫자가 맞는지 알려면 개념을 알아야 해요. 딱 세 가지만 짚고 갈게요.</p>
+
+<ul>
+<li><strong>통상임금</strong>: 정기적·일률적·고정적으로 지급되는 임금이에요. 기본급, 직책수당, 식대(고정 지급 시), 자격수당 등이 들어가요.</li>
+<li><strong>제외되는 항목</strong>: 연장·야간·휴일근로수당, 성과급, 명절 상여, 실비 변상 성격의 출장비는 원칙적으로 빠져요.</li>
+<li><strong>209시간</strong>: 주 40시간 + 주휴 8시간 = 주 48시간, 여기에 월평균 주 수 4.345를 곱하면 약 209시간이 나와요.</li>
+</ul>
+
+<h2>연차수당 계산 공식과 실제 예시</h2>
+
+<p>공식은 이렇게 3단계예요. 순서대로 따라가면 누구나 계산할 수 있어요.</p>
+
+<ol>
+<li>통상임금 시급 = 월 통상임금 ÷ 209시간</li>
+<li>1일 통상임금 = 시급 × 1일 소정근로시간(보통 8시간)</li>
+<li>연차수당 = 1일 통상임금 × 미사용 연차일수</li>
+</ol>
+
+<p>월 통상임금 300만 원, 미사용 연차 5일인 직장인을 예로 들어 볼게요. 3,000,000 ÷ 209 = 약 14,354원(시급), 14,354 × 8 = 114,832원(1일), 114,832 × 5 = <strong>574,160원</strong>이 나와요. 이 금액은 세전이라 실제 통장에는 소득세와 4대보험을 뗀 금액이 들어와요.</p>
+
+<h3>월급별 연차수당 한눈에 보기 (1일 8시간, 209시간 기준)</h3>
+
+<table>
+<tr><td><strong>월 통상임금</strong></td><td><strong>시급</strong></td><td><strong>1일 수당</strong></td><td><strong>5일치</strong></td></tr>
+<tr><td>2,200,000원</td><td>10,526원</td><td>84,208원</td><td>421,040원</td></tr>
+<tr><td>2,500,000원</td><td>11,962원</td><td>95,696원</td><td>478,480원</td></tr>
+<tr><td>3,000,000원</td><td>14,354원</td><td>114,832원</td><td>574,160원</td></tr>
+<tr><td>3,500,000원</td><td>16,746원</td><td>133,968원</td><td>669,840원</td></tr>
+<tr><td>4,000,000원</td><td>19,139원</td><td>153,112원</td><td>765,560원</td></tr>
+</table>
+
+<p>표의 금액은 반올림 과정에서 1~2원 차이가 날 수 있어요. 위 계산기에 본인 숫자를 직접 넣어 보는 게 가장 정확해요.</p>
+
+<h2>내 연차일수는 몇 개일까</h2>
+
+<p>수당보다 먼저 확인할 게 연차 개수예요. 근로기준법상 5인 이상 사업장 기준으로 이렇게 발생해요.</p>
+
+<ul>
+<li><strong>입사 1년 미만</strong>: 1개월 개근 시 1일씩, 최대 11일</li>
+<li><strong>1년 이상</strong>: 1년간 80% 이상 출근하면 15일</li>
+<li><strong>3년 이상</strong>: 15일에 2년마다 1일씩 가산(3년차 16일, 5년차 17일…), 한도 25일</li>
+</ul>
+
+<p>참고로 5인 미만 사업장은 연차휴가 규정 적용 대상이 아니라, 연차수당 청구도 원칙적으로 어려워요. 본인 사업장 규모부터 확인해 보세요.</p>
+
+<div class="separator" style="clear: both;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgirUGHkHnH6ZKfFc1Mq_CGqaKrxqXmd6H58D6muinGR7pEK-AoncBro3o1Lp8ocdAUDxAc7jMi3m13MnqjukwGPpUwfN2ns8Y27Ih-Ur4EGxd670-YKBkoypwegN6hEnD-igvchRKtD4FY5Q1D9wBbaqVFgrcNDPfgTXYgfuEF2NsGBwfpTtxhSmUnfGc/s1024/photo-2%20%282%29.png" style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="600" data-original-height="1024" data-original-width="1024" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgirUGHkHnH6ZKfFc1Mq_CGqaKrxqXmd6H58D6muinGR7pEK-AoncBro3o1Lp8ocdAUDxAc7jMi3m13MnqjukwGPpUwfN2ns8Y27Ih-Ur4EGxd670-YKBkoypwegN6hEnD-igvchRKtD4FY5Q1D9wBbaqVFgrcNDPfgTXYgfuEF2NsGBwfpTtxhSmUnfGc/s600/photo-2%20%282%29.png"/></a></div>
+
+<h2>자주 하는 실수 5가지</h2>
+
+<ol>
+<li><strong>세후 월급으로 계산</strong> — 실수령액이 아니라 세전 통상임금으로 계산해야 해요. 실수령액을 넣으면 금액이 확 줄어요.</li>
+<li><strong>총 급여를 그대로 입력</strong> — 연장수당·성과급이 섞인 총액을 넣으면 과다 계산돼요. 급여명세서에서 고정 항목만 골라내세요.</li>
+<li><strong>209시간을 다르게 적용</strong> — 주 5일 8시간 근무자 기준이에요. 단시간 근로자는 실제 소정근로시간으로 바꿔야 해요.</li>
+<li><strong>연차촉진제 무시</strong> — 회사가 법에 맞게 사용촉진 절차를 밟았다면 미사용 연차의 수당 지급 의무가 없어질 수 있어요.</li>
+<li><strong>청구 시효 놓치기</strong> — 임금채권 소멸시효는 3년이에요. 몇 년 전 미지급분이 있다면 서두르는 게 좋아요.</li>
+</ol>
+
+<h2>퇴사할 때 연차수당은 이렇게</h2>
+
+<p>퇴사자는 남은 연차를 전부 수당으로 받는 게 원칙이에요. 마지막 급여나 퇴직금과 함께 <strong>퇴직일로부터 14일 이내</strong>에 지급돼야 해요. 회사가 지급을 미루면 <a href="https://www.moel.go.kr" target="_blank" rel="noopener">고용노동부</a> 홈페이지에서 임금체불 진정을 넣을 수 있어요. 진정 전에 급여명세서, 근로계약서, 연차 사용 내역을 캡처나 사본으로 챙겨 두세요.</p>
+
+<p>한 가지 더요. 연차수당도 임금이라 퇴직금 산정의 기초가 되는 평균임금에 일부 반영될 수 있어요. 퇴직 직전 1년 이내에 받은 연차수당의 3/12를 평균임금에 더하는 방식이 일반적인데, 회사마다 처리가 다를 수 있으니 명세서를 확인해 보는 게 좋아요.</p>
+
+<h2>마무리</h2>
+
+<p>연차수당은 결국 '내가 쉬지 못한 시간의 값'이에요. 계산기로 금액을 보고 나면 연차를 그냥 흘려보내는 게 얼마나 아까운지 체감이 되실 거예요. 개인적으로는 수당으로 받는 것보다 실제로 쉬는 쪽을 추천해요. 574,160원보다 5일의 휴식이 더 남는 장사더라고요 🙂</p>
+
+
+<div class="separator" style="clear: both;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgUApK3Ec0h9TtycwwaA6UJNrjqDA7Yo3YwlIYHZsAT189YeJVVdK22_546dUOy3P-87yV9OZX-vrbjYeTcaroCTZgRjK6gIVyfwgqMoN_2WDNBDsNqB6z48RJYyhmwmhhJRw64JMBvlnW3uwYxH_ZCy3VJtiuM-Fac__hBkdhYkT8w5ZeVioPAcDORPOk/s1024/blog-image%20%281%29.png" style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="600" data-original-height="1024" data-original-width="1024" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgUApK3Ec0h9TtycwwaA6UJNrjqDA7Yo3YwlIYHZsAT189YeJVVdK22_546dUOy3P-87yV9OZX-vrbjYeTcaroCTZgRjK6gIVyfwgqMoN_2WDNBDsNqB6z48RJYyhmwmhhJRw64JMBvlnW3uwYxH_ZCy3VJtiuM-Fac__hBkdhYkT8w5ZeVioPAcDORPOk/s600/blog-image%20%281%29.png"/></a></div>
+
+<h2>자주 묻는 질문(FAQ)</h2>
+
+<h3>Q1. 연차수당에도 세금이 붙나요?</h3>
+<p>네, 연차수당은 근로소득이라 소득세·지방소득세와 4대보험료가 공제돼요. 그래서 계산기에 나온 금액보다 실수령액은 적어요. 대략 세전 금액의 85~92% 정도를 실수령으로 잡으면 감이 잡혀요(급여 수준·부양가족 수에 따라 달라져요).</p>
+
+<h3>Q2. 회사가 연차 사용촉진을 하면 수당을 못 받나요?</h3>
+<p>근로기준법에 정해진 절차(사용기간 만료 6개월 전 서면 통보, 근로자의 사용 시기 미지정 시 회사가 시기 지정 등)를 모두 지켰다면 미사용분에 대한 수당 지급 의무가 면제될 수 있어요. 다만 구두 통보나 절차 누락이 있으면 인정되지 않으니, 서면으로 받은 게 있는지 확인해 보세요.</p>
+
+<h3>Q3. 식대 20만 원은 통상임금에 넣나요?</h3>
+<p>모든 직원에게 매달 고정적으로 지급되는 식대라면 통상임금에 포함되는 경우가 많아요. 반대로 실제 식사한 날만 정산해 주는 실비 성격이면 제외돼요. 급여명세서에서 매달 같은 금액인지 먼저 확인해 보고, 애매하면 회사 취업규칙이나 노무 담당자에게 물어보는 게 확실해요.</p>
+  </div>
+</main>
+<footer><div class="wrap">© 2026 똑노트(ttoknote.com) · <a href="/privacy/">개인정보처리방침</a><br>본 사이트의 정보·계산 결과는 참고용이며, 정확한 내용은 관련 기관에서 확인하세요.</div></footer>
+</body>
+</html>
