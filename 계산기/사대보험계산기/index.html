@@ -3,134 +3,160 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>사대보험 계산기 | 2026년 월급 공제액 바로 계산</title>
-<meta name="description" content="월급을 넣으면 국민연금·건강보험·장기요양·고용보험 근로자 부담금을 바로 계산합니다. 2026년 요율 기준 사대보험 간이계산기.">
+<title>사대보험계산기로 내 월급 공제액 3분 만에 확인하는 법</title>
+<meta name="description" content="결론부터 3줄로 정리할게요. 월급 300만 원 기준 근로자가 내는 4대보험은 대략 27만 원 안팎이고, 국민연금 4.5% + 건강보험 3.545% + 장기요양(건강보험료의 12.95%) + 고용보험 0.9%로 계산해">
 <link rel="canonical" href="https://ttoknote.com/계산기/사대보험계산기/">
-<meta property="og:title" content="사대보험 계산기 | 2026년 월급 공제액 바로 계산">
-<meta property="og:description" content="월급 입력하면 사대보험 근로자 부담금이 바로 나옵니다.">
+<meta property="og:title" content="사대보험계산기로 내 월급 공제액 3분 만에 확인하는 법">
 <meta property="og:url" content="https://ttoknote.com/계산기/사대보험계산기/">
 <meta property="og:type" content="article">
 <style>
   :root{--pt:#2563eb;--pt2:#1e40af;--bg:#f7f8fa;--card:#fff;--tx:#1f2937;--mut:#6b7280;--line:#e5e7eb}
   *{box-sizing:border-box}
-  body{margin:0;font-family:'Malgun Gothic','맑은 고딕',system-ui,sans-serif;background:var(--bg);color:var(--tx);line-height:1.75}
+  body{margin:0;font-family:'Malgun Gothic','맑은 고딕',system-ui,sans-serif;background:var(--bg);color:var(--tx);line-height:1.8}
   a{color:var(--pt);text-decoration:none}
   .wrap{max-width:760px;margin:0 auto;padding:0 20px}
   header{background:var(--card);border-bottom:1px solid var(--line)}
   .nav{display:flex;align-items:center;justify-content:space-between;height:60px;max-width:960px;margin:0 auto;padding:0 20px}
-  .logo{font-size:22px;font-weight:800;color:var(--pt)}
-  .logo span{color:var(--tx)}
-  .menu{display:flex;gap:20px;font-weight:600;font-size:15px}
-  .menu a{color:var(--tx)}
+  .logo{font-size:22px;font-weight:800;color:var(--pt)}.logo span{color:var(--tx)}
+  .menu{display:flex;gap:20px;font-weight:600;font-size:15px}.menu a{color:var(--tx)}
   .crumb{font-size:13px;color:var(--mut);margin:20px 0 6px}
-  h1{font-size:26px;margin:6px 0 4px}
+  h1{font-size:26px;margin:6px 0 4px;line-height:1.35}
   .date{color:var(--mut);font-size:13px;margin-bottom:22px}
-  .calc{background:var(--card);border:2px solid var(--pt);border-radius:16px;padding:24px;margin:24px 0}
-  .calc h2{margin:0 0 16px;font-size:19px}
-  .calc label{display:block;font-weight:600;margin-bottom:8px}
-  .calc input{width:100%;padding:13px;font-size:18px;border:1px solid #cbd5e1;border-radius:10px;text-align:right}
-  .calc button{width:100%;margin-top:14px;padding:14px;font-size:17px;font-weight:700;color:#fff;background:var(--pt);border:0;border-radius:10px;cursor:pointer}
-  .calc button:hover{background:var(--pt2)}
-  .result{margin-top:20px;display:none}
-  .result.on{display:block}
-  .row{display:flex;justify-content:space-between;padding:11px 0;border-bottom:1px dashed var(--line)}
-  .row.total{border-bottom:0;border-top:2px solid var(--tx);margin-top:6px;padding-top:14px;font-size:18px;font-weight:800}
-  .row .v{font-weight:700}
-  .net{background:#eaf1ff;border-radius:10px;padding:16px;margin-top:14px;text-align:center;font-size:16px}
-  .net b{font-size:22px;color:var(--pt2)}
-  h2.sec{font-size:20px;margin:34px 0 10px}
-  table{width:100%;border-collapse:collapse;margin:14px 0;font-size:15px}
-  th,td{border:1px solid var(--line);padding:10px 12px;text-align:center}
-  th{background:#f0f5ff}
-  .note{background:#fffbeb;border:1px solid #fde68a;border-radius:10px;padding:14px 16px;font-size:14px;color:#92400e;margin:20px 0}
+  .post img{max-width:100%;height:auto;border-radius:10px}
+  .post h2{font-size:20px;margin:30px 0 10px}
+  .post h3{font-size:17px;margin:24px 0 8px}
+  .post table{width:100%;border-collapse:collapse;margin:14px 0;font-size:15px}
+  .post th,.post td{border:1px solid var(--line);padding:10px 12px}
+  .post th{background:#f0f5ff}
   footer{margin-top:44px;background:#1f2937;color:#cbd5e1;padding:26px 0;font-size:13px}
   footer a{color:#cbd5e1;text-decoration:underline}
-  @media(max-width:640px){h1{font-size:22px}.menu{gap:14px;font-size:14px}}
 </style>
 </head>
 <body>
 <header>
   <div class="nav">
     <a class="logo" href="/">똑<span>노트</span></a>
-    <nav class="menu">
-      <a href="/계산기/">계산기</a>
-      <a href="/혜택/">정부혜택</a>
-      <a href="/셀러/">셀러정보</a>
-    </nav>
+    <nav class="menu"><a href="/계산기/">계산기</a><a href="/혜택/">정부혜택</a><a href="/셀러/">셀러정보</a></nav>
   </div>
 </header>
-
 <main class="wrap">
-  <div class="crumb"><a href="/">홈</a> › <a href="/계산기/">계산기</a> › 사대보험 계산기</div>
-  <h1>사대보험 계산기 — 내 월급에서 얼마나 떼일까?</h1>
-  <div class="date">2026년 요율 기준 · 근로자 부담분</div>
+  <div class="crumb"><a href="/">홈</a> › <a href="/계산기/">계산기</a> › 사대보험계산기로 내 월급 공제액 3분 만에 확인하는 법</div>
+  <h1>사대보험계산기로 내 월급 공제액 3분 만에 확인하는 법</h1>
+  <div class="date">2026-08-25 · 똑노트</div>
+  <div class="post">
+<!-- 메타설명: 사대보험계산기로 국민연금, 건강보험, 장기요양, 고용보험 공제액을 바로 계산해보세요. 2025년 요율 기준 근로자·사업주 부담금 계산법과 실수령액 확인 방법을 정리했습니다. -->
 
-  <p>매달 월급명세서를 보면 국민연금, 건강보험, 장기요양, 고용보험 이렇게 네 가지가 빠져나가죠. "대체 이게 왜 이렇게 많이 떼이지?" 싶을 때가 많습니다. 아래 계산기에 <b>세전 월급(월 급여)</b>만 넣으면 항목별로 얼마씩 공제되는지 바로 보여드릴게요.</p>
 
-  <div class="calc">
-    <h2>🧮 월급 입력하고 계산하기</h2>
-    <label for="sal">세전 월급 (원)</label>
-    <input id="sal" type="text" inputmode="numeric" placeholder="예: 3,000,000">
-    <button onclick="calc()">계산하기</button>
+<p><strong>결론부터 3줄로 정리할게요.</strong> 월급 300만 원 기준 근로자가 내는 4대보험은 대략 27만 원 안팎이고, 국민연금 4.5% + 건강보험 3.545% + 장기요양(건강보험료의 12.95%) + 고용보험 0.9%로 계산해요. 산재보험은 전액 회사 부담이라 근로자 공제에는 안 잡히고, 아래 계산기에 월 급여만 넣으면 항목별 금액이 바로 나와요.</p>
 
-    <div id="res" class="result">
-      <div class="row"><span>국민연금 (4.5%)</span><span class="v" id="r1"></span></div>
-      <div class="row"><span>건강보험 (3.545%)</span><span class="v" id="r2"></span></div>
-      <div class="row"><span>장기요양 (건보료의 12.95%)</span><span class="v" id="r3"></span></div>
-      <div class="row"><span>고용보험 (0.9%)</span><span class="v" id="r4"></span></div>
-      <div class="row total"><span>총 공제액</span><span class="v" id="rt"></span></div>
-      <div class="net">공제 후 예상 실수령액<br><b id="rnet"></b></div>
-    </div>
+<div id="calc_4ins" style="max-width:480px;margin:20px auto;padding:22px;border:1px solid #e5e7eb;border-radius:14px;background:#fafafa;">
+  <div style="font-size:18px;font-weight:700;margin-bottom:14px;">4대보험 공제액 계산기</div>
+  <div style="margin-bottom:12px;">
+    <label for="ins_pay" style="display:block;font-size:14px;margin-bottom:6px;">월 급여 (비과세 제외, 원)</label>
+    <input type="number" inputmode="numeric" id="ins_pay" placeholder="예: 3000000" style="width:100%;padding:10px;border:1px solid #d1d5db;border-radius:8px;font-size:15px;box-sizing:border-box;">
   </div>
+  <button id="ins_btn" style="width:100%;padding:12px;background:#2563eb;color:#fff;border:none;border-radius:8px;font-size:16px;font-weight:700;cursor:pointer;">계산하기</button>
+  <div id="ins_out" style="display:none;margin-top:16px;padding:14px;background:#fff;border:1px solid #e5e7eb;border-radius:10px;font-size:15px;line-height:1.8;"></div>
+  <div style="font-size:12px;color:#6b7280;margin-top:12px;line-height:1.6;">
+    국민연금 4.5%, 건강보험 3.545%, 장기요양 건강보험료의 12.95%, 고용보험 0.9%(근로자 부담분) 기준이에요. 국민연금은 기준소득월액 상·하한이 적용되고, 고용보험 요율은 사업장 규모에 따라 사업주 부담이 달라져요. 참고용 추정이며 정확한 금액은 <a href="https://www.4insure.or.kr" target="_blank" rel="noopener">4대사회보험 정보연계센터</a>에서 확인하세요.
+  </div>
+</div>
+<script>(function(){
+  var b=document.getElementById('ins_btn'),o=document.getElementById('ins_out');
+  b.onclick=function(){
+    var p=parseFloat(document.getElementById('ins_pay').value);
+    o.style.display='block';
+    if(!p||p<=0){o.innerHTML='<span style="color:#dc2626;">월 급여를 정확히 입력해 주세요.</span>';return;}
+    var base=p;
+    if(base>6170000)base=6170000;
+    if(base<400000)base=400000;
+    var np=Math.round(base*0.045/10)*10;
+    var hi=Math.round(p*0.03545/10)*10;
+    var lt=Math.round(hi*0.1295/10)*10;
+    var ei=Math.round(p*0.009/10)*10;
+    var tot=np+hi+lt+ei;
+    var net=p-tot;
+    o.innerHTML='국민연금 : <strong>'+np.toLocaleString('ko-KR')+'원</strong><br>'+
+      '건강보험 : <strong>'+hi.toLocaleString('ko-KR')+'원</strong><br>'+
+      '장기요양보험 : <strong>'+lt.toLocaleString('ko-KR')+'원</strong><br>'+
+      '고용보험 : <strong>'+ei.toLocaleString('ko-KR')+'원</strong><br>'+
+      '<hr style="border:none;border-top:1px solid #e5e7eb;margin:8px 0;">'+
+      '근로자 부담 합계 : <strong style="color:#2563eb;">'+tot.toLocaleString('ko-KR')+'원</strong><br>'+
+      '4대보험 공제 후 금액 : <strong>'+net.toLocaleString('ko-KR')+'원</strong>'+
+      '<div style="font-size:12px;color:#6b7280;margin-top:10px;">적용 계산식 : 연금 4.5% + 건보 3.545% + 장기요양(건보료×12.95%) + 고용 0.9% (소득세·지방소득세 제외)</div>';
+  };
+})();</script>
 
-  <div class="note">⚠️ 국민연금은 기준소득월액 상·하한이 있고, 회사·소득에 따라 실제 금액은 조금 다를 수 있어요. 본 결과는 <b>간이 참고용</b>이며 정확한 금액은 4대사회보험 정보연계센터에서 확인하세요.</div>
+<p>월급명세서를 처음 받아보면 "왜 이렇게 많이 떼가지?" 싶은 순간이 있죠. 세전 300만 원인데 통장에 들어온 건 260만 원대라면, 그 차액의 대부분이 바로 4대보험과 소득세예요. 어디서 얼마가 빠지는지 알고 나면 협상할 때도, 프리랜서에서 직장인으로 전환할 때도 계산이 훨씬 편해져요.</p>
 
-  <h2 class="sec">2026년 사대보험 요율 (근로자 부담)</h2>
-  <table>
-    <tr><th>항목</th><th>근로자 부담 요율</th></tr>
-    <tr><td>국민연금</td><td>4.5%</td></tr>
-    <tr><td>건강보험</td><td>3.545%</td></tr>
-    <tr><td>장기요양보험</td><td>건강보험료 × 12.95%</td></tr>
-    <tr><td>고용보험</td><td>0.9%</td></tr>
-  </table>
+<img src="https://blogautomation.netlify.app/.netlify/functions/img?id=calc_1787719214823_0" alt="사대보험계산기로 월급 공제액 계산하는 책상" style="max-width:100%;height:auto;border-radius:8px;" />
 
-  <h2 class="sec">자주 묻는 질문</h2>
-  <p><b>Q. 회사도 같은 금액을 내나요?</b><br>네. 국민연금·건강보험·고용보험은 회사와 근로자가 절반씩 부담해요(고용보험은 회사가 조금 더 냄). 위 계산기는 <b>근로자 본인 부담분</b>만 보여줍니다.</p>
-  <p><b>Q. 실수령액이 이것보다 더 적어요.</b><br>사대보험 외에 <b>소득세·지방소득세</b>도 별도로 공제되기 때문이에요. 그 부분은 부양가족 수 등에 따라 달라집니다.</p>
+<h2>사대보험계산기가 쓰는 기본 공식</h2>
+
+<p>사대보험계산기의 원리는 생각보다 단순해요. 각 보험별 요율을 월 보수액(비과세 급여 제외)에 곱하는 게 전부거든요. 다만 국민연금은 상·하한선이 있고, 장기요양보험은 급여가 아니라 '건강보험료'에 요율을 곱한다는 점이 헷갈리는 포인트예요.</p>
+
+<table>
+<tr><td><strong>보험 종류</strong></td><td><strong>근로자 부담</strong></td><td><strong>사업주 부담</strong></td></tr>
+<tr><td>국민연금</td><td>4.5%</td><td>4.5%</td></tr>
+<tr><td>건강보험</td><td>3.545%</td><td>3.545%</td></tr>
+<tr><td>장기요양보험</td><td>건강보험료의 12.95% 중 절반</td><td>나머지 절반</td></tr>
+<tr><td>고용보험(실업급여)</td><td>0.9%</td><td>0.9% + 고용안정·직능개발 부담금</td></tr>
+<tr><td>산재보험</td><td>없음</td><td>업종별 요율 전액</td></tr>
+</table>
+
+<p>표에서 보듯 산재보험은 근로자가 한 푼도 안 내요. 그래서 명세서에 산재보험 항목이 없다고 회사가 빼먹은 게 아니라 정상이에요. 반대로 고용보험은 사업주가 근로자보다 더 많이 부담하는 구조라, 사장님 입장에서 4대보험 총비용은 급여의 10% 조금 넘게 잡는 게 보통이에요.</p>
+
+<h2>실제 숫자로 한 번 계산해볼게요</h2>
+
+<p>월 급여 300만 원(비과세 없음) 직장인을 예로 들어볼게요. 원 단위 절사 방식은 기관마다 조금 달라서 십 원 단위에서 약간 차이가 날 수 있어요.</p>
+
+<ol>
+<li>국민연금 : 3,000,000 × 4.5% = <strong>135,000원</strong></li>
+<li>건강보험 : 3,000,000 × 3.545% = <strong>106,350원</strong></li>
+<li>장기요양 : 106,350 × 12.95% = <strong>13,770원</strong></li>
+<li>고용보험 : 3,000,000 × 0.9% = <strong>27,000원</strong></li>
+<li>합계 : <strong>약 282,120원</strong></li>
+</ol>
+
+<p>여기에 근로소득세와 지방소득세가 추가로 빠져요. 부양가족 수에 따라 다르지만 1인 가구 기준 소득세가 대략 8만 원 안팎이라, 실수령액은 260만 원 초반이 되는 셈이죠. 즉 세전 300만 원 = 실수령 260만 원대라는 감각을 가지고 있으면 연봉 협상 때 유용해요.</p>
+
+<img src="https://blogautomation.netlify.app/.netlify/functions/img?id=calc_1787719220525_1" alt="4대보험료 공제 내역을 정리하는 직장인" style="max-width:100%;height:auto;border-radius:8px;" />
+
+<h2>국민연금 상한선을 꼭 기억하세요</h2>
+
+<p>고소득자라면 국민연금 계산에서 함정이 하나 있어요. 국민연금은 기준소득월액에 상한과 하한이 정해져 있어서, 월급이 아무리 많아도 상한액을 넘는 부분에는 보험료가 붙지 않아요. 그래서 월 1,000만 원을 받아도 국민연금 공제액은 상한액 기준으로 고정돼요.</p>
+
+<p>이 상한·하한액은 매년 7월에 조정돼요. 위 계산기에는 최근 기준을 반영했지만, 정확한 당해 연도 금액은 <a href="https://www.nps.or.kr" target="_blank" rel="noopener">국민연금공단</a> 홈페이지에서 확인하는 게 확실해요. 반대로 건강보험은 상한이 훨씬 높아서 웬만한 급여에서는 그냥 요율을 곱하면 돼요.</p>
+
+<h2>계산할 때 자주 하는 실수 4가지</h2>
+
+<ul>
+<li><strong>비과세 급여를 포함해서 계산</strong> : 식대(월 20만 원 한도), 자가운전보조금 등 비과세 항목은 보험료 산정 기준에서 빠져요. 식대 20만 원을 빼면 보험료가 월 1만 8천 원쯤 줄어요.</li>
+<li><strong>장기요양보험을 급여에 곱하기</strong> : 장기요양은 건강보험료에 곱하는 거예요. 월급에 12.95%를 곱하면 터무니없이 큰 숫자가 나와요.</li>
+<li><strong>산재보험을 본인 부담에 넣기</strong> : 산재는 전액 사업주 부담이에요.</li>
+<li><strong>정산분을 빼먹기</strong> : 건강보험은 매년 4월 전년도 보수 기준으로 정산해요. 연봉이 오른 해에는 4월 급여에서 추가 공제가 크게 잡힐 수 있어요.</li>
+</ul>
+
+<h2>사업주라면 총 인건비로 봐야 해요</h2>
+
+<p>직원을 채용할 때 월급 300만 원만 생각하면 예산이 어긋나요. 사업주 부담분(연금 4.5% + 건보 3.545% + 장기요양 + 고용보험 1.15% 내외 + 산재보험)까지 더하면 실제 지출은 <strong>330만~340만 원 수준</strong>이 돼요. 여기에 퇴직급여 충당분(월급의 약 8.3%)까지 감안하면 총 인건비는 360만 원 가까이 잡아야 안전해요.</p>
+
+<img src="https://blogautomation.netlify.app/.netlify/functions/img?id=calc_1787719226713_2" alt="사업주와 직원이 급여 조건을 상의하는 모습" style="max-width:100%;height:auto;border-radius:8px;" />
+
+<p>정리하면, 사대보험계산기는 요율 네 가지만 알면 손으로도 검산할 수 있어요. 저는 이직 제안을 받을 때마다 위 방식으로 실수령액을 먼저 계산해보는데, 세전 금액만 보고 결정했다가 후회하는 일이 확실히 줄더라고요. 계약서 도장 찍기 전에 3분만 투자해보세요. 🙂</p>
+
+<h2>자주 묻는 질문(FAQ)</h2>
+
+<h3>Q. 아르바이트도 4대보험을 내야 하나요?</h3>
+<p>주 15시간 이상, 월 60시간 이상 근무하면 원칙적으로 4대보험 가입 대상이에요. 월 60시간 미만이라도 3개월 이상 계속 일하면 고용보험은 적용될 수 있어요. 다만 초단시간 근로자는 예외 규정이 있으니 사업장 상황에 따라 <a href="https://www.4insure.or.kr" target="_blank" rel="noopener">4대사회보험 정보연계센터</a>에서 가입 요건을 확인해보세요.</p>
+
+<h3>Q. 계산기 결과와 실제 명세서 금액이 몇 백 원 다른데 왜 그런가요?</h3>
+<p>기관마다 원 단위 절사 기준이 다르고, 국민연금은 기준소득월액을 천 원 단위로 끊어서 산정하기 때문이에요. 또 입사·퇴사 월은 일할 계산이 들어가고, 건강보험 연말정산 반영 여부에 따라서도 차이가 납니다. 몇 백 원 차이는 정상 범위로 보시면 돼요.</p>
+
+<h3>Q. 상여금이나 성과급에도 4대보험이 붙나요?</h3>
+<p>네, 정기적으로 지급되는 상여금은 보수에 포함돼 보험료 산정 대상이에요. 다만 실제 부과는 매월이 아니라 다음 해 보수총액 신고 시 정산되는 구조라, 성과급을 많이 받은 해에는 이듬해 4월 정산 때 추가 납부가 발생할 수 있어요.</p>
+  </div>
 </main>
-
-<footer>
-  <div class="wrap">
-    © 2026 똑노트(ttoknote.com) · <a href="/privacy/">개인정보처리방침</a><br>
-    본 사이트의 계산 결과는 참고용이며, 정확한 금액은 관련 기관에서 확인하세요.
-  </div>
-</footer>
-
-<script>
-function calc(){
-  var raw=document.getElementById('sal').value.replace(/[^0-9]/g,'');
-  var sal=parseInt(raw,10);
-  if(!sal||sal<=0){alert('월급을 숫자로 입력해 주세요.');return;}
-  var np=Math.round(sal*0.045);           // 국민연금 4.5%
-  var hi=Math.round(sal*0.03545);         // 건강보험 3.545%
-  var ltc=Math.round(hi*0.1295);          // 장기요양 = 건보료의 12.95%
-  var ei=Math.round(sal*0.009);           // 고용보험 0.9%
-  var tot=np+hi+ltc+ei;
-  var net=sal-tot;
-  var f=function(n){return n.toLocaleString('ko-KR')+'원';};
-  document.getElementById('r1').textContent=f(np);
-  document.getElementById('r2').textContent=f(hi);
-  document.getElementById('r3').textContent=f(ltc);
-  document.getElementById('r4').textContent=f(ei);
-  document.getElementById('rt').textContent=f(tot);
-  document.getElementById('rnet').textContent=f(net);
-  document.getElementById('res').classList.add('on');
-}
-// 입력 시 천단위 콤마
-document.getElementById('sal').addEventListener('input',function(e){
-  var v=e.target.value.replace(/[^0-9]/g,'');
-  e.target.value=v?parseInt(v,10).toLocaleString('ko-KR'):'';
-});
-</script>
+<footer><div class="wrap">© 2026 똑노트(ttoknote.com) · <a href="/privacy/">개인정보처리방침</a><br>본 사이트의 정보·계산 결과는 참고용이며, 정확한 내용은 관련 기관에서 확인하세요.</div></footer>
 </body>
 </html>
