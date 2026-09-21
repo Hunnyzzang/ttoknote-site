@@ -1,0 +1,6 @@
+# 작업용 — 배포하지 않는다
+_bak_*/
+_img_manifest.json
+_img_failed.txt
+_img_localize.py
+_하네스_*.md
