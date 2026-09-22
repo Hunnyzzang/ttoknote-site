@@ -41,6 +41,14 @@
   footer{margin-top:44px;background:#1f2937;color:#cbd5e1;padding:26px 0;font-size:13px}
   footer a{color:#cbd5e1;text-decoration:underline}
 </style>
+<style>
+.ratesrc{max-width:640px;margin:0 auto 26px;border:1px solid #e5e7eb;background:#fff;border-radius:12px;padding:16px 18px;font-size:13px;line-height:1.75;color:#374151}
+.ratesrc b{display:block;font-size:14px;color:#1f2937;margin-bottom:8px}
+.ratesrc ul{margin:0;padding-left:18px}
+.ratesrc li{margin:2px 0}
+.ratesrc .d{color:#6b7280;margin-top:8px;font-size:12px}
+</style>
+
 </head>
 <body>
 <header>
@@ -82,7 +90,7 @@
   <div id="sal_out" style="display:none;margin-top:16px;padding:14px;background:#fff;border:1px solid #e5e7eb;border-radius:10px;font-size:15px;line-height:1.9;"></div>
 
   <div style="font-size:12px;color:#6b7280;margin-top:12px;line-height:1.6;">
-    2025년 요율 기준(국민연금 4.5%, 건강보험 3.545%, 장기요양 건강보험료의 12.95%, 고용보험 0.9%) 근로자 부담분입니다. 소득세는 간이세액표를 단순화한 추정치라 실제 원천징수액과 차이가 날 수 있어요. 정확한 금액은 <a href="https://www.4insure.or.kr" target="_blank" rel="noopener">4대사회보험 정보연계센터</a>와 <a href="https://www.hometax.go.kr" target="_blank" rel="noopener">홈택스</a> 간이세액표에서 확인하세요.
+    2026년 요율 기준(국민연금 4.75%, 건강보험 3.595%, 장기요양 건강보험료의 13.14%, 고용보험 0.9%) 근로자 부담분입니다. 소득세는 간이세액표를 단순화한 추정치라 실제 원천징수액과 차이가 날 수 있어요. 정확한 금액은 <a href="https://www.4insure.or.kr" target="_blank" rel="noopener">4대사회보험 정보연계센터</a>와 <a href="https://www.hometax.go.kr" target="_blank" rel="noopener">홈택스</a> 간이세액표에서 확인하세요.
   </div>
 </div>
 
@@ -104,11 +112,11 @@
       return;
     }
     var taxable = gross - meal;
-    var pensionBase = Math.min(Math.max(taxable, 400000), 6370000);
-    var pension = Math.round(pensionBase * 0.045 / 10) * 10;
-    var health = Math.round(taxable * 0.03545 / 10) * 10;
-    var care = Math.round(health * 0.1295 / 10) * 10;
-    var employ = Math.round(taxable * 0.009 / 10) * 10;
+    var pensionBase = Math.min(Math.max(taxable, 410000), 6590000);
+    var pension = Math.floor(Math.round(pensionBase * 0.0475)/10)*10;
+    var health = Math.floor(Math.round(taxable * 0.03595)/10)*10;
+    var care = Math.floor(Math.round(health * 0.1314)/10)*10;
+    var employ = Math.floor(Math.round(taxable * 0.009)/10)*10;
 
     // 간이세액 단순 추정: 연환산 과세소득에서 근로소득공제·인적공제 적용 후 기본세율
     var annual = taxable * 12;
@@ -133,7 +141,7 @@
     var finalTax = tax - credit;
     if(finalTax < 0) finalTax = 0;
     var incomeTax = Math.round(finalTax / 12 / 10) * 10;
-    var localTax = Math.round(incomeTax * 0.1 / 10) * 10;
+    var localTax = Math.floor(Math.round(incomeTax * 0.1)/10)*10;
 
     var total = pension + health + care + employ + incomeTax + localTax;
     var net = gross - total;
@@ -152,6 +160,18 @@
 })();
 </script>
 
+<div class="ratesrc">
+<b>적용 요율 근거 · 2026년</b>
+<ul>
+<li><b style="display:inline">국민연금 4.75%</b> — 보험료율 9.5%의 근로자 부담분. 2026년 9%→9.5%로 오른 뒤 2033년 13%까지 매년 0.5%p씩 인상 (대한민국 정책브리핑)</li>
+<li><b style="display:inline">건강보험 3.595%</b> — 보험료율 7.19%의 절반. 보건복지부 건강보험정책심의위원회 2025.8.28 의결</li>
+<li><b style="display:inline">장기요양 = 건강보험료 × 13.14%</b> — 소득 대비 0.9448%. 보건복지부 장기요양위원회 2025.11.4 의결</li>
+<li><b style="display:inline">고용보험 0.9%</b> — 실업급여분 근로자 부담</li>
+<li><b style="display:inline">연금 기준소득월액 41만 ~ 659만 원</b> — 2026.7.1~2027.6.30 적용, 국민연금공단</li>
+</ul>
+<div class="d">원문 확인일 2026-09-22. 요율은 매년 바뀌므로 큰 금액을 다룰 땐 <a href="https://www.4insure.or.kr" target="_blank" rel="noopener">4대사회보험 정보연계센터</a>에서 한 번 더 대조하세요.</div>
+</div>
+
 <h2>세전과 세후, 왜 이렇게 차이가 날까요</h2>
 
 <p>월급에서 빠져나가는 건 크게 두 덩어리예요. <strong>4대보험료</strong>와 <strong>세금</strong>. 이 둘을 합치면 대략 세전 급여의 9~13% 정도가 사라집니다. 연봉이 높아질수록 소득세 비중이 커지니까 공제율도 같이 올라가고요.</p>
@@ -164,9 +184,9 @@
 
 <table>
 <tr><td><strong>항목</strong></td><td><strong>근로자 부담 요율</strong></td><td><strong>기준</strong></td></tr>
-<tr><td>국민연금</td><td>4.5%</td><td>기준소득월액(상·하한 적용)</td></tr>
-<tr><td>건강보험</td><td>3.545%</td><td>보수월액(비과세 제외)</td></tr>
-<tr><td>장기요양보험</td><td>건강보험료의 12.95%</td><td>건강보험료 기준</td></tr>
+<tr><td>국민연금</td><td>4.75%</td><td>기준소득월액(상·하한 적용)</td></tr>
+<tr><td>건강보험</td><td>3.595%</td><td>보수월액(비과세 제외)</td></tr>
+<tr><td>장기요양보험</td><td>건강보험료의 13.14%</td><td>건강보험료 기준</td></tr>
 <tr><td>고용보험</td><td>0.9%</td><td>보수월액(실업급여분)</td></tr>
 <tr><td>소득세</td><td>간이세액표</td><td>과세급여·부양가족 수</td></tr>
 <tr><td>지방소득세</td><td>소득세의 10%</td><td>소득세액</td></tr>
@@ -188,9 +208,9 @@
 
 <ol>
 <li>과세대상 급여 = 300만 원 − 20만 원 = <strong>280만 원</strong></li>
-<li>국민연금 = 280만 × 4.5% = 126,000원</li>
-<li>건강보험 = 280만 × 3.545% = 99,260원</li>
-<li>장기요양 = 99,260 × 12.95% = 12,850원</li>
+<li>국민연금 = 280만 × 4.75% = 133,000원</li>
+<li>건강보험 = 280만 × 3.595% = 100,660원</li>
+<li>장기요양 = 100,660 × 13.14% = 13,220원</li>
 <li>고용보험 = 280만 × 0.9% = 25,200원</li>
 <li>소득세·지방소득세는 간이세액표에 따라 별도 산정</li>
 </ol>

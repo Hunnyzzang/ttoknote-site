@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>실수령액 계산기, 2026년 월급 실수령액 바로 계산</title>
-<meta name="description" content="결론부터 3줄 요약할게요. ① 실수령액은 '세전 월급 − 국민연금 4.5% − 건강보험 3.545% − 장기요양(건강보험료의 12.95%) − 고용보험 0.9% − 소득세·지방소득세'로 계산해요. ② 보통 세전 월급">
+<meta name="description" content="결론부터 3줄 요약할게요. ① 실수령액은 '세전 월급 − 국민연금 4.75% − 건강보험 3.595% − 장기요양(건강보험료의 13.14%) − 고용보험 0.9% − 소득세·지방소득세'로 계산해요. ② 보통 세전 월급">
 <meta name="author" content="이영헌">
 <link rel="canonical" href="https://ttoknote.com/계산기/실수령액/">
 <meta property="og:title" content="실수령액 계산기, 2026년 월급 실수령액 바로 계산">
@@ -41,6 +41,14 @@
   footer{margin-top:44px;background:#1f2937;color:#cbd5e1;padding:26px 0;font-size:13px}
   footer a{color:#cbd5e1;text-decoration:underline}
 </style>
+<style>
+.ratesrc{max-width:640px;margin:0 auto 26px;border:1px solid #e5e7eb;background:#fff;border-radius:12px;padding:16px 18px;font-size:13px;line-height:1.75;color:#374151}
+.ratesrc b{display:block;font-size:14px;color:#1f2937;margin-bottom:8px}
+.ratesrc ul{margin:0;padding-left:18px}
+.ratesrc li{margin:2px 0}
+.ratesrc .d{color:#6b7280;margin-top:8px;font-size:12px}
+</style>
+
 </head>
 <body>
 <header>
@@ -54,7 +62,7 @@
   <h1>실수령액 계산기, 2026년 월급 실수령액 바로 계산</h1>
   <div class="date">2026-08-21 · 똑노트</div>
   <div class="post">
-<p><strong>결론부터 3줄 요약할게요.</strong> ① 실수령액은 '세전 월급 − 국민연금 4.5% − 건강보험 3.545% − 장기요양(건강보험료의 12.95%) − 고용보험 0.9% − 소득세·지방소득세'로 계산해요. ② 보통 세전 월급의 <strong>약 87~91%</strong>가 통장에 들어와요(부양가족·비과세액에 따라 달라짐). ③ 아래 계산기에 월급과 비과세액, 부양가족 수를 넣으면 바로 나와요.</p>
+<p><strong>결론부터 3줄 요약할게요.</strong> ① 실수령액은 '세전 월급 − 국민연금 4.75% − 건강보험 3.595% − 장기요양(건강보험료의 13.14%) − 고용보험 0.9% − 소득세·지방소득세'로 계산해요. ② 보통 세전 월급의 <strong>약 87~91%</strong>가 통장에 들어와요(부양가족·비과세액에 따라 달라짐). ③ 아래 계산기에 월급과 비과세액, 부양가족 수를 넣으면 바로 나와요.</p>
 
 <div id="calc_netpay" style="max-width:480px;margin:20px auto;padding:22px;border:1px solid #e5e7eb;border-radius:14px;background:#fafafa;">
   <div style="font-size:18px;font-weight:700;margin-bottom:14px;">월급 실수령액 계산기</div>
@@ -91,14 +99,14 @@
     if(free<0||free>=gross){out.innerHTML='<span style="color:#dc2626;">비과세액은 0 이상, 세전 월급보다 작아야 해요.</span>';return;}
     if(fam<1){fam=1;}
     var taxable=gross-free;
-    // 국민연금 기준소득월액 상·하한 반영(2025.7~ 적용 구간 기준)
+    // 국민연금 기준소득월액 상·하한 반영(2026.7~2027.6 적용 구간)
     var pensionBase=taxable;
-    if(pensionBase<400000)pensionBase=400000;
-    if(pensionBase>6370000)pensionBase=6370000;
-    var pension=Math.floor(pensionBase*0.045/10)*10;
-    var health=Math.floor(taxable*0.03545/10)*10;
-    var care=Math.floor(health*0.1295/10)*10;
-    var emp=Math.floor(taxable*0.009/10)*10;
+    if(pensionBase<410000)pensionBase=410000;
+    if(pensionBase>6590000)pensionBase=6590000;
+    var pension=Math.floor(Math.round(pensionBase*0.0475)/10)*10;
+    var health=Math.floor(Math.round(taxable*0.03595)/10)*10;
+    var care=Math.floor(Math.round(health*0.1314)/10)*10;
+    var emp=Math.floor(Math.round(taxable*0.009)/10)*10;
     // 간이세액 근사: 과세급여에서 4대보험·근로소득공제 성격 반영한 단순 추정
     var yearly=taxable*12;
     var ded=0;
@@ -122,15 +130,15 @@
     var finalTax=tax-credit;
     if(finalTax<0)finalTax=0;
     var incomeTax=Math.floor(finalTax/12/10)*10;
-    var localTax=Math.floor(incomeTax*0.1/10)*10;
+    var localTax=Math.floor(Math.round(incomeTax*0.1)/10)*10;
     var total=pension+health+care+emp+incomeTax+localTax;
     var net=gross-total;
     var rate=(net/gross*100).toFixed(1);
     out.innerHTML=
       '<div style="font-size:19px;font-weight:700;color:#2563eb;margin-bottom:8px;">월 실수령액 약 '+won(net)+'</div>'+
-      '<div>국민연금(4.5%) : '+won(pension)+'</div>'+
-      '<div>건강보험(3.545%) : '+won(health)+'</div>'+
-      '<div>장기요양(건보료의 12.95%) : '+won(care)+'</div>'+
+      '<div>국민연금(4.75%) : '+won(pension)+'</div>'+
+      '<div>건강보험(3.595%) : '+won(health)+'</div>'+
+      '<div>장기요양(건보료의 13.14%) : '+won(care)+'</div>'+
       '<div>고용보험(0.9%) : '+won(emp)+'</div>'+
       '<div>소득세(추정) : '+won(incomeTax)+'</div>'+
       '<div>지방소득세(소득세의 10%) : '+won(localTax)+'</div>'+
@@ -139,11 +147,23 @@
   };
 })();</script>
 
-<p style="font-size:13px;color:#6b7280;max-width:480px;margin:0 auto 24px;">가정 : 2025~2026년에 적용 중인 보험요율(국민연금 4.5%, 건강보험 3.545%, 장기요양 12.95%, 고용보험 0.9%)을 사용했고, 소득세는 부양가족 수만 반영한 <strong>단순 추정치</strong>예요. 실제 원천징수는 국세청 근로소득 간이세액표를 따르므로 수천 원 차이가 날 수 있어요. 참고용 추정이며 정확한 금액은 <a href="https://www.hometax.go.kr" target="_blank" rel="noopener">홈택스</a>와 <a href="https://www.4insure.or.kr" target="_blank" rel="noopener">4대사회보험 정보연계센터</a>의 공식 계산기에서 확인하세요.</p>
+<p style="font-size:13px;color:#6b7280;max-width:480px;margin:0 auto 24px;">가정 : 2026년 적용 보험요율(국민연금 4.75%, 건강보험 3.595%, 장기요양 13.14%, 고용보험 0.9%)을 사용했고, 소득세는 부양가족 수만 반영한 <strong>단순 추정치</strong>예요. 실제 원천징수는 국세청 근로소득 간이세액표를 따르므로 수천 원 차이가 날 수 있어요. 참고용 추정이며 정확한 금액은 <a href="https://www.hometax.go.kr" target="_blank" rel="noopener">홈택스</a>와 <a href="https://www.4insure.or.kr" target="_blank" rel="noopener">4대사회보험 정보연계센터</a>의 공식 계산기에서 확인하세요.</p>
 
 <p>연봉 협상 자리에서 "3,600만원 어때요?"라는 말을 듣고 머릿속으로 300만원을 그렸는데, 첫 월급날 통장에 268만원쯤 찍혀서 당황했던 경험 다들 있으실 거예요. 세전과 세후 사이에는 생각보다 큰 계곡이 있어요. 이 글에서는 그 계곡의 정체를 항목별로 뜯어보고, 직접 손으로 계산하는 방법까지 정리했어요.</p>
 
 <div class="separator" style="clear: both;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEixDKPoXpV3Gf6GkzBu_sNQAe1B4m11QwBNcz2sqgPoc8CPxotj7POM7OqdWCh_rdPSNEa7n9udVOnSPpOcepVrUjlge4ECp1vN2t2PsRMhnz6Mbyo7hyhcdhPqVryp7GwuAhsL5v_MNv9e9iURJGwNzTA7EnyfVBVcujmoVuyY-S0T-VVNnMcX-6YSmS0/s1024/photo-1%20%286%29.png" style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="600" data-original-height="1024" data-original-width="1024" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEixDKPoXpV3Gf6GkzBu_sNQAe1B4m11QwBNcz2sqgPoc8CPxotj7POM7OqdWCh_rdPSNEa7n9udVOnSPpOcepVrUjlge4ECp1vN2t2PsRMhnz6Mbyo7hyhcdhPqVryp7GwuAhsL5v_MNv9e9iURJGwNzTA7EnyfVBVcujmoVuyY-S0T-VVNnMcX-6YSmS0/s600/photo-1%20%286%29.png"/></a></div>
+
+<div class="ratesrc">
+<b>적용 요율 근거 · 2026년</b>
+<ul>
+<li><b style="display:inline">국민연금 4.75%</b> — 보험료율 9.5%의 근로자 부담분. 2026년 9%→9.5%로 오른 뒤 2033년 13%까지 매년 0.5%p씩 인상 (대한민국 정책브리핑)</li>
+<li><b style="display:inline">건강보험 3.595%</b> — 보험료율 7.19%의 절반. 보건복지부 건강보험정책심의위원회 2025.8.28 의결</li>
+<li><b style="display:inline">장기요양 = 건강보험료 × 13.14%</b> — 소득 대비 0.9448%. 보건복지부 장기요양위원회 2025.11.4 의결</li>
+<li><b style="display:inline">고용보험 0.9%</b> — 실업급여분 근로자 부담</li>
+<li><b style="display:inline">연금 기준소득월액 41만 ~ 659만 원</b> — 2026.7.1~2027.6.30 적용, 국민연금공단</li>
+</ul>
+<div class="d">원문 확인일 2026-09-22. 요율은 매년 바뀌므로 큰 금액을 다룰 땐 <a href="https://www.4insure.or.kr" target="_blank" rel="noopener">4대사회보험 정보연계센터</a>에서 한 번 더 대조하세요.</div>
+</div>
 
 <h2>실수령액 계산기에서 빠지는 공제 항목 5가지</h2>
 
@@ -151,9 +171,9 @@
 
 <table>
 <tr><td><strong>항목</strong></td><td><strong>근로자 부담 요율</strong></td><td><strong>부과 기준</strong></td></tr>
-<tr><td>국민연금</td><td>4.5%</td><td>기준소득월액(상·하한 있음)</td></tr>
-<tr><td>건강보험</td><td>3.545%</td><td>과세 대상 보수월액</td></tr>
-<tr><td>장기요양보험</td><td>건강보험료의 12.95%</td><td>건강보험료</td></tr>
+<tr><td>국민연금</td><td>4.75%</td><td>기준소득월액(상·하한 있음)</td></tr>
+<tr><td>건강보험</td><td>3.595%</td><td>과세 대상 보수월액</td></tr>
+<tr><td>장기요양보험</td><td>건강보험료의 13.14%</td><td>건강보험료</td></tr>
 <tr><td>고용보험</td><td>0.9%</td><td>과세 대상 보수월액</td></tr>
 <tr><td>소득세 + 지방소득세</td><td>간이세액표 적용</td><td>과세급여, 부양가족 수</td></tr>
 </table>
@@ -164,15 +184,15 @@
 
 <p>공식 자체는 단순해요.</p>
 
-<blockquote>실수령액 = 세전 월급 − (과세급여 × 8.945% 내외) − 소득세 − 지방소득세<br>※ 8.945% = 국민연금 4.5% + 건강보험 3.545% + 고용보험 0.9% (장기요양은 별도 가산)</blockquote>
+<blockquote>실수령액 = 세전 월급 − (과세급여 × 9.245% 내외) − 소득세 − 지방소득세<br>※ 9.245% = 국민연금 4.75% + 건강보험 3.595% + 고용보험 0.9% (장기요양은 별도 가산)</blockquote>
 
 <p><strong>예시 : 세전 월급 300만원, 비과세 식대 20만원, 부양가족 1명(본인)</strong></p>
 
 <ol>
 <li>과세급여 = 3,000,000 − 200,000 = <strong>2,800,000원</strong></li>
-<li>국민연금 = 2,800,000 × 4.5% = <strong>126,000원</strong></li>
-<li>건강보험 = 2,800,000 × 3.545% = <strong>99,260원</strong></li>
-<li>장기요양 = 99,260 × 12.95% = <strong>12,850원</strong></li>
+<li>국민연금 = 2,800,000 × 4.75% = <strong>133,000원</strong></li>
+<li>건강보험 = 2,800,000 × 3.595% = <strong>100,660원</strong></li>
+<li>장기요양 = 100,660 × 13.14% = <strong>13,220원</strong></li>
 <li>고용보험 = 2,800,000 × 0.9% = <strong>25,200원</strong></li>
 <li>소득세 + 지방소득세 ≒ <strong>6만원 안팎</strong>(간이세액표 기준, 부양가족 수에 따라 변동)</li>
 <li>공제 합계 ≒ 32만원대 → <strong>실수령액 약 267~270만원</strong></li>
